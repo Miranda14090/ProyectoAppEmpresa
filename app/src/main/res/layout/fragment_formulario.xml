@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Formulario">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+         <TextView
+            android:id="@+id/tvFormulario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tvFormulario"
+            android:textSize="30dp"
+            android:textColor="@color/colorPrimary"
+             android:layout_centerHorizontal="true" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nombre"
+            style="@style/EstiloLetras"
+            android:layout_below="@+id/tvFormulario"
+            android:textColorHint="@color/colorPrimary"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:errorEnabled="true"
+            app:counterEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtNombre"
+            style="@style/EstiloLetras"
+            android:maxLength="50"
+            android:digits="@string/alfa"
+            android:backgroundTint="@color/colorPrimary"
+            android:hint="@string/tvNombre" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/apellidoP"
+            android:layout_below="@id/nombre"
+            style="@style/EstiloLetras"
+            android:textColorHint="@color/colorPrimary"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:errorEnabled="true"
+            app:counterEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtApellidoP"
+                style="@style/EstiloLetras"
+                android:maxLength="50"
+                android:digits="@string/alfa"
+                android:backgroundTint="@color/colorPrimary"
+                android:hint="@string/edApaterno" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/apellidoM"
+            android:layout_below="@id/apellidoP"
+            style="@style/EstiloLetras"
+            android:textColorHint="@color/colorPrimary"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:errorEnabled="true"
+            app:counterEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtApellidoM"
+                style="@style/EstiloLetras"
+                android:maxLength="50"
+                android:digits="@string/alfa"
+                android:backgroundTint="@color/colorPrimary"
+                android:hint="@string/edAmaterno" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/entidadFederativa"
+            android:layout_below="@id/apellidoM"
+            style="@style/EstiloLetras"
+            android:textColorHint="@color/colorPrimary"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtEntidad"
+                style="@style/EstiloLetras"
+                android:maxLength="50"
+                android:digits="@string/alfa"
+                android:backgroundTint="@color/colorPrimary"
+                android:hint="@string/edEntidad" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+           <FrameLayout
+               android:id="@+id/frameFecha"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/entidadFederativa">
+
+               <com.google.android.material.textfield.TextInputLayout
+                   android:id="@+id/fecha"
+                   style="@style/EstiloLetras"
+                   android:textColorHint="@color/colorPrimary"
+                   android:focusable="true"
+                   android:focusableInTouchMode="true"
+                   app:errorEnabled="true">
+
+                   <com.google.android.material.textfield.TextInputEditText
+                       android:id="@+id/txtFecha"
+                       android:editable="false"
+                       style="@style/EstiloLetras"
+                       android:layout_marginRight="60dp"
+                       android:backgroundTint="@color/colorPrimary"
+                       android:hint="@string/EdFechaN" />
+               </com.google.android.material.textfield.TextInputLayout>
+
+               <ImageButton
+                   android:id="@+id/btnFecha"
+                   android:layout_width="70dp"
+                   android:layout_height="70dp"
+                   android:layout_gravity="right"
+                   android:src="@drawable/ic_date"
+                    />
+
+           </FrameLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/contrasena"
+            android:layout_below="@+id/frameFecha"
+            style="@style/EstiloLetras"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:errorEnabled="true"
+            app:passwordToggleEnabled="true"
+            android:textColorHint="@color/colorPrimary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtPass1"
+                style="@style/EstiloLetras"
+                android:backgroundTint="@color/colorPrimary"
+                android:hint="@string/edContrasena"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/Confirmarcontrasena"
+
+            android:layout_below="@id/contrasena"
+            style="@style/EstiloLetras"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:errorEnabled="true"
+            app:passwordToggleEnabled="true"
+            android:textColorHint="@color/colorPrimary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtPass2"
+                style="@style/EstiloLetras"
+                android:backgroundTint="@color/colorPrimary"
+                android:hint="@string/edConfirmarContrasena"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/boton_registrar"
+                android:layout_below="@id/Confirmarcontrasena"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:text="@string/btnRegistrar" />
+
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

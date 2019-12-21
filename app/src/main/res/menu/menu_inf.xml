@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_asistencia"
+        android:enabled="true"
+        android:icon="@drawable/ic_asistencia"
+        android:title="Asistencia"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_notificacion"
+        android:enabled="true"
+        android:icon="@drawable/ic_notificacion"
+        android:title="Notificacion"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_Rproblema"
+        android:enabled="true"
+        android:icon="@drawable/ic_reportar"
+        android:title="Reportes"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_noticias"
+        android:enabled="true"
+        android:icon="@drawable/ic_add"
+        android:title="algo mas"
+        app:showAsAction="ifRoom" />
+</menu>

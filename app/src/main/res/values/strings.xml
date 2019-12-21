@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">appEmpresarial</string>
+    <string name="tvFormulario">Formulario</string>
+    <string name="tvNombre">Nombre(s)</string>
+    <string name="edApaterno">Apellido Paterno</string>
+    <string name="edAmaterno">Apellido Materno</string>
+    <string name="edEntidad">Entidad Federativa</string>
+    <string name="edContrasena">Contraseña</string>
+    <string name="edConfirmarContrasena">Confirmar contraseña</string>
+    <string name="btnRegistrar">Registrarse</string>
+    <string name="EdFechaN">Fecha de Nacimiento:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tvInicioSesion">Inicio de Sesion</string>
+    <string name="edUsuario">Usuario</string>
+    <string name="btnInicioSesion">Iniciar Sesion</string>
+
+    <string name="alfa">abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890</string>
+</resources>

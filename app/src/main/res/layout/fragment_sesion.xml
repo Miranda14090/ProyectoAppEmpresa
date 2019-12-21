@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Sesion">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvInicioSesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tvInicioSesion"
+                android:textSize="30dp"
+                android:textColor="@color/colorPrimary"
+                android:layout_centerHorizontal="true" />
+
+            <LinearLayout
+                android:id="@+id/layoutImagen"
+                android:layout_below="@id/tvInicioSesion"
+                android:layout_width="match_parent"
+                android:layout_marginTop="30dp"
+                android:layout_height="200dp"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:srcCompat="@mipmap/ic_launcher" />
+
+            </LinearLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/usuario"
+                style="@style/EstiloLetras"
+                android:layout_below="@+id/layoutImagen"
+                android:textColorHint="@color/colorPrimary"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                app:errorEnabled="true"
+                app:counterEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/EstiloLetras"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:hint="@string/edUsuario" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/contrasena"
+                android:layout_below="@+id/usuario"
+                style="@style/EstiloLetras"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                app:errorEnabled="true"
+                app:passwordToggleEnabled="true"
+                android:textColorHint="@color/colorPrimary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/EstiloLetras"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:hint="@string/edContrasena"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/boton_InicioSesion"
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/contrasena"
+                android:layout_weight="1"
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="@color/colorAccent"
+                android:text="@string/btnInicioSesion"
+                android:textColor="@android:color/white" />
+
+
+
+            <Button
+                android:id="@+id/boton_formulario"
+                android:layout_below="@id/boton_InicioSesion"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:text="@string/btnRegistrar"
+                tools:ignore="OnClick" />
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
