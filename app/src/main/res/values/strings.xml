@@ -16,5 +16,5 @@
     <string name="edUsuario">Usuario</string>
     <string name="btnInicioSesion">Ingresar</string>
 
-    <string name="alfa">abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890</string>
+    <string name="alfa">abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890áéíóúÁÉÍÓÚ</string>
 </resources>
