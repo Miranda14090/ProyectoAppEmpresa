@@ -1,6 +1,7 @@
 package com.miranda.appempresarial
 
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +11,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.get
 import kotlinx.android.synthetic.main.fragment_formulario.*
+import kotlinx.android.synthetic.main.fragment_formulario.view.*
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -30,30 +34,63 @@ class Formulario : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        btnFecha.setOnClickListener {
-            var calendario = Calendar.getInstance()
-            var day = calendario.get(Calendar.DAY_OF_MONTH)
-            var month = calendario.get(Calendar.MONTH)
-            var year = calendario.get(Calendar.YEAR)
 
-            var date_p_d = DatePickerDialog(getActivity()!!, DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
-                txtFecha.setText(" ${mDay} / ${mMonth+1} / ${mYear} ")
+        var edad = 0
+
+        btnFecha.setOnClickListener {
+            val calendario = Calendar.getInstance()
+            val day = calendario.get(Calendar.DAY_OF_MONTH)
+            val month = calendario.get(Calendar.MONTH)
+            val year = calendario.get(Calendar.YEAR)
+            var mes = ""
+            var dia = ""
+            var anio = ""
+
+
+            val date_p_d = DatePickerDialog(getActivity()!!, DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
+
+                edad = if((mMonth-month)<0) {
+                    year - mYear
+                } else if ((mMonth-month)==0) {
+                    if((mDay-day)<=0) {
+                        year - mYear
+                    } else (year - mYear) -1
+                } else (year - mYear) -1
+
+                dia = if(mDay < 10) "0${mDay}"
+                else "${mDay}"
+                mes = if((mMonth+1)<10) "0${mMonth+1}"
+                else "${mMonth+1}"
+                if(mYear < 2000) anio = "${mYear-1900}"
+                else if (mYear == 2000) anio = "00"
+                else if (mYear > 2000 && mYear < 2010) anio = "0${mYear-2000}"
+                else if (mYear > 2010) anio = "${mYear-2000}"
+
+                txtFecha.setText("${dia}/${mes}/${anio}")
+
             }, year, month, day)
             date_p_d.show()
         }
 
         boton_registrar.setOnClickListener {
+            //Toast.makeText(getActivity(), "edad ${edad}", Toast.LENGTH_LONG).show()
 
           if(validacion())
           {
-              Toast.makeText(getActivity(), "Todos los datos son correctos", Toast.LENGTH_LONG).show()
+              var nombres = txtNombre.text.toString()
+              var apellido_p = txtApellidoP.text.toString()
+              var apellido_m = txtApellidoM.text.toString()
+              var entidad_f = txtEntidad.text.toString()
+              var pass = txtPass1.text.toString()
+              var fecha_de_nacimiento = txtFecha.text.toString()
 
-              //TODO hacer el consumo aqui
+              Toast.makeText(getActivity(), "Todos los datos son correctos", Toast.LENGTH_LONG).show()
           }
         }
 
     }
 
+    @SuppressLint("SimpleDateFormat")
     fun validacion(): Boolean{
 
         if(txtNombre.text.toString().equals("")){
@@ -92,7 +129,6 @@ class Formulario : Fragment() {
             return false
         }else txtPass2.error=null
         return true
-
     }
 
 
