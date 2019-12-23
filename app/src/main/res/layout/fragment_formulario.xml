@@ -131,6 +131,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtPass1"
                 android:maxLength="50"
+                android:digits="@string/pass_caracteres"
                 style="@style/Estilo1"
                 android:backgroundTint="@color/primaryColor"
                 android:hint="@string/edContrasena"
@@ -147,6 +148,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtPass2"
                 style="@style/Estilo1"
+                android:maxLength="50"
                 android:backgroundTint="@color/primaryColor"
                 android:hint="@string/edConfirmarContrasena"
                 android:inputType="textPassword" />
