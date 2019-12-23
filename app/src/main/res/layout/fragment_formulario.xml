@@ -130,6 +130,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtPass1"
+                android:maxLength="50"
                 style="@style/Estilo1"
                 android:backgroundTint="@color/primaryColor"
                 android:hint="@string/edContrasena"
