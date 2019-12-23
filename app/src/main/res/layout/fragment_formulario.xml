@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="@string/tvFormulario"
             android:textSize="30dp"
-            android:textColor="@color/verde"
+            android:textColor="@color/primaryColor"
              android:layout_centerHorizontal="true" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -37,7 +37,7 @@
             style="@style/Estilo1"
             android:maxLength="50"
             android:digits="@string/alfa"
-            android:backgroundTint="@color/verde"
+            android:backgroundTint="@color/primaryColor"
             android:hint="@string/tvNombre" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -53,7 +53,7 @@
                 style="@style/Estilo1"
                 android:maxLength="50"
                 android:digits="@string/alfa"
-                android:backgroundTint="@color/verde"
+                android:backgroundTint="@color/primaryColor"
                 android:hint="@string/edApaterno" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,7 +69,7 @@
                 style="@style/Estilo1"
                 android:maxLength="50"
                 android:digits="@string/alfa"
-                android:backgroundTint="@color/verde"
+                android:backgroundTint="@color/primaryColor"
                 android:hint="@string/edAmaterno" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,7 +84,7 @@
                 style="@style/Estilo1"
                 android:maxLength="50"
                 android:digits="@string/alfa"
-                android:backgroundTint="@color/verde"
+                android:backgroundTint="@color/primaryColor"
                 android:hint="@string/edEntidad" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -106,7 +106,7 @@
                        android:editable="false"
                        style="@style/Estilo1"
                        android:layout_marginRight="70dp"
-                       android:backgroundTint="@color/verde"
+                       android:backgroundTint="@color/primaryColor"
                        android:hint="@string/EdFechaN" />
                </com.google.android.material.textfield.TextInputLayout>
 
@@ -131,7 +131,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtPass1"
                 style="@style/Estilo1"
-                android:backgroundTint="@color/verde"
+                android:backgroundTint="@color/primaryColor"
                 android:hint="@string/edContrasena"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -146,7 +146,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtPass2"
                 style="@style/Estilo1"
-                android:backgroundTint="@color/verde"
+                android:backgroundTint="@color/primaryColor"
                 android:hint="@string/edConfirmarContrasena"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>

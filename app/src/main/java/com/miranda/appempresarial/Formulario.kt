@@ -44,7 +44,12 @@ class Formulario : Fragment() {
 
         boton_registrar.setOnClickListener {
 
-          validacion()
+          if(validacion())
+          {
+              Toast.makeText(getActivity(), "Todos los datos son correctos", Toast.LENGTH_LONG).show()
+
+              //TODO hacer el consumo aqui
+          }
         }
 
     }
@@ -77,16 +82,15 @@ class Formulario : Fragment() {
 
         if(txtPass1.length()<8){
             txtPass1.error="Minimo 8 caracteres"
+            txtPass1.requestFocus()
             return  false
-        }else
-            txtPass1.error=null
+        }else txtPass1.error=null
 
         if(!(txtPass1.text.toString().equals(txtPass2.text.toString()))){
             txtPass2.error="No coinciden"
             txtPass2.requestFocus()
             return false
         }else txtPass2.error=null
-
         return true
 
     }
