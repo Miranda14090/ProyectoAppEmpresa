@@ -47,10 +47,9 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.action_noticias -> {
                     val fragment = PerfilUsuario.newInstance()
-                    openFragmentPerfil(fragment)
+                    openFragment(fragment)
                     true
                 }
-
 
                     else -> false
             }
@@ -65,10 +64,5 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    private fun openFragmentPerfil(fragment: Fragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.main_container, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
-    }
+
 }

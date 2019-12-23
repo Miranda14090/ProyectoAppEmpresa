@@ -14,7 +14,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tvInicioSesion">Inicio de Sesion</string>
     <string name="edUsuario">Usuario</string>
-    <string name="btnInicioSesion">Iniciar Sesion</string>
+    <string name="btnInicioSesion">Ingresar</string>
 
     <string name="alfa">abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890</string>
 </resources>

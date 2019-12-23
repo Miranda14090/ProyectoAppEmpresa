@@ -87,9 +87,6 @@ class Formulario : Fragment() {
             return false
         }else txtPass2.error=null
 
-
-
-
         return true
 
     }
