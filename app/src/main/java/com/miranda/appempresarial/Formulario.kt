@@ -61,12 +61,12 @@ class Formulario : Fragment() {
                 else "${mDay}"
                 mes = if((mMonth+1)<10) "0${mMonth+1}"
                 else "${mMonth+1}"
-                if(mYear < 2000) anio = "${mYear-1900}"
-                else if (mYear == 2000) anio = "00"
-                else if (mYear > 2000 && mYear < 2010) anio = "0${mYear-2000}"
-                else if (mYear > 2010) anio = "${mYear-2000}"
+                //if(mYear < 2000) anio = "${mYear-1900}"
+                //else if (mYear == 2000) anio = "00"
+                //else if (mYear > 2000 && mYear < 2010) anio = "0${mYear-2000}"
+                //else if (mYear > 2010) anio = "${mYear-2000}"
 
-                txtFecha.setText("${dia}/${mes}/${anio}")
+                txtFecha.setText("${dia}/${mes}/${mYear}")
 
             }, year, month, day)
             date_p_d.show()
