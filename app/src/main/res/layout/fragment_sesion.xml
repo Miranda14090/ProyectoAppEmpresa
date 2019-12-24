@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="16dp"
     tools:context=".Sesion">
 
     <ScrollView
@@ -38,7 +37,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_talento_azteca" />
+                    android:src="@drawable/ic_talento_azteca"/>
 
             </LinearLayout>
 
@@ -54,6 +53,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtLogin_usuario"
                     style="@style/Estilo1"
                     android:backgroundTint="@color/primaryColor"
                     android:hint="@string/edUsuario" />
@@ -68,6 +68,7 @@
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtLogin_pass"
                     style="@style/Estilo1"
                     android:backgroundTint="@color/primaryColor"
                     android:hint="@string/edContrasena"
@@ -96,8 +97,8 @@
 
             <Button
                 android:id="@+id/boton_formulario"
-                android:layout_marginBottom="8dp"
-                android:layout_gravity="bottom|center"
+                android:layout_below="@id/boton_InicioSesion"
+                android:layout_gravity="center"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -66,7 +66,18 @@ class Formulario : Fragment() {
                 //else if (mYear > 2000 && mYear < 2010) anio = "0${mYear-2000}"
                 //else if (mYear > 2010) anio = "${mYear-2000}"
 
-                txtFecha.setText("${dia}/${mes}/${mYear}")
+                if(edad>=18 && edad<=70)
+                {
+                    txtFecha.setText("${dia}/${mes}/${mYear}")
+                    txtFecha.error=null
+                }
+                else {
+                    txtFecha.error="Edad mínima de 18"
+                    txtFecha.setText("")
+                    txtFecha.requestFocus()
+                }
+
+
 
             }, year, month, day)
             date_p_d.show()
@@ -93,19 +104,19 @@ class Formulario : Fragment() {
     @SuppressLint("SimpleDateFormat")
     fun validacion(): Boolean{
 
-        if(txtNombre.text.toString().equals("")){
+        if(txtNombre.text.toString().replace(" ","").equals("")){
             txtNombre.error="campo vacio"
             txtNombre.requestFocus()
             return false
         }else txtNombre.error=null
 
-        if(txtApellidoP.text.toString().equals("")){
+        if(txtApellidoP.text.toString().replace(" ","").equals("")){
             txtApellidoP.error="campo vacio"
             txtApellidoP.requestFocus()
             return  false
         }else txtApellidoP.error=null
 
-        if(txtEntidad.text.toString().equals("")){
+        if(txtEntidad.text.toString().replace(" ","").equals("")){
             txtEntidad.error="campo vacio"
             txtEntidad.requestFocus()
             return  false

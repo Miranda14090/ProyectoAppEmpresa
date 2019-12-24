@@ -17,4 +17,5 @@
     <string name="btnInicioSesion">Ingresar</string>
 
     <string name="alfa">abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890áéíóúÁÉÍÓÚ</string>
+    <string name="pass_caracteres">abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890áéíóúÁÉÍÓÚ´!">?>#$%/()=?¡'¿´+{},.-*[];:_\|°¬~@</string>
 </resources>
