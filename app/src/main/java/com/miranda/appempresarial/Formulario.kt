@@ -76,9 +76,6 @@ class Formulario : Fragment() {
                     txtFecha.setText("")
                     txtFecha.requestFocus()
                 }
-
-
-
             }, year, month, day)
             date_p_d.show()
         }

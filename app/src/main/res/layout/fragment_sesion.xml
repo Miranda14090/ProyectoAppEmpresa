@@ -3,44 +3,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Sesion">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp">
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/tvInicioSesion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:text="@string/tvInicioSesion"
-                android:textSize="30dp"
                 android:textColor="@color/primaryColor"
-                android:layout_centerHorizontal="true" />
+                android:textSize="30dp" />
 
             <LinearLayout
                 android:id="@+id/layoutImagen"
-                android:layout_below="@id/tvInicioSesion"
                 android:layout_width="match_parent"
-                android:layout_marginTop="30dp"
                 android:layout_height="200dp"
-                android:orientation="vertical"
-                >
+                android:layout_below="@id/tvInicioSesion"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_talento_azteca"/>
+                    android:src="@drawable/ic_talento_azteca" />
 
             </LinearLayout>
-
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -48,13 +50,15 @@
                 style="@style/Estilo1"
                 android:layout_below="@+id/layoutImagen"
                 android:layout_marginTop="15dp"
-                app:errorEnabled="true"
                 app:counterEnabled="true"
-                >
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtLogin_usuario"
+                    android:maxLength="6"
                     style="@style/Estilo1"
+                    android:inputType="numberDecimal"
+                    android:digits="@string/numbers"
                     android:backgroundTint="@color/primaryColor"
                     android:hint="@string/edUsuario" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -62,8 +66,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/contrasena"
 
-                android:layout_below="@+id/usuario"
                 style="@style/Estilo1"
+                android:layout_below="@+id/usuario"
                 app:errorEnabled="true"
                 app:passwordToggleEnabled="true">
 
@@ -76,41 +80,39 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
             <LinearLayout
                 android:id="@+id/LayoudBotones"
-                android:layout_below="@id/contrasena"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
-            <Button
-                android:id="@+id/boton_InicioSesion"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
                 android:layout_below="@id/contrasena"
-               android:layout_gravity="center"
-                android:background="@drawable/borde_circular"
-                android:text="@string/btnInicioSesion"
-                android:textColor="@color/blanco"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/boton_formulario"
-                android:layout_below="@id/boton_InicioSesion"
-                android:layout_gravity="center"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="1"
-                android:text="@string/btnRegistrar"
-                tools:ignore="OnClick" />
+                <Button
+                    android:id="@+id/boton_InicioSesion"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/contrasena"
+                    android:layout_gravity="center"
+                    android:background="@drawable/borde_circular"
+                    android:text="@string/btnInicioSesion"
+                    android:textColor="@color/blanco"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/boton_formulario"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/boton_InicioSesion"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="@string/btnRegistrar"
+                    tools:ignore="OnClick" />
 
 
             </LinearLayout>
-
-
 
 
         </RelativeLayout>

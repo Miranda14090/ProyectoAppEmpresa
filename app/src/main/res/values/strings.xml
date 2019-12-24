@@ -18,4 +18,5 @@
 
     <string name="alfa">abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890áéíóúÁÉÍÓÚ</string>
     <string name="pass_caracteres">abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890áéíóúÁÉÍÓÚ´!">?>#$%/()=?¡'¿´+{},.-*[];:_\|°¬~@</string>
+    <string name="numbers">1234567890</string>
 </resources>
