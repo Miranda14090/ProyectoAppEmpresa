@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Formulario">
 
@@ -156,7 +157,7 @@
                 android:id="@+id/boton_registrar"
                 android:layout_below="@id/Confirmarcontrasena"
                 style="@style/EstiloB1"
-                app:cornerRadius="25dp"
+                android:background="@drawable/borde_circular"
                 android:text="@string/btnRegistrar" />
 
 
