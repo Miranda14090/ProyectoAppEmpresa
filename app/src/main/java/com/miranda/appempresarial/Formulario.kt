@@ -40,7 +40,7 @@ class Formulario : Fragment() {
         btnFecha.setOnClickListener {
             edad = calendari()
         }
-        txtFecha.setOnClickListener {
+        fecha.setOnClickListener {
             edad = calendari()
         }
 
@@ -91,16 +91,16 @@ class Formulario : Fragment() {
         }else txtFecha.error=null
 
         if(txtPass1.length()<8){
-            txtPass1.error="Minimo 8 caracteres"
-            txtPass1.requestFocus()
+            contrasena.error="Minimo 8 caracteres"
+            contrasena.requestFocus()
             return  false
-        }else txtPass1.error=null
+        }else contrasena.error=null
 
         if(!(txtPass1.text.toString().equals(txtPass2.text.toString()))){
-            txtPass2.error="No coinciden"
-            txtPass2.requestFocus()
+            Confirmarcontrasena.error="No coinciden"
+            Confirmarcontrasena.requestFocus()
             return false
-        }else txtPass2.error=null
+        }else Confirmarcontrasena.error=null
         return true
     }
 
