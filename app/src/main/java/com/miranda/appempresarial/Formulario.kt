@@ -38,46 +38,10 @@ class Formulario : Fragment() {
         var edad = 0
 
         btnFecha.setOnClickListener {
-            val calendario = Calendar.getInstance()
-            val day = calendario.get(Calendar.DAY_OF_MONTH)
-            val month = calendario.get(Calendar.MONTH)
-            val year = calendario.get(Calendar.YEAR)
-            var mes = ""
-            var dia = ""
-            var anio = ""
-
-
-            val date_p_d = DatePickerDialog(getActivity()!!, DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
-
-                edad = if((mMonth-month)<0) {
-                    year - mYear
-                } else if ((mMonth-month)==0) {
-                    if((mDay-day)<=0) {
-                        year - mYear
-                    } else (year - mYear) -1
-                } else (year - mYear) -1
-
-                dia = if(mDay < 10) "0${mDay}"
-                else "${mDay}"
-                mes = if((mMonth+1)<10) "0${mMonth+1}"
-                else "${mMonth+1}"
-                //if(mYear < 2000) anio = "${mYear-1900}"
-                //else if (mYear == 2000) anio = "00"
-                //else if (mYear > 2000 && mYear < 2010) anio = "0${mYear-2000}"
-                //else if (mYear > 2010) anio = "${mYear-2000}"
-
-                if(edad>=18 && edad<=70)
-                {
-                    txtFecha.setText("${dia}/${mes}/${mYear}")
-                    txtFecha.error=null
-                }
-                else {
-                    txtFecha.error="Edad mínima de 18"
-                    txtFecha.setText("")
-                    txtFecha.requestFocus()
-                }
-            }, year, month, day)
-            date_p_d.show()
+            edad = calendari()
+        }
+        txtFecha.setOnClickListener {
+            edad = calendari()
         }
 
         boton_registrar.setOnClickListener {
@@ -98,23 +62,24 @@ class Formulario : Fragment() {
 
     }
 
+
     @SuppressLint("SimpleDateFormat")
     fun validacion(): Boolean{
 
-        if(txtNombre.text.toString().replace(" ","").equals("")){
-            txtNombre.error="campo vacio"
+        if((txtNombre.text.toString().replace(" ","").equals(""))||(txtNombre.text.toString()).get(0).equals(' ') ){
+            txtNombre.error="No valido"
             txtNombre.requestFocus()
             return false
         }else txtNombre.error=null
 
-        if(txtApellidoP.text.toString().replace(" ","").equals("")){
-            txtApellidoP.error="campo vacio"
+        if(txtApellidoP.text.toString().replace(" ","").equals("")||(txtNombre.text.toString()).get(0).equals(' ')){
+            txtApellidoP.error="No valido"
             txtApellidoP.requestFocus()
             return  false
         }else txtApellidoP.error=null
 
-        if(txtEntidad.text.toString().replace(" ","").equals("")){
-            txtEntidad.error="campo vacio"
+        if(txtEntidad.text.toString().replace(" ","").equals("")||(txtNombre.text.toString()).get(0).equals(' ')){
+            txtEntidad.error="No valido"
             txtEntidad.requestFocus()
             return  false
         }else txtEntidad.error=null
@@ -137,6 +102,52 @@ class Formulario : Fragment() {
             return false
         }else txtPass2.error=null
         return true
+    }
+
+    fun calendari():Int{
+
+        var edad = 0
+        val calendario = Calendar.getInstance()
+        val day = calendario.get(Calendar.DAY_OF_MONTH)
+        val month = calendario.get(Calendar.MONTH)
+        val year = calendario.get(Calendar.YEAR)
+        var mes = ""
+        var dia = ""
+        var anio = ""
+
+
+        val date_p_d = DatePickerDialog(getActivity()!!, DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
+
+            edad = if((mMonth-month)<0) {
+                year - mYear
+            } else if ((mMonth-month)==0) {
+                if((mDay-day)<=0) {
+                    year - mYear
+                } else (year - mYear) -1
+            } else (year - mYear) -1
+
+            dia = if(mDay < 10) "0${mDay}"
+            else "${mDay}"
+            mes = if((mMonth+1)<10) "0${mMonth+1}"
+            else "${mMonth+1}"
+            //if(mYear < 2000) anio = "${mYear-1900}"
+            //else if (mYear == 2000) anio = "00"
+            //else if (mYear > 2000 && mYear < 2010) anio = "0${mYear-2000}"
+            //else if (mYear > 2010) anio = "${mYear-2000}"
+
+            if(edad>=18 && edad<=70)
+            {
+                txtFecha.setText("${dia}/${mes}/${mYear}")
+                txtFecha.error=null
+            }
+            else {
+                txtFecha.error="Fecha no valida"
+                txtFecha.setText("")
+                txtFecha.requestFocus()
+            }
+        }, year, month, day)
+        date_p_d.show()
+        return edad
     }
 
 

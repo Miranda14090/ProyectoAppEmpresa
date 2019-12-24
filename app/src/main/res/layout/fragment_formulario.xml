@@ -123,11 +123,11 @@
            </FrameLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/contrasena"
-            android:layout_below="@+id/frameFecha"
-            style="@style/Estilo1"
-            app:errorEnabled="true"
-            app:passwordToggleEnabled="true">
+                android:id="@+id/contrasena"
+                android:layout_below="@+id/frameFecha"
+                style="@style/Estilo1"
+                app:errorEnabled="true"
+                app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtPass1"
