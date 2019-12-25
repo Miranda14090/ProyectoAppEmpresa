@@ -36,8 +36,22 @@
 
 
 
+    <style name="EstiloImagenReporte" parent="Theme.AppCompat.Light">
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">120dp</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
 
+    <style name="EstiloTextoReporte" parent="Theme.AppCompat.Light">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/primaryColor</item>
 
+    </style>
 
 
 </resources>
