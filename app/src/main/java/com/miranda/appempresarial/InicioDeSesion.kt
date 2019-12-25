@@ -1,12 +1,14 @@
 package com.miranda.appempresarial
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+
+
+
 import android.os.Bundle
-import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+
+
 
 class InicioDeSesion : AppCompatActivity() ,Sesion.FormulariosListener {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,9 +19,9 @@ class InicioDeSesion : AppCompatActivity() ,Sesion.FormulariosListener {
                 .beginTransaction()
                 .add(R.id.contenedorSesion, Sesion(),"")
                 .commit()
+        //Internet.coprobarInternet(this)
+
     }
-
-
     override fun registroFinishCallback() {
         supportFragmentManager
             .beginTransaction()
@@ -28,8 +30,4 @@ class InicioDeSesion : AppCompatActivity() ,Sesion.FormulariosListener {
     }
 
 
-    /*fun MostrarMenu(view: View) {
-        val intento1 = Intent(this, MainActivity::class.java)
-        startActivity(intento1)
-    }*/
 }

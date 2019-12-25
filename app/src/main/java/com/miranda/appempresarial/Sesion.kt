@@ -36,9 +36,16 @@ class Sesion : Fragment() {
         }
 
         boton_InicioSesion.setOnClickListener{
-            val intento1 = Intent(getActivity(), MainActivity::class.java)
-            getActivity()?.startActivity(intento1)
+            if((getActivity()?.let { Internet.coprobarInternet(it) }!!) && loginSuccessful()) {
+                val intento1 = Intent(getActivity(), MainActivity::class.java)
+                getActivity()?.startActivity(intento1)
+            }
         }
+    }
+
+    private fun loginSuccessful(): Boolean {
+        //TODO consumo de inicio secion
+        return true
     }
 
 

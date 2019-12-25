@@ -2,19 +2,19 @@ package com.miranda.appempresarial
 
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.get
+import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_formulario.*
-import kotlinx.android.synthetic.main.fragment_formulario.view.*
-import java.text.DateFormat
-import java.text.SimpleDateFormat
 import java.util.*
+
 
 /**
  * A simple [Fragment] subclass.
@@ -46,18 +46,23 @@ class Formulario : Fragment() {
 
         boton_registrar.setOnClickListener {
             //Toast.makeText(getActivity(), "edad ${edad}", Toast.LENGTH_LONG).show()
+            if(getActivity()?.let { Internet.coprobarInternet(it) }!!) {
 
-          if(validacion())
-          {
-              var nombres = txtNombre.text.toString()
-              var apellido_p = txtApellidoP.text.toString()
-              var apellido_m = txtApellidoM.text.toString()
-              var entidad_f = txtEntidad.text.toString()
-              var pass = txtPass1.text.toString()
-              var fecha_de_nacimiento = txtFecha.text.toString()
+                    if (validacion()) {
+                        var nombres = txtNombre.text.toString()
+                        var apellido_p = txtApellidoP.text.toString()
+                        var apellido_m = txtApellidoM.text.toString()
+                        var entidad_f = txtEntidad.text.toString()
+                        var pass = txtPass1.text.toString()
+                        var fecha_de_nacimiento = txtFecha.text.toString()
 
-              Toast.makeText(getActivity(), "Todos los datos son correctos", Toast.LENGTH_LONG).show()
-          }
+                        Toast.makeText(
+                            getActivity(),
+                            "Todos los datos son correctos",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
         }
 
     }
@@ -149,7 +154,5 @@ class Formulario : Fragment() {
         date_p_d.show()
         return edad
     }
-
-
 }
 
