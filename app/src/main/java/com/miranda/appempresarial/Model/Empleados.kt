@@ -1,4 +1,4 @@
-package com.miranda.appempresarial
+package com.miranda.appempresarial.Model
 
 import com.google.gson.annotations.SerializedName
 

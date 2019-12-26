@@ -1,14 +1,17 @@
-package com.miranda.appempresarial
+package com.miranda.appempresarial.view
 
 
 
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.miranda.appempresarial.R
+import com.miranda.appempresarial.view.fragments.Formulario
+import com.miranda.appempresarial.view.fragments.Sesion
 
 
-
-class InicioDeSesion : AppCompatActivity() ,Sesion.FormulariosListener {
+class InicioDeSesion : AppCompatActivity() ,
+    Sesion.FormulariosListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +20,9 @@ class InicioDeSesion : AppCompatActivity() ,Sesion.FormulariosListener {
         if(savedInstanceState == null)
             supportFragmentManager
                 .beginTransaction()
-                .add(R.id.contenedorSesion, Sesion(),"")
+                .add(
+                    R.id.contenedorSesion,
+                    Sesion(),"")
                 .commit()
         //Internet.coprobarInternet(this)
 
@@ -25,7 +30,9 @@ class InicioDeSesion : AppCompatActivity() ,Sesion.FormulariosListener {
     override fun registroFinishCallback() {
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.contenedorSesion, Formulario(),"")
+            .replace(
+                R.id.contenedorSesion,
+                Formulario(),"")
             .commit()
     }
 

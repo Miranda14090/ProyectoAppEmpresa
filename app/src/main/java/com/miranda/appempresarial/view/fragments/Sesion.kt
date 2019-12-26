@@ -1,4 +1,4 @@
-package com.miranda.appempresarial
+package com.miranda.appempresarial.view.fragments
 
 
 import android.content.Context
@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.miranda.appempresarial.R
+import com.miranda.appempresarial.presentet.Internet
+import com.miranda.appempresarial.view.MainActivity
 import kotlinx.android.synthetic.main.fragment_sesion.*
 
 /**
@@ -15,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_sesion.*
  */
 class Sesion : Fragment() {
 
-    var mCallback :FormulariosListener?=null
+    var mCallback : FormulariosListener?=null
 
 
 

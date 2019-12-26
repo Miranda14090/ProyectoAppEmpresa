@@ -1,14 +1,12 @@
-package com.miranda.appempresarial
+package com.miranda.appempresarial.view.fragments
 
 
-import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_perfil_usuario.*
-import java.util.*
+import com.miranda.appempresarial.R
 
 /**
  * A simple [Fragment] subclass.
@@ -25,7 +23,8 @@ class PerfilUsuario : Fragment() {
     }
 
     companion object {
-        fun newInstance(): PerfilUsuario = PerfilUsuario()
+        fun newInstance(): PerfilUsuario =
+            PerfilUsuario()
     }
 
 

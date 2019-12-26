@@ -1,4 +1,4 @@
-package com.miranda.appempresarial
+package com.miranda.appempresarial.view.fragments
 
 
 import android.annotation.SuppressLint
@@ -11,8 +11,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.miranda.appempresarial.Model.Empleados
+import com.miranda.appempresarial.R
+import com.miranda.appempresarial.api.RegistroEmpleadoResponse
+import com.miranda.appempresarial.api.ApiEmpleados
+import com.miranda.appempresarial.api.Api_Envio
+import com.miranda.appempresarial.presentet.Internet
 import kotlinx.android.synthetic.main.fragment_formulario.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,7 +30,7 @@ import java.util.*
  */
 class Formulario : Fragment() {
 
-    lateinit var apiEmpleados:ApiEmpleados
+    lateinit var apiEmpleados: ApiEmpleados
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +41,8 @@ class Formulario : Fragment() {
     }
 
     companion object {
-        fun newInstance(): Formulario = Formulario()
+        fun newInstance(): Formulario =
+            Formulario()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,18 +57,17 @@ class Formulario : Fragment() {
         }
 
         boton_registrar.setOnClickListener {
-            //Toast.makeText(getActivity(), "edad ${edad}", Toast.LENGTH_LONG).show()
             if(getActivity()?.let { Internet.coprobarInternet(it) }!!) {
 
                     if (validacion()) {
-                        var nombres = txtNombre.text.toString()
-                        var apellido_p = txtApellidoP.text.toString()
-                        var apellido_m = txtApellidoM.text.toString()
-                        var entidad_f = txtEntidad.text.toString()
-                        var pass = txtPass1.text.toString()
-                        var fecha_de_nacimiento = txtFecha.text.toString()
+                        val nombres = txtNombre.text.toString()
+                        val apellido_p = txtApellidoP.text.toString()
+                        val apellido_m = txtApellidoM.text.toString()
+                        val entidad_f = txtEntidad.text.toString()
+                        val pass = txtPass1.text.toString()
+                        val fecha_de_nacimiento = txtFecha.text.toString()
 
-                        var empleado = Empleados(nombres, apellido_p, apellido_m, edad, fecha_de_nacimiento, entidad_f, pass)
+                        val empleado = Empleados(nombres, apellido_p, apellido_m, edad, fecha_de_nacimiento, entidad_f, pass)
 
                         apiEmpleados = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
                         var callRespuesta = apiEmpleados.registrar_empleado("text/plain", empleado)
@@ -73,8 +78,8 @@ class Formulario : Fragment() {
                             }
 
                             override fun onResponse(
-                              call: Call<RegistroEmpleadoResponse>,
-                              response: Response<RegistroEmpleadoResponse>
+                                call: Call<RegistroEmpleadoResponse>,
+                                response: Response<RegistroEmpleadoResponse>
                              ){
                                 if (response.isSuccessful) {
                                     Log.w("Empleado", "Respuesta correcta")
