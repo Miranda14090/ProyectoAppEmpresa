@@ -7,12 +7,16 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_formulario.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 
@@ -20,6 +24,8 @@ import java.util.*
  * A simple [Fragment] subclass.
  */
 class Formulario : Fragment() {
+
+    lateinit var apiEmpleados:ApiEmpleados
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,11 +62,40 @@ class Formulario : Fragment() {
                         var pass = txtPass1.text.toString()
                         var fecha_de_nacimiento = txtFecha.text.toString()
 
-                        Toast.makeText(
-                            getActivity(),
-                            "Todos los datos son correctos",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        var empleado = Empleados(nombres, apellido_p, apellido_m, edad, fecha_de_nacimiento, entidad_f, pass)
+
+                        apiEmpleados = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
+                        var callRespuesta = apiEmpleados.registrar_empleado("text/plain", empleado)
+
+                        callRespuesta.enqueue(object: Callback<RegistroEmpleadoResponse> {
+                            override fun onFailure(call: Call<RegistroEmpleadoResponse>, t: Throwable) {
+                                Log.w("Empleado", "Fallo la llamada")
+                            }
+
+                            override fun onResponse(
+                              call: Call<RegistroEmpleadoResponse>,
+                              response: Response<RegistroEmpleadoResponse>
+                             ){
+                                if (response.isSuccessful) {
+                                    Log.w("Empleado", "Respuesta correcta")
+                                    Log.i("Empleado", response.body().toString())
+                                    var numeroDeEmpleado = response.body()?.numeroDeEmpleado;
+                                    var codigoOperacion = response.body()?.codigoOperacion;
+                                    when (codigoOperacion) {
+                                        0 -> {
+                                            getActivity()?.let { it1 -> mensaje(it1,"Tú número de empleado es: ${numeroDeEmpleado}") }
+                                        }
+                                        1 -> {
+                                            getActivity()?.let { it1 -> mensaje(it1,"El empleado ${nombres} ya se encuentra registrado") }
+                                        }
+                                        else -> {
+                                            getActivity()?.let { it1 -> mensaje(it1,"Error inesperado, marcar al soporte para más ayuda") }
+                                        }
+                                    }
+                                } else {Log.w("Empleado", "Respuesta erronea")}
+
+                            }
+                         })
                     }
                 }
         }
@@ -153,6 +188,18 @@ class Formulario : Fragment() {
         }, year, month, day)
         date_p_d.show()
         return edad
+    }
+
+    fun mensaje(c:Context, txtmensaje:String)
+    {
+        val dialogoRespuesta = AlertDialog.Builder(c)
+
+        dialogoRespuesta.setTitle(R.string.registro)
+            .setMessage(txtmensaje)
+            .setPositiveButton("OK",
+                DialogInterface.OnClickListener { dialog, which ->  }) //despues del lambda -> se pone la accion
+        dialogoRespuesta.create()
+        dialogoRespuesta.show()
     }
 }
 
