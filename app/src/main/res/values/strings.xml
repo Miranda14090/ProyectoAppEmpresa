@@ -33,4 +33,5 @@
     <string name="title_fingerprint">Logueo con un toque</string>
     <string name="desc_fingerprint">Coloque la yema del dedo en el escáner para verificar su identidad</string>
     <string name="note">(El inicio de sesión con la huella dactilar hace que la aplicación inicie sesión mucho más rápido. Su dispositivo debe tener al menos una huella digital registrada en la configuración del dispositivo)</string>
+    <string name="noneServise">No se puedo conectar con el servidor intentelo más tarde</string>
 </resources>
