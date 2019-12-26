@@ -50,6 +50,11 @@ class MainActivity : AppCompatActivity() {
                     openFragment(fragment)
                     true
                 }
+                R.id.action_Rproblema -> {
+                    val fragment = Reportes.newInstance()
+                    openFragment(fragment)
+                    true
+                }
 
                     else -> false
             }
