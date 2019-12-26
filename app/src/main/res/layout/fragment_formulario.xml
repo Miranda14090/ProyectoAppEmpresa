@@ -106,7 +106,7 @@
 
                    <com.google.android.material.textfield.TextInputEditText
                        android:id="@+id/txtFecha"
-                       android:editable="false"
+                       android:inputType="none"
                        style="@style/Estilo1"
                        android:layout_marginRight="70dp"
                        android:backgroundTint="@color/primaryColor"
