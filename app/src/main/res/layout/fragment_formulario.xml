@@ -158,12 +158,39 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-            <Button
-                android:id="@+id/boton_registrar"
-                android:layout_below="@id/Confirmarcontrasena"
-                style="@style/EstiloB1"
-                android:background="@drawable/borde_circular"
-                android:text="@string/btnRegistrar" />
+
+
+
+
+
+
+            <LinearLayout
+                android:layout_below="@+id/Confirmarcontrasena"
+                android:id="@+id/bottom_bar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/boton_cancelar"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/btnCancelar" />
+
+                <Button
+                    android:id="@+id/boton_registrar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/primaryColor"
+                    android:text="@string/btnRegistrar"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
 
 
 
