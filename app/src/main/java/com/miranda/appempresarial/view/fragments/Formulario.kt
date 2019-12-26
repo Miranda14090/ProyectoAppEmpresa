@@ -73,6 +73,15 @@ class Formulario : Fragment() {
             edad = calendari()
         }
 
+        boton_cancelar.setOnClickListener {
+            if(mCallback!=null)
+            {
+                mCallback!!.loginFinishCallback()
+            }
+        }
+
+
+
         boton_registrar.setOnClickListener {
             if(activity?.let { Internet.coprobarInternet(it) }!!) {
 

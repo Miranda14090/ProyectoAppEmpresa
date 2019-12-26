@@ -8,15 +8,13 @@
 
 
       <LinearLayout
+          android:padding="16dp"
           android:orientation="vertical"
           android:layout_width="match_parent"
           android:layout_height="match_parent">
 
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+
 
                   <TextView
                       android:layout_width="wrap_content"
@@ -25,162 +23,155 @@
                       android:textSize="30dp"
                       android:layout_gravity="center"
                       android:textColor="@color/primaryColor"
-                      android:layout_margin="12dp"
+                      android:layout_margin="10dp"
                       >
                   </TextView>
-            </LinearLayout>
 
 
+            <GridLayout
+                android:layout_width="346dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:alignmentMode="alignMargins"
+                android:columnCount="2"
+                android:rowCount="3">
+
+                  <androidx.cardview.widget.CardView
+                      android:id="@+id/cardViewTecnico"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_rowWeight="1"
+                      android:layout_columnWeight="1"
+                      android:layout_margin="12dp"
+                      app:cardCornerRadius="12dp"
+                      app:cardElevation="6dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                              <ImageView
+                                  android:layout_width="40dp"
+                                  android:layout_height="40dp"
+                                  android:src="@drawable/tecnico" />
+
+                              <TextView
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_marginTop="12dp"
+                                  android:text="@string/tvTecnico"
+                                  android:textSize="18sp" />
+                        </LinearLayout>
+                  </androidx.cardview.widget.CardView>
 
 
-          <GridLayout
-              android:columnCount="2"
-              android:rowCount="3"
-              android:alignmentMode="alignMargins"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+                  <androidx.cardview.widget.CardView
+                      android:id="@+id/cardViewMantenimiento"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_rowWeight="1"
+                      android:layout_columnWeight="1"
+                      android:layout_margin="12dp"
+                      app:cardCornerRadius="12dp"
+                      app:cardElevation="6dp">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="12dp"
-                    android:layout_margin="12dp"
-                    >
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical"
+                            android:padding="16dp">
 
-                      <LinearLayout
-                          android:orientation="vertical"
-                          android:padding="16dp"
-                          android:layout_gravity="center"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content">
+                              <ImageView
+                                  android:layout_width="40dp"
+                                  android:layout_height="40dp"
+                                  android:layout_gravity="center"
+                                  android:src="@drawable/mantenimiento" />
 
-                            <ImageView
-                                android:src="@drawable/tecnico"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"/>
-                            <TextView
-                                android:layout_marginTop="12dp"
-                                android:textSize="18sp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/tvTecnico"
-                                />
-                      </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                              <TextView
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_marginTop="12dp"
+                                  android:text="@string/tvMantenimiento"
+                                  android:textSize="18sp" />
+                        </LinearLayout>
 
 
+                  </androidx.cardview.widget.CardView>
 
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="12dp"
-                    android:layout_margin="12dp"
-                    >
+                  <androidx.cardview.widget.CardView
+                      android:id="@+id/cardViewAdministrativo"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_rowWeight="1"
+                      android:layout_columnWeight="1"
+                      android:layout_margin="12dp"
+                      app:cardCornerRadius="12dp"
+                      app:cardElevation="6dp">
 
-                      <LinearLayout
-                          android:orientation="vertical"
-                          android:padding="16dp"
-                          android:layout_gravity="center"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical"
+                            android:padding="16dp">
 
-                            <ImageView
-                                android:src="@drawable/mantenimiento"
-                                android:layout_gravity="center"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"/>
-                            <TextView
-                                android:layout_marginTop="12dp"
-                                android:textSize="18sp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/tvMantenimiento"
-                                />
-                      </LinearLayout>
+                              <ImageView
+                                  android:layout_width="40dp"
+                                  android:layout_height="40dp"
+                                  android:layout_gravity="center"
+                                  android:src="@drawable/administracion" />
 
-
-                </androidx.cardview.widget.CardView>
+                              <TextView
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_marginTop="12dp"
+                                  android:text="@string/tvAdministrativo"
+                                  android:textSize="18sp" />
+                        </LinearLayout>
+                  </androidx.cardview.widget.CardView>
 
 
+                  <androidx.cardview.widget.CardView
+                      android:id="@+id/cardViewServicio"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_rowWeight="1"
+                      android:layout_columnWeight="1"
+                      android:layout_margin="12dp"
+                      app:cardCornerRadius="12dp"
+                      app:cardElevation="6dp">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="12dp"
-                    android:layout_margin="12dp"
-                    >
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical"
+                            android:padding="16dp">
 
-                      <LinearLayout
-                          android:orientation="vertical"
-                          android:padding="16dp"
-                          android:layout_gravity="center"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content">
+                              <ImageView
+                                  android:layout_width="40dp"
+                                  android:layout_height="40dp"
+                                  android:layout_gravity="center"
+                                  android:src="@drawable/servicio" />
 
-                            <ImageView
-                                android:src="@drawable/administracion"
-                                android:layout_gravity="center"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"/>
-                            <TextView
-                                android:layout_marginTop="12dp"
-                                android:textSize="18sp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/tvAdministrativo"
-                                />
-                      </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                              <TextView
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_marginTop="12dp"
+                                  android:text="@string/tvServicio"
+                                  android:textSize="18sp" />
+                        </LinearLayout>
 
 
+                  </androidx.cardview.widget.CardView>
 
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="12dp"
-                    android:layout_margin="12dp"
-                    >
-
-                      <LinearLayout
-                          android:orientation="vertical"
-                          android:padding="16dp"
-                          android:layout_gravity="center"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content">
-
-                            <ImageView
-                                android:src="@drawable/servicio"
-                                android:layout_gravity="center"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"/>
-                            <TextView
-                                android:layout_marginTop="12dp"
-                                android:textSize="18sp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/tvServicio"
-                                />
-                      </LinearLayout>
-
-
-                </androidx.cardview.widget.CardView>
-
-
-          </GridLayout>
+            </GridLayout>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -188,13 +179,17 @@
                 android:layout_height="wrap_content">
 
                   <EditText
+                      android:id="@+id/descipcion"
                       android:layout_margin="12dp"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
+                      android:visibility="invisible"
                       android:hint="@string/tvDescripcionR"
+                      android:maxLength="100"
                       />
                   <Button
                       android:id="@+id/boton_EnviarReporte"
+                      android:visibility="invisible"
                       android:layout_width="250dp"
                       android:layout_height="wrap_content"
                       android:layout_below="@id/contrasena"
