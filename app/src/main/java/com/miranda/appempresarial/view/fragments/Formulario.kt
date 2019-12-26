@@ -69,7 +69,10 @@ class Formulario : Fragment() {
         btnFecha.setOnClickListener {
             edad = calendari()
         }
-        fecha.setOnClickListener {
+
+        txtFecha.isFocusable=false
+        txtFecha.setOnClickListener {
+
             edad = calendari()
         }
 
