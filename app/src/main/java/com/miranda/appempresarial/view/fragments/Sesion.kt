@@ -20,9 +20,6 @@ class Sesion : Fragment() {
 
     var mCallback : FormulariosListener?=null
 
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +29,7 @@ class Sesion : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         boton_formulario.setOnClickListener {
 
             if(mCallback!=null)
@@ -39,9 +37,9 @@ class Sesion : Fragment() {
         }
 
         boton_InicioSesion.setOnClickListener{
-            if((getActivity()?.let { Internet.coprobarInternet(it) }!!) && loginSuccessful()) {
-                val intento1 = Intent(getActivity(), MainActivity::class.java)
-                getActivity()?.startActivity(intento1)
+            if((activity?.let { Internet.coprobarInternet(it) }!!) && loginSuccessful()) {
+                val intento1 = Intent(activity, MainActivity::class.java)
+                activity?.startActivity(intento1)
             }
         }
     }

@@ -11,7 +11,7 @@ import com.miranda.appempresarial.view.fragments.Sesion
 
 
 class InicioDeSesion : AppCompatActivity() ,
-    Sesion.FormulariosListener {
+    Sesion.FormulariosListener, Formulario.FormulariosListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +33,15 @@ class InicioDeSesion : AppCompatActivity() ,
             .replace(
                 R.id.contenedorSesion,
                 Formulario(),"")
+            .commit()
+    }
+
+    override fun loginFinishCallback()   {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(
+                R.id.contenedorSesion,
+                Sesion(),"")
             .commit()
     }
 

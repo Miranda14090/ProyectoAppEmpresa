@@ -30,6 +30,22 @@ import java.util.*
  */
 class Formulario : Fragment() {
 
+    var mCallback : Formulario.FormulariosListener?=null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        try{
+            mCallback = activity as Formulario.FormulariosListener?
+
+        }catch (e :Exception ){
+
+        }
+    }
+
+    interface FormulariosListener {
+        fun loginFinishCallback()
+    }
+
     lateinit var apiEmpleados: ApiEmpleados
 
     override fun onCreateView(
@@ -57,7 +73,7 @@ class Formulario : Fragment() {
         }
 
         boton_registrar.setOnClickListener {
-            if(getActivity()?.let { Internet.coprobarInternet(it) }!!) {
+            if(activity?.let { Internet.coprobarInternet(it) }!!) {
 
                     if (validacion()) {
                         val nombres = txtNombre.text.toString()
@@ -70,7 +86,7 @@ class Formulario : Fragment() {
                         val empleado = Empleados(nombres, apellido_p, apellido_m, edad, fecha_de_nacimiento, entidad_f, pass)
 
                         apiEmpleados = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
-                        var callRespuesta = apiEmpleados.registrar_empleado("text/plain", empleado)
+                        val callRespuesta = apiEmpleados.registrar_empleado("text/plain", empleado)
 
                         callRespuesta.enqueue(object: Callback<RegistroEmpleadoResponse> {
                             override fun onFailure(call: Call<RegistroEmpleadoResponse>, t: Throwable) {
@@ -84,17 +100,16 @@ class Formulario : Fragment() {
                                 if (response.isSuccessful) {
                                     Log.w("Empleado", "Respuesta correcta")
                                     Log.i("Empleado", response.body().toString())
-                                    var numeroDeEmpleado = response.body()?.numeroDeEmpleado;
-                                    var codigoOperacion = response.body()?.codigoOperacion;
-                                    when (codigoOperacion) {
+                                    val numeroDeEmpleado = response.body()?.numeroDeEmpleado;
+                                    when (val codigoOperacion = response.body()?.codigoOperacion) {
                                         0 -> {
-                                            getActivity()?.let { it1 -> mensaje(it1,"Tú número de empleado es: ${numeroDeEmpleado}") }
+                                            activity?.let { it1 -> mensaje(it1,"Tú número de empleado es: $numeroDeEmpleado", codigoOperacion) }
                                         }
                                         1 -> {
-                                            getActivity()?.let { it1 -> mensaje(it1,"El empleado ${nombres} ya se encuentra registrado") }
+                                            activity?.let { it1 -> mensaje(it1,"El empleado $nombres ya se encuentra registrado", codigoOperacion) }
                                         }
                                         else -> {
-                                            getActivity()?.let { it1 -> mensaje(it1,"Error inesperado, marcar al soporte para más ayuda") }
+                                            activity?.let { it1 -> mensaje(it1,"Error inesperado, marcar al soporte para más ayuda", -1) }
                                         }
                                     }
                                 } else {Log.w("Empleado", "Respuesta erronea")}
@@ -111,19 +126,19 @@ class Formulario : Fragment() {
     @SuppressLint("SimpleDateFormat")
     fun validacion(): Boolean{
 
-        if((txtNombre.text.toString().replace(" ","").equals(""))||(txtNombre.text.toString()).get(0).equals(' ') ){
+        if((txtNombre.text.toString().replace(" ","") == "")|| (txtNombre.text.toString())[0] == ' '){
             txtNombre.error="No valido"
             txtNombre.requestFocus()
             return false
         }else txtNombre.error=null
 
-        if(txtApellidoP.text.toString().replace(" ","").equals("")||(txtNombre.text.toString()).get(0).equals(' ')){
+        if(txtApellidoP.text.toString().replace(" ","") == "" || (txtNombre.text.toString())[0] == ' '){
             txtApellidoP.error="No valido"
             txtApellidoP.requestFocus()
             return  false
         }else txtApellidoP.error=null
 
-        if(txtEntidad.text.toString().replace(" ","").equals("")||(txtNombre.text.toString()).get(0).equals(' ')){
+        if(txtEntidad.text.toString().replace(" ","") == "" || (txtNombre.text.toString())[0] == ' '){
             txtEntidad.error="No valido"
             txtEntidad.requestFocus()
             return  false
@@ -149,6 +164,7 @@ class Formulario : Fragment() {
         return true
     }
 
+    @SuppressLint("SetTextI18n")
     fun calendari():Int{
 
         var edad = 0
@@ -156,12 +172,10 @@ class Formulario : Fragment() {
         val day = calendario.get(Calendar.DAY_OF_MONTH)
         val month = calendario.get(Calendar.MONTH)
         val year = calendario.get(Calendar.YEAR)
-        var mes = ""
-        var dia = ""
-        var anio = ""
+        var mes: String
+        var dia: String
 
-
-        val date_p_d = DatePickerDialog(getActivity()!!, DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
+        val date_p_d = DatePickerDialog(activity!!, DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
 
             edad = if((mMonth-month)<0) {
                 year - mYear
@@ -172,15 +186,11 @@ class Formulario : Fragment() {
             } else (year - mYear) -1
 
             dia = if(mDay < 10) "0${mDay}"
-            else "${mDay}"
+            else "$mDay"
             mes = if((mMonth+1)<10) "0${mMonth+1}"
             else "${mMonth+1}"
-            //if(mYear < 2000) anio = "${mYear-1900}"
-            //else if (mYear == 2000) anio = "00"
-            //else if (mYear > 2000 && mYear < 2010) anio = "0${mYear-2000}"
-            //else if (mYear > 2010) anio = "${mYear-2000}"
 
-            if(edad>=18 && edad<=70)
+            if(edad in 18..70)
             {
                 txtFecha.setText("${dia}/${mes}/${mYear}")
                 txtFecha.error=null
@@ -195,16 +205,20 @@ class Formulario : Fragment() {
         return edad
     }
 
-    fun mensaje(c:Context, txtmensaje:String)
+    fun mensaje(c:Context, txtmensaje:String, codigo:Int)
     {
         val dialogoRespuesta = AlertDialog.Builder(c)
 
         dialogoRespuesta.setTitle(R.string.registro)
             .setMessage(txtmensaje)
             .setPositiveButton("OK",
-                DialogInterface.OnClickListener { dialog, which ->  }) //despues del lambda -> se pone la accion
+                DialogInterface.OnClickListener { dialog, which ->
+                    if(mCallback!=null)
+                    {mCallback!!.loginFinishCallback()}
+                }) //despues del lambda -> se pone la accion
         dialogoRespuesta.create()
         dialogoRespuesta.show()
     }
+
 }
 
