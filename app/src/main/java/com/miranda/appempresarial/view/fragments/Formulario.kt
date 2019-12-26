@@ -18,6 +18,7 @@ import com.miranda.appempresarial.api.RegistroEmpleadoResponse
 import com.miranda.appempresarial.api.ApiEmpleados
 import com.miranda.appempresarial.api.Api_Envio
 import com.miranda.appempresarial.presentet.Internet
+import com.miranda.appempresarial.presentet.Sifrado
 import kotlinx.android.synthetic.main.fragment_formulario.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -83,12 +84,21 @@ class Formulario : Fragment() {
                         val pass = txtPass1.text.toString()
                         val fecha_de_nacimiento = txtFecha.text.toString()
 
-                        val empleado = Empleados(nombres, apellido_p, apellido_m, edad, fecha_de_nacimiento, entidad_f, pass)
+                        val empleado = Sifrado.convertirSHA256(pass)?.let { it1 ->
+                            Empleados(nombres, apellido_p, apellido_m, edad, fecha_de_nacimiento, entidad_f,
+                                it1
+                            )
+                        }
 
                         apiEmpleados = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
-                        val callRespuesta = apiEmpleados.registrar_empleado("text/plain", empleado)
+                        val callRespuesta =
+                            empleado?.let { it1 ->
+                                apiEmpleados.registrar_empleado("text/plain",
+                                    it1
+                                )
+                            }
 
-                        callRespuesta.enqueue(object: Callback<RegistroEmpleadoResponse> {
+                        callRespuesta?.enqueue(object: Callback<RegistroEmpleadoResponse> {
                             override fun onFailure(call: Call<RegistroEmpleadoResponse>, t: Throwable) {
                                 Log.w("Empleado", "Fallo la llamada")
                             }
@@ -96,7 +106,7 @@ class Formulario : Fragment() {
                             override fun onResponse(
                                 call: Call<RegistroEmpleadoResponse>,
                                 response: Response<RegistroEmpleadoResponse>
-                             ){
+                            ){
                                 if (response.isSuccessful) {
                                     Log.w("Empleado", "Respuesta correcta")
                                     Log.i("Empleado", response.body().toString())
@@ -115,7 +125,7 @@ class Formulario : Fragment() {
                                 } else {Log.w("Empleado", "Respuesta erronea")}
 
                             }
-                         })
+                        })
                     }
                 }
         }
