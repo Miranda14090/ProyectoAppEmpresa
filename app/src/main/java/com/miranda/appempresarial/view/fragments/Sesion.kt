@@ -8,8 +8,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.miranda.appempresarial.Model.Consumo
+import com.miranda.appempresarial.Model.LoginUser
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.presentet.Internet
+import com.miranda.appempresarial.presentet.Sifrado
 import com.miranda.appempresarial.view.MainActivity
 import kotlinx.android.synthetic.main.fragment_sesion.*
 
@@ -45,8 +48,14 @@ class Sesion : Fragment() {
     }
 
     private fun loginSuccessful(): Boolean {
-        //TODO consumo de inicio secion
-        return true
+
+        var numeroEmpleado =txtLogin_usuario.text.toString()
+        var pass_send = Sifrado.convertirSHA256(txtLogin_pass.text.toString())
+        var usuario = pass_send?.let { LoginUser(it,numeroEmpleado) }
+
+        Consumo.pedir_login(usuario!!, activity!!,"Sesion")
+
+        return false
     }
 
 

@@ -86,11 +86,11 @@ class Reportes : Fragment() {
                 descipcion.error="Campo no valido"
 
             }else{
-                val numeroDeEmpleado = "000001"
+                val numeroDeEmpleado = "000028"
 
                 val reporte = ReportesSend(descipcion.text.toString(),clasificacion,numeroDeEmpleado)
 
-                apiReporte = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
+                apiReporte = Api_Envio.getApiEnvioTmp().create(ApiEmpleados::class.java)
                 val callRespuesta = apiReporte.registrar_reporte("text/plain", reporte)
 
                 callRespuesta.enqueue(object: Callback<RegistroReporteResponse>{
@@ -116,12 +116,11 @@ class Reportes : Fragment() {
                                 }
                             }
                         } else {
-                            activity?.let { it1 -> mensaje(it1, "Error inesperado, marcar al soporte para más ayuda",0) }
+                            activity?.let { it1 -> mensaje(it1, "Error inesperado",0) }
                         }
 
                     }
                 })
-
                 descipcion.error=null
             }
                 
@@ -151,6 +150,7 @@ class Reportes : Fragment() {
         dialogoRespuesta.create()
         dialogoRespuesta.show()
     }
+
 
 }
 

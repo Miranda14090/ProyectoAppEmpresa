@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.Empleado
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.RegistroEmpleadoResponse
@@ -47,8 +48,6 @@ class Formulario : Fragment() {
         fun loginFinishCallback()
     }
 
-    lateinit var apiEmpleados: ApiEmpleados
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,12 +66,45 @@ class Formulario : Fragment() {
         var edad = 0
 
         btnFecha.setOnClickListener {
-            edad = calendari()
+
         }
         txtFecha.isFocusable = false
         txtFecha.setOnClickListener {
 
-            edad = calendari()
+            val calendario = Calendar.getInstance()
+            val day = calendario.get(Calendar.DAY_OF_MONTH)
+            val month = calendario.get(Calendar.MONTH)
+            val year = calendario.get(Calendar.YEAR)
+            var mes: String
+            var dia: String
+
+            val date_p_d = DatePickerDialog(activity!!, DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
+
+                edad = if((mMonth-month)<0) {
+                    year - mYear
+                } else if ((mMonth-month)==0) {
+                    if((mDay-day)<=0) {
+                        year - mYear
+                    } else (year - mYear) -1
+                } else (year - mYear) -1
+
+                dia = if(mDay < 10) "0${mDay}"
+                else "$mDay"
+                mes = if((mMonth+1)<10) "0${mMonth+1}"
+                else "${mMonth+1}"
+
+                if(edad in 18..70)
+                {
+                    txtFecha.setText("${dia}/${mes}/${mYear}")
+                    txtFecha.error=null
+                }
+                else {
+                    txtFecha.error="Fecha no valida"
+                    txtFecha.setText("")
+                    txtFecha.requestFocus()
+                }
+            }, year, month, day)
+            date_p_d.show()
         }
 
         boton_cancelar.setOnClickListener {
@@ -98,46 +130,9 @@ class Formulario : Fragment() {
                         val empleado = Sifrado.convertirSHA256(pass)?.let { it1 ->
                             Empleado(nombres, apellido_p, apellido_m, edad, fecha_de_nacimiento, entidad_f,
                                 it1
-                            )
-                        }
+                            )}
+                         val codigo = Consumo.registrar_usuario(empleado!!,activity!!,"Registro")
 
-                        apiEmpleados = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
-                        val callRespuesta =
-                            empleado?.let { it1 ->
-                                apiEmpleados.registrar_empleado("text/plain",
-                                    it1
-                                )
-                            }
-
-                        callRespuesta?.enqueue(object: Callback<RegistroEmpleadoResponse> {
-                            override fun onFailure(call: Call<RegistroEmpleadoResponse>, t: Throwable) {
-                                activity?.let { it1 -> mensaje(it1,
-                                    R.string.noneServise.toString(), -1) }
-                            }
-
-                            override fun onResponse(
-                                call: Call<RegistroEmpleadoResponse>,
-                                response: Response<RegistroEmpleadoResponse>
-                            ){
-                                if (response.isSuccessful) {
-                                    Log.w("Empleado", "Respuesta correcta")
-                                    Log.i("Empleado", response.body().toString())
-                                    val numeroDeEmpleado = response.body()?.numeroDeEmpleado;
-                                    when (val codigoOperacion = response.body()?.codigoOperacion) {
-                                        0 -> {
-                                            activity?.let { it1 -> mensaje(it1,"Tú número de empleado es: $numeroDeEmpleado", codigoOperacion) }
-                                        }
-                                        1 -> {
-                                            activity?.let { it1 -> mensaje(it1,"El empleado $nombres ya se encuentra registrado", codigoOperacion) }
-                                        }
-                                        else -> {
-                                            activity?.let { it1 -> mensaje(it1,"Error inesperado, marcar al soporte para más ayuda", -1) }
-                                        }
-                                    }
-                                } else { mensaje(activity!!, R.string.noneServise.toString(),-1) }
-
-                            }
-                        })
                     }
                 }
         }
@@ -190,40 +185,7 @@ class Formulario : Fragment() {
     fun calendari():Int{
 
         var edad = 0
-        val calendario = Calendar.getInstance()
-        val day = calendario.get(Calendar.DAY_OF_MONTH)
-        val month = calendario.get(Calendar.MONTH)
-        val year = calendario.get(Calendar.YEAR)
-        var mes: String
-        var dia: String
 
-        val date_p_d = DatePickerDialog(activity!!, DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
-
-            edad = if((mMonth-month)<0) {
-                year - mYear
-            } else if ((mMonth-month)==0) {
-                if((mDay-day)<=0) {
-                    year - mYear
-                } else (year - mYear) -1
-            } else (year - mYear) -1
-
-            dia = if(mDay < 10) "0${mDay}"
-            else "$mDay"
-            mes = if((mMonth+1)<10) "0${mMonth+1}"
-            else "${mMonth+1}"
-
-            if(edad in 18..70)
-            {
-                txtFecha.setText("${dia}/${mes}/${mYear}")
-                txtFecha.error=null
-            }
-            else {
-                txtFecha.error="Fecha no valida"
-                txtFecha.setText("")
-                txtFecha.requestFocus()
-            }
-        }, year, month, day)
-        date_p_d.show()
         return edad
     }
 
