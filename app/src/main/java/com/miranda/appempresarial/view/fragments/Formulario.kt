@@ -69,8 +69,7 @@ class Formulario : Fragment() {
         btnFecha.setOnClickListener {
             edad = calendari()
         }
-
-        txtFecha.isFocusable=false
+        txtFecha.isFocusable = false
         txtFecha.setOnClickListener {
 
             edad = calendari()
@@ -112,7 +111,8 @@ class Formulario : Fragment() {
 
                         callRespuesta?.enqueue(object: Callback<RegistroEmpleadoResponse> {
                             override fun onFailure(call: Call<RegistroEmpleadoResponse>, t: Throwable) {
-                                Log.w("Empleado", "Fallo la llamada")
+                                activity?.let { it1 -> mensaje(it1,
+                                    R.string.noneServise.toString(), -1) }
                             }
 
                             override fun onResponse(
@@ -134,7 +134,7 @@ class Formulario : Fragment() {
                                             activity?.let { it1 -> mensaje(it1,"Error inesperado, marcar al soporte para más ayuda", -1) }
                                         }
                                     }
-                                } else {Log.w("Empleado", "Respuesta erronea")}
+                                } else { mensaje(activity!!, R.string.noneServise.toString(),-1) }
 
                             }
                         })

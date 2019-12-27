@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         toolbar = supportActionBar!!
         setupNavigation(bottom_navigation)
 
+
     }
 
 

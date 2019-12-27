@@ -8,7 +8,6 @@
 
 
       <LinearLayout
-          android:padding="16dp"
           android:orientation="vertical"
           android:layout_width="match_parent"
           android:layout_height="match_parent">
@@ -29,10 +28,10 @@
 
 
             <GridLayout
-                android:layout_width="346dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:alignmentMode="alignMargins"
+                android:alignmentMode="alignBounds"
                 android:columnCount="2"
                 android:rowCount="3">
 
@@ -54,11 +53,13 @@
                             android:padding="16dp">
 
                               <ImageView
-                                  android:layout_width="40dp"
-                                  android:layout_height="40dp"
+                                  android:layout_width="70dp"
+                                  android:layout_height="70dp"
                                   android:src="@drawable/tecnico" />
 
                               <TextView
+                                  android:id="@+id/tvTecnico"
+                                  android:textColor="@color/gris"
                                   android:layout_width="wrap_content"
                                   android:layout_height="wrap_content"
                                   android:layout_marginTop="12dp"
@@ -86,12 +87,14 @@
                             android:padding="16dp">
 
                               <ImageView
-                                  android:layout_width="40dp"
-                                  android:layout_height="40dp"
+                                  android:layout_width="70dp"
+                                  android:layout_height="70dp"
                                   android:layout_gravity="center"
                                   android:src="@drawable/mantenimiento" />
 
                               <TextView
+                                  android:id="@+id/tvMantenimiento"
+                                  android:textColor="@color/gris"
                                   android:layout_width="wrap_content"
                                   android:layout_height="wrap_content"
                                   android:layout_marginTop="12dp"
@@ -121,12 +124,14 @@
                             android:padding="16dp">
 
                               <ImageView
-                                  android:layout_width="40dp"
-                                  android:layout_height="40dp"
+                                  android:layout_width="70dp"
+                                  android:layout_height="70dp"
                                   android:layout_gravity="center"
                                   android:src="@drawable/administracion" />
 
                               <TextView
+                                  android:id="@+id/tvAdministrativo"
+                                  android:textColor="@color/gris"
                                   android:layout_width="wrap_content"
                                   android:layout_height="wrap_content"
                                   android:layout_marginTop="12dp"
@@ -154,12 +159,14 @@
                             android:padding="16dp">
 
                               <ImageView
-                                  android:layout_width="40dp"
-                                  android:layout_height="40dp"
+                                  android:layout_width="70dp"
+                                  android:layout_height="70dp"
                                   android:layout_gravity="center"
                                   android:src="@drawable/servicio" />
 
                               <TextView
+                                  android:id="@+id/tvServicio"
+                                  android:textColor="@color/gris"
                                   android:layout_width="wrap_content"
                                   android:layout_height="wrap_content"
                                   android:layout_marginTop="12dp"

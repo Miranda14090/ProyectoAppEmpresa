@@ -2,6 +2,7 @@ package com.miranda.appempresarial.view.fragments
 
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,6 +10,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat.getColor
 import com.miranda.appempresarial.R
 import kotlinx.android.synthetic.main.fragment_reportes.*
 
@@ -16,6 +19,8 @@ import kotlinx.android.synthetic.main.fragment_reportes.*
  * A simple [Fragment] subclass.
  */
 class Reportes : Fragment() {
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,37 +33,82 @@ class Reportes : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
 
-        cardViewTecnico.setOnClickListener {
-            MostrarDescripcion()
-        }
+        /*view.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                when (v?.id) {
+                    R.id.imgBack -> {/* do your code */
+                    }
+                    R.id.twoButton -> {/* do your code */
+                    }
+                    R.id.threeButton -> {/* do your code */
+                    }
+                    else -> {/* do your code */
+                    }
+                }
+            }*/
 
-        cardViewMantenimiento.setOnClickListener {
-            MostrarDescripcion()
-        }
 
-        cardViewAdministrativo.setOnClickListener {
-            MostrarDescripcion()
-        }
-        cardViewServicio.setOnClickListener {
-            MostrarDescripcion()
-        }
+            cardViewTecnico.setOnClickListener {
+                    MostrarDescripcion()
 
-        descipcion.addTextChangedListener(object : TextWatcher {
+                    tvTecnico.setTextColor(Color.GREEN)
+                    tvMantenimiento.setTextColor(Color.GRAY)
+                    tvAdministrativo.setTextColor(Color.GRAY)
+                    tvServicio.setTextColor(Color.GRAY)
 
-            override fun afterTextChanged(s: Editable) {}
+                }
 
-            override fun beforeTextChanged(s: CharSequence, start: Int,
-                                           count: Int, after: Int) {
-            }
+                cardViewMantenimiento.setOnClickListener {
+                    MostrarDescripcion()
 
-            override fun onTextChanged(s: CharSequence, start: Int,
-                                       before: Int, count: Int) {
-                if(descipcion.length()>=1){
-                    boton_EnviarReporte.visibility=View.VISIBLE
-                }else
-                    boton_EnviarReporte.visibility=View.INVISIBLE
-            }
-        })
+                    tvTecnico.setTextColor(Color.GRAY)
+                    tvMantenimiento.setTextColor(Color.GREEN)
+                    tvAdministrativo.setTextColor(Color.GRAY)
+                    tvServicio.setTextColor(Color.GRAY)
+                }
+
+                cardViewAdministrativo.setOnClickListener {
+                    MostrarDescripcion()
+
+                    tvTecnico.setTextColor(Color.GRAY)
+                    tvMantenimiento.setTextColor(Color.GRAY)
+                    tvAdministrativo.setTextColor(Color.GREEN)
+                    tvServicio.setTextColor(Color.GRAY)
+                }
+                cardViewServicio.setOnClickListener {
+                    MostrarDescripcion()
+
+                    tvTecnico.setTextColor(Color.GRAY)
+                    tvMantenimiento.setTextColor(Color.GRAY)
+                    tvAdministrativo.setTextColor(Color.GRAY)
+                    tvServicio.setTextColor(Color.GREEN)
+                }
+
+
+            descipcion.addTextChangedListener(
+            object : TextWatcher {
+
+                override fun afterTextChanged(s: Editable) {}
+
+                override fun beforeTextChanged(
+                    s: CharSequence, start: Int,
+                    count: Int, after: Int
+                ) {
+                }
+
+                override fun onTextChanged(
+                    s: CharSequence, start: Int,
+                    before: Int, count: Int
+                ) {
+                    if (descipcion.length() >= 1) {
+                        boton_EnviarReporte.visibility = View.VISIBLE
+                    } else
+                        boton_EnviarReporte.visibility = View.INVISIBLE
+                }
+            })
+
+
+
 
         boton_EnviarReporte.setOnClickListener{
             if(descipcion.text.toString().replace(" ","")=="" || descipcion.text.toString()[0]==' '){
@@ -81,5 +131,32 @@ class Reportes : Fragment() {
             Reportes()
     }
 
+
+
+    /* fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.cardViewTecnico -> {
+                MostrarDescripcion()
+
+                tvTecnico.setTextColor(Color.GREEN)
+                tvMantenimiento.setTextColor(Color.GRAY)
+                tvAdministrativo.setTextColor(Color.GRAY)
+                tvServicio.setTextColor(Color.GRAY)
+            }
+            R.id.cardViewMantenimiento -> {
+                MostrarDescripcion()
+
+                tvTecnico.setTextColor(Color.GRAY)
+                tvMantenimiento.setTextColor(Color.GREEN)
+                tvAdministrativo.setTextColor(Color.GRAY)
+                tvServicio.setTextColor(Color.GRAY)
+            }
+            else -> {
+            }
+        }
+
+
+
+    }*/
 }
 
