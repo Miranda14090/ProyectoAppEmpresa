@@ -16,8 +16,6 @@ import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.Empleado
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.RegistroEmpleadoResponse
-import com.miranda.appempresarial.api.ApiEmpleados
-import com.miranda.appempresarial.api.Api_Envio
 import com.miranda.appempresarial.presentet.Internet
 import com.miranda.appempresarial.presentet.Sifrado
 import kotlinx.android.synthetic.main.fragment_formulario.*
@@ -65,9 +63,6 @@ class Formulario : Fragment() {
 
         var edad = 0
 
-        btnFecha.setOnClickListener {
-
-        }
         txtFecha.isFocusable = false
         txtFecha.setOnClickListener {
 
@@ -78,7 +73,7 @@ class Formulario : Fragment() {
             var mes: String
             var dia: String
 
-            val date_p_d = DatePickerDialog(activity!!, DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
+            val datePD = DatePickerDialog(activity!!, DatePickerDialog.OnDateSetListener{ _, mYear, mMonth, mDay ->
 
                 edad = if((mMonth-month)<0) {
                     year - mYear
@@ -104,7 +99,7 @@ class Formulario : Fragment() {
                     txtFecha.requestFocus()
                 }
             }, year, month, day)
-            date_p_d.show()
+            datePD.show()
         }
 
         boton_cancelar.setOnClickListener {
@@ -131,7 +126,7 @@ class Formulario : Fragment() {
                             Empleado(nombres, apellido_p, apellido_m, edad, fecha_de_nacimiento, entidad_f,
                                 it1
                             )}
-                         val codigo = Consumo.registrar_usuario(empleado!!,activity!!,"Registro")
+                         Consumo.registrar_usuario(empleado!!,activity!!)
 
                     }
                 }
@@ -197,12 +192,48 @@ class Formulario : Fragment() {
             .setMessage(txtmensaje)
             .setPositiveButton("OK",
                 DialogInterface.OnClickListener { dialog, which ->
-                    if(mCallback!=null)
-                    {mCallback!!.loginFinishCallback()}
+                    if(codigo==0){
+                        if(mCallback!=null)
+                            {mCallback!!.loginFinishCallback()}
+                    }
                 }) //despues del lambda -> se pone la accion
         dialogoRespuesta.create()
         dialogoRespuesta.show()
     }
+
+   /* fun enviar_Datos(empleado:Empleado){
+        val CallRespuesta = Consumo.apiEnvios.registrar_empleado("text/plain", empleado)
+        CallRespuesta.enqueue(object: Callback<RegistroEmpleadoResponse> {
+            override fun onFailure(call: Call<RegistroEmpleadoResponse>, t: Throwable) {
+               mensaje(activity!!, R.string.noneServise.toString(),2)
+            }
+
+            override fun onResponse(
+                call: Call<RegistroEmpleadoResponse>,
+                response: Response<RegistroEmpleadoResponse>
+            ){
+                if (response.isSuccessful) {
+                    Log.w("Empleado", "Respuesta correcta")
+                    Log.i("Empleado", response.body().toString())
+                    val numeroDeEmpleado = response.body()?.numeroDeEmpleado
+                    when (val codigoOperacion = response.body()?.codigoOperacion) {
+                        0 -> {
+                            mensaje(activity!!,"Tú número de empleado es: $numeroDeEmpleado",0)
+                        }
+                        1 -> {
+                            mensaje(activity!!,"El empleado ${empleado.nombres} ya se encuentra registrado", 1)
+                        }
+                        else -> {
+                            mensaje(activity!!,"Error inesperado, marcar al soporte para más ayuda",2)
+                        }
+                    }
+                } else {
+                    mensaje(activity!!, R.string.noneServise.toString(),2)
+                }
+
+            }
+        })
+    }*/
 
 }
 

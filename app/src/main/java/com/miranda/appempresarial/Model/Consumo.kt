@@ -16,51 +16,46 @@ import retrofit2.Response
 
 object Consumo {
 
-    var mCallback : Formulario.FormulariosListener?=null
+    var apiEnvios: ApiEmpleados = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
 
-     var apiEnvios: ApiEmpleados = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
-
-    fun registrar_usuario(empleado:Empleado, context:Context, titulo:String):Int{
-        var codigo:Int =404
+    fun registrar_usuario(empleado:Empleado, context:Context){
+        //var retorno:MensajesRespuesta = MensajesRespuesta(2, "Error inesperado, marcar al soporte para más ayuda")
         val CallRespuesta = apiEnvios.registrar_empleado("text/plain", empleado)
         CallRespuesta.enqueue(object: Callback<RegistroEmpleadoResponse> {
             override fun onFailure(call: Call<RegistroEmpleadoResponse>, t: Throwable) {
-                codigo = 2
-                mensajes(context, titulo, R.string.noneServise.toString())
+                Formulario.newInstance().mensaje(context,R.string.noneServise.toString(),404)
+                //retorno = MensajesRespuesta(2, R.string.noneServise.toString())
             }
 
             override fun onResponse(
                 call: Call<RegistroEmpleadoResponse>,
                 response: Response<RegistroEmpleadoResponse>
-            ){
+            ) {
                 if (response.isSuccessful) {
                     Log.w("Empleado", "Respuesta correcta")
                     Log.i("Empleado", response.body().toString())
                     val numeroDeEmpleado = response.body()?.numeroDeEmpleado
                     when (val codigoOperacion = response.body()?.codigoOperacion) {
                         0 -> {
-                            codigo = 0
-                            if(mCallback!=null)
-                                mCallback!!.loginFinishCallback()
-                            mensajes(context,titulo,"Tú número de empleado es: $numeroDeEmpleado")
+                            Formulario.newInstance().mensaje(context,"Tú número de empleado es: $numeroDeEmpleado",0)
+                            //retorno = MensajesRespuesta(0, "Tú número de empleado es: $numeroDeEmpleado")
                         }
                         1 -> {
-                            codigo = 1
-                            mensajes(context,titulo,"El empleado ${empleado.nombres} ya se encuentra registrado")
+                            Formulario.newInstance().mensaje(context,"El empleado ${empleado.nombres} ya se encuentra registrado",1)
+                            //retorno = MensajesRespuesta(1,"El empleado ${empleado.nombres} ya se encuentra registrado")
                         }
                         else -> {
-                            codigo = 2
-                            mensajes(context,titulo,"Error inesperado, marcar al soporte para más ayuda")
+                            Formulario.newInstance().mensaje(context,"Error inesperado, marcar al soporte para más ayuda", 2)
+                            //retorno = MensajesRespuesta(2,"Error inesperado, marcar al soporte para más ayuda")
                         }
                     }
                 } else {
-                    codigo = 2
-                    mensajes(context, titulo, R.string.noneServise.toString())
+                    Formulario.newInstance().mensaje(context,R.string.noneServise.toString(),404)
+                    //retorno = MensajesRespuesta(2, R.string.noneServise.toString())
                 }
 
             }
         })
-        return codigo
     }
 
     fun registrar_reporte(){
@@ -93,7 +88,7 @@ object Consumo {
 
                 }
                 else {
-                    mensajes(context,titulo,"Error inesperado")
+                    mensajes(context,titulo,R.string.noneServise.toString())
                 }
             }
         })
@@ -110,4 +105,5 @@ object Consumo {
         dialogoRespuesta.show()
 
     }
+
 }
