@@ -7,7 +7,6 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,13 +14,9 @@ import androidx.fragment.app.Fragment
 import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.Empleado
 import com.miranda.appempresarial.R
-import com.miranda.appempresarial.api.RegistroEmpleadoResponse
 import com.miranda.appempresarial.presentet.Internet
 import com.miranda.appempresarial.presentet.Sifrado
 import kotlinx.android.synthetic.main.fragment_formulario.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.util.*
 
 
@@ -116,14 +111,14 @@ class Formulario : Fragment() {
 
                     if (validacion()) {
                         val nombres = txtNombre.text.toString()
-                        val apellido_p = txtApellidoP.text.toString()
-                        val apellido_m = txtApellidoM.text.toString()
-                        val entidad_f = txtEntidad.text.toString()
+                        val apellidoP = txtApellidoP.text.toString()
+                        val apellidoM = txtApellidoM.text.toString()
+                        val entidadF = txtEntidad.text.toString()
                         val pass = txtPass1.text.toString()
-                        val fecha_de_nacimiento = txtFecha.text.toString()
+                        val fechaDeNacimiento: String = txtFecha.text.toString()
 
                         val empleado = Sifrado.convertirSHA256(pass)?.let { it1 ->
-                            Empleado(nombres, apellido_p, apellido_m, edad, fecha_de_nacimiento, entidad_f,
+                            Empleado(nombres, apellidoP, apellidoM, edad, fechaDeNacimiento, entidadF,
                                 it1
                             )}
                          Consumo.registrar_usuario(empleado!!,activity!!)
@@ -177,12 +172,6 @@ class Formulario : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    fun calendari():Int{
-
-        var edad = 0
-
-        return edad
-    }
 
     fun mensaje(c:Context, txtmensaje:String, codigo:Int)
     {
