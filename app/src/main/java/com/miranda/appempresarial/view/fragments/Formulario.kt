@@ -12,7 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.miranda.appempresarial.Model.Empleados
+import com.miranda.appempresarial.Model.Empleado
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.RegistroEmpleadoResponse
 import com.miranda.appempresarial.api.ApiEmpleados
@@ -96,7 +96,7 @@ class Formulario : Fragment() {
                         val fecha_de_nacimiento = txtFecha.text.toString()
 
                         val empleado = Sifrado.convertirSHA256(pass)?.let { it1 ->
-                            Empleados(nombres, apellido_p, apellido_m, edad, fecha_de_nacimiento, entidad_f,
+                            Empleado(nombres, apellido_p, apellido_m, edad, fecha_de_nacimiento, entidad_f,
                                 it1
                             )
                         }

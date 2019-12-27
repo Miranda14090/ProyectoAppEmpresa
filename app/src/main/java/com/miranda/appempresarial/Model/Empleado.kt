@@ -2,7 +2,7 @@ package com.miranda.appempresarial.Model
 
 import com.google.gson.annotations.SerializedName
 
-data class Empleados (
+data class Empleado (
     @SerializedName("nombres") var nombres:String,
     @SerializedName("apellidoPaterno") var apellidoPaterno:String,
     @SerializedName("apellidoMaterno") var apellidoMaterno:String,
@@ -12,3 +12,4 @@ data class Empleados (
     @SerializedName("password") var password:String
 ){
 }
+
