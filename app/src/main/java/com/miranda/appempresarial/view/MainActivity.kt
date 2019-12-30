@@ -8,10 +8,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.view.fragments.PerfilUsuario
 import com.miranda.appempresarial.view.fragments.Reportes
+import com.miranda.appempresarial.view.fragments.StatusReportFragment
 import com.miranda.appempresarial.view.fragments.asistencia
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),Reportes.ReportesListener {
     lateinit var toolbar: ActionBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
 
     fun setupNavigation(navigationBar: BottomNavigationView) {
         navigationBar.setOnNavigationItemSelectedListener { item ->
@@ -56,6 +56,11 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.main_container, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
+    }
+
+    override fun reporteFinishCallback(){
+        val fragment = StatusReportFragment.newInstance()
+        openFragment(fragment)
     }
 
 

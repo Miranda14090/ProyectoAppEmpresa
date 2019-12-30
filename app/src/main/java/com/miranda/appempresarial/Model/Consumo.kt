@@ -5,12 +5,15 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.util.Log
+import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.*
 import com.miranda.appempresarial.view.MainActivity
 import com.miranda.appempresarial.view.fragments.Formulario
 import com.miranda.appempresarial.view.fragments.Reportes
 import com.miranda.appempresarial.view.fragments.Sesion
+import kotlinx.android.synthetic.main.fragment_status_report.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,7 +41,7 @@ object Consumo {
                     val numeroDeEmpleado = response.body()?.numeroDeEmpleado
                     when (val codigoOperacion = response.body()?.codigoOperacion) {
                         0 -> {
-                            Sesion.newInstance().setNumeroEmpleado(numeroDeEmpleado!!)
+                            //Sesion.newInstance().setNumeroEmpleado(numeroDeEmpleado!!)
                             Formulario.newInstance().mensaje(context,"Tú número de empleado es: $numeroDeEmpleado",0)
                             //retorno = MensajesRespuesta(0, "Tú número de empleado es: $numeroDeEmpleado")
                         }
@@ -121,6 +124,42 @@ object Consumo {
 
                 }
                 else {
+                    mensajes(context,titulo,R.string.noneServise.toString())
+                }
+            }
+        })
+    }
+
+    fun mostrar_reportes(consulta:InboxReport,context: Context,titulo: String,view:View){
+        val callRespuesta = apiEnvios.consultar_reportes("text/plain",consulta)
+        callRespuesta.enqueue(object : Callback<ConsultarReportesResponse>{
+            override fun onFailure(call: Call<ConsultarReportesResponse>, t: Throwable) {
+                mensajes(context,titulo,R.string.noneServise.toString())
+            }
+
+            override fun onResponse(
+                call: Call<ConsultarReportesResponse>,
+                response: Response<ConsultarReportesResponse>
+            ) {
+                if(response.isSuccessful){
+                    when(response.body()?.codigoDeOperacion){
+
+                        0 -> {
+                            //Consulta Exitosa
+                            view.recyclerReportes.layoutManager= LinearLayoutManager(context)
+                            var miAdaptador=AdaptaterReports(response.body()?.reportes as ArrayList<ListaDeReporte>)
+                            view.recyclerReportes.adapter=miAdaptador
+
+
+                        }
+                        -1 ->{
+                            //Error
+                        }
+                        2 ->{
+                            //Formato Invalido
+                        }
+                    }
+                }else{
                     mensajes(context,titulo,R.string.noneServise.toString())
                 }
             }

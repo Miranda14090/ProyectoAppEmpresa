@@ -5,38 +5,44 @@ import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Color
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.getColor
-import android.widget.Toast
 import com.miranda.appempresarial.Model.Consumo
+import com.miranda.appempresarial.Model.InboxReport
 import com.miranda.appempresarial.Model.ReportesSend
 import com.miranda.appempresarial.R
-import com.miranda.appempresarial.api.ApiEmpleados
-import com.miranda.appempresarial.api.Api_Envio
-import com.miranda.appempresarial.api.RegistroEmpleadoResponse
-import com.miranda.appempresarial.api.RegistroReporteResponse
-
-import com.miranda.appempresarial.view.MainActivity
 import kotlinx.android.synthetic.main.fragment_reportes.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import com.miranda.appempresarial.view.fragments.Reportes as Reportes
 
 /**
  * A simple [Fragment] subclass.
  */
 class Reportes : Fragment() {
-    
+    var mCallBack:ReportesListener?=null
     var clasificacion:Int = 0
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        try{
+            mCallBack=activity as ReportesListener?
+        }catch (e :Exception){}
+    }
+
+
+    interface ReportesListener {
+        fun reporteFinishCallback()
+    }
+
+    companion object {
+        fun newInstance(): Reportes =
+            Reportes()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -107,6 +113,9 @@ class Reportes : Fragment() {
 
 
         btnListaReportes.setOnClickListener {
+            if(mCallBack!= null){
+                mCallBack!!.reporteFinishCallback()
+            }
 
         }
 
@@ -157,10 +166,6 @@ class Reportes : Fragment() {
     }
 
 
-    companion object {
-        fun newInstance(): Reportes =
-            Reportes()
-    }
 
     fun mensajeReporte(c:Context, txtmensaje:String)
     {
