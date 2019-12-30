@@ -16,8 +16,4 @@ class ListaDeReporte(
     @SerializedName("estatus") var estatus:String
 
 ) {
-//0->Registro correcto
-    // -1 -> Error
-    //2 ->Formato Invalido
-
 }

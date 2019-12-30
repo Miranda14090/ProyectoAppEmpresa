@@ -31,6 +31,8 @@ class Sesion : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+
+
         boton_formulario.setOnClickListener {
 
             if(mCallback!=null)
@@ -73,6 +75,6 @@ class Sesion : Fragment() {
             Sesion()
     }
 
-    fun setNumeroEmpleado(noEmpleado:String){ txtLogin_usuario.setText(noEmpleado) }
+    fun setNumeroEmpleado(noEmpleado:String){ txtLogin_usuario.setText(noEmpleado!!) }
 
 }

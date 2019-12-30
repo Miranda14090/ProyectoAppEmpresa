@@ -38,7 +38,8 @@ object Consumo {
                     val numeroDeEmpleado = response.body()?.numeroDeEmpleado
                     when (val codigoOperacion = response.body()?.codigoOperacion) {
                         0 -> {
-                            Sesion.newInstance().setNumeroEmpleado(numeroDeEmpleado!!)
+
+//                            Sesion.newInstance().setNumeroEmpleado(numeroDeEmpleado!!)
                             Formulario.newInstance().mensaje(context,"Tú número de empleado es: $numeroDeEmpleado",0)
                             //retorno = MensajesRespuesta(0, "Tú número de empleado es: $numeroDeEmpleado")
                         }
