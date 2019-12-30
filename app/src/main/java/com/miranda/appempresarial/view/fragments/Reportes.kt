@@ -22,7 +22,7 @@ import com.miranda.appempresarial.api.ApiEmpleados
 import com.miranda.appempresarial.api.Api_Envio
 import com.miranda.appempresarial.api.RegistroEmpleadoResponse
 import com.miranda.appempresarial.api.RegistroReporteResponse
-import com.miranda.appempresarial.view.ListaReportes
+
 import com.miranda.appempresarial.view.MainActivity
 import kotlinx.android.synthetic.main.fragment_reportes.*
 import retrofit2.Call
@@ -140,8 +140,7 @@ class Reportes : Fragment() {
 
 
         btnListaReportes.setOnClickListener {
-            val intento2 = Intent(activity, ListaReportes::class.java)
-            activity?.startActivity(intento2)
+
         }
 
     }
