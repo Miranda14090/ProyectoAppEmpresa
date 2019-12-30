@@ -7,22 +7,16 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.Empleado
 import com.miranda.appempresarial.R
-import com.miranda.appempresarial.api.RegistroEmpleadoResponse
-import com.miranda.appempresarial.api.ApiEmpleados
-import com.miranda.appempresarial.api.Api_Envio
 import com.miranda.appempresarial.presentet.Internet
 import com.miranda.appempresarial.presentet.Sifrado
 import kotlinx.android.synthetic.main.fragment_formulario.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.util.*
 
 
@@ -47,8 +41,6 @@ class Formulario : Fragment() {
         fun loginFinishCallback()
     }
 
-    lateinit var apiEmpleados: ApiEmpleados
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -66,13 +58,43 @@ class Formulario : Fragment() {
 
         var edad = 0
 
-        btnFecha.setOnClickListener {
-            edad = calendari()
-        }
         txtFecha.isFocusable = false
         txtFecha.setOnClickListener {
 
-            edad = calendari()
+            val calendario = Calendar.getInstance()
+            val day = calendario.get(Calendar.DAY_OF_MONTH)
+            val month = calendario.get(Calendar.MONTH)
+            val year = calendario.get(Calendar.YEAR)
+            var mes: String
+            var dia: String
+
+            val datePD = DatePickerDialog(activity!!, DatePickerDialog.OnDateSetListener{ _, mYear, mMonth, mDay ->
+
+                edad = if((mMonth-month)<0) {
+                    year - mYear
+                } else if ((mMonth-month)==0) {
+                    if((mDay-day)<=0) {
+                        year - mYear
+                    } else (year - mYear) -1
+                } else (year - mYear) -1
+
+                dia = if(mDay < 10) "0${mDay}"
+                else "$mDay"
+                mes = if((mMonth+1)<10) "0${mMonth+1}"
+                else "${mMonth+1}"
+
+                if(edad in 18..70)
+                {
+                    txtFecha.setText("${dia}/${mes}/${mYear}")
+                    txtFecha.error=null
+                }
+                else {
+                    txtFecha.error="Fecha no valida"
+                    txtFecha.setText("")
+                    txtFecha.requestFocus()
+                }
+            }, year, month, day)
+            datePD.show()
         }
 
         boton_cancelar.setOnClickListener {
@@ -89,55 +111,18 @@ class Formulario : Fragment() {
 
                     if (validacion()) {
                         val nombres = txtNombre.text.toString()
-                        val apellido_p = txtApellidoP.text.toString()
-                        val apellido_m = txtApellidoM.text.toString()
-                        val entidad_f = txtEntidad.text.toString()
+                        val apellidoP = txtApellidoP.text.toString()
+                        val apellidoM = txtApellidoM.text.toString()
+                        val entidadF = txtEntidad.text.toString()
                         val pass = txtPass1.text.toString()
-                        val fecha_de_nacimiento = txtFecha.text.toString()
+                        val fechaDeNacimiento: String = txtFecha.text.toString()
 
                         val empleado = Sifrado.convertirSHA256(pass)?.let { it1 ->
-                            Empleado(nombres, apellido_p, apellido_m, edad, fecha_de_nacimiento, entidad_f,
+                            Empleado(nombres, apellidoP, apellidoM, edad, fechaDeNacimiento, entidadF,
                                 it1
-                            )
-                        }
+                            )}
+                         Consumo.registrar_usuario(empleado!!,activity!!)
 
-                        apiEmpleados = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
-                        val callRespuesta =
-                            empleado?.let { it1 ->
-                                apiEmpleados.registrar_empleado("text/plain",
-                                    it1
-                                )
-                            }
-
-                        callRespuesta?.enqueue(object: Callback<RegistroEmpleadoResponse> {
-                            override fun onFailure(call: Call<RegistroEmpleadoResponse>, t: Throwable) {
-                                activity?.let { it1 -> mensaje(it1,
-                                    R.string.noneServise.toString(), -1) }
-                            }
-
-                            override fun onResponse(
-                                call: Call<RegistroEmpleadoResponse>,
-                                response: Response<RegistroEmpleadoResponse>
-                            ){
-                                if (response.isSuccessful) {
-                                    Log.w("Empleado", "Respuesta correcta")
-                                    Log.i("Empleado", response.body().toString())
-                                    val numeroDeEmpleado = response.body()?.numeroDeEmpleado;
-                                    when (val codigoOperacion = response.body()?.codigoOperacion) {
-                                        0 -> {
-                                            activity?.let { it1 -> mensaje(it1,"Tú número de empleado es: $numeroDeEmpleado", codigoOperacion) }
-                                        }
-                                        1 -> {
-                                            activity?.let { it1 -> mensaje(it1,"El empleado $nombres ya se encuentra registrado", codigoOperacion) }
-                                        }
-                                        else -> {
-                                            activity?.let { it1 -> mensaje(it1,"Error inesperado, marcar al soporte para más ayuda", -1) }
-                                        }
-                                    }
-                                } else { mensaje(activity!!, R.string.noneServise.toString(),-1) }
-
-                            }
-                        })
                     }
                 }
         }
@@ -187,45 +172,6 @@ class Formulario : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    fun calendari():Int{
-
-        var edad = 0
-        val calendario = Calendar.getInstance()
-        val day = calendario.get(Calendar.DAY_OF_MONTH)
-        val month = calendario.get(Calendar.MONTH)
-        val year = calendario.get(Calendar.YEAR)
-        var mes: String
-        var dia: String
-
-        val date_p_d = DatePickerDialog(activity!!, DatePickerDialog.OnDateSetListener{ view, mYear, mMonth, mDay ->
-
-            edad = if((mMonth-month)<0) {
-                year - mYear
-            } else if ((mMonth-month)==0) {
-                if((mDay-day)<=0) {
-                    year - mYear
-                } else (year - mYear) -1
-            } else (year - mYear) -1
-
-            dia = if(mDay < 10) "0${mDay}"
-            else "$mDay"
-            mes = if((mMonth+1)<10) "0${mMonth+1}"
-            else "${mMonth+1}"
-
-            if(edad in 18..70)
-            {
-                txtFecha.setText("${dia}/${mes}/${mYear}")
-                txtFecha.error=null
-            }
-            else {
-                txtFecha.error="Fecha no valida"
-                txtFecha.setText("")
-                txtFecha.requestFocus()
-            }
-        }, year, month, day)
-        date_p_d.show()
-        return edad
-    }
 
     fun mensaje(c:Context, txtmensaje:String, codigo:Int)
     {
@@ -235,12 +181,48 @@ class Formulario : Fragment() {
             .setMessage(txtmensaje)
             .setPositiveButton("OK",
                 DialogInterface.OnClickListener { dialog, which ->
-                    if(mCallback!=null)
-                    {mCallback!!.loginFinishCallback()}
+                    if(codigo==0){
+                        if(mCallback!=null)
+                            {mCallback!!.loginFinishCallback()}
+                    }
                 }) //despues del lambda -> se pone la accion
         dialogoRespuesta.create()
         dialogoRespuesta.show()
     }
+
+   /* fun enviar_Datos(empleado:Empleado){
+        val CallRespuesta = Consumo.apiEnvios.registrar_empleado("text/plain", empleado)
+        CallRespuesta.enqueue(object: Callback<RegistroEmpleadoResponse> {
+            override fun onFailure(call: Call<RegistroEmpleadoResponse>, t: Throwable) {
+               mensaje(activity!!, R.string.noneServise.toString(),2)
+            }
+
+            override fun onResponse(
+                call: Call<RegistroEmpleadoResponse>,
+                response: Response<RegistroEmpleadoResponse>
+            ){
+                if (response.isSuccessful) {
+                    Log.w("Empleado", "Respuesta correcta")
+                    Log.i("Empleado", response.body().toString())
+                    val numeroDeEmpleado = response.body()?.numeroDeEmpleado
+                    when (val codigoOperacion = response.body()?.codigoOperacion) {
+                        0 -> {
+                            mensaje(activity!!,"Tú número de empleado es: $numeroDeEmpleado",0)
+                        }
+                        1 -> {
+                            mensaje(activity!!,"El empleado ${empleado.nombres} ya se encuentra registrado", 1)
+                        }
+                        else -> {
+                            mensaje(activity!!,"Error inesperado, marcar al soporte para más ayuda",2)
+                        }
+                    }
+                } else {
+                    mensaje(activity!!, R.string.noneServise.toString(),2)
+                }
+
+            }
+        })
+    }*/
 
 }
 

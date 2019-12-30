@@ -2,15 +2,16 @@ package com.miranda.appempresarial.view.fragments
 
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.miranda.appempresarial.Model.Consumo
+import com.miranda.appempresarial.Model.LoginUser
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.presentet.Internet
-import com.miranda.appempresarial.view.MainActivity
+import com.miranda.appempresarial.presentet.Sifrado
 import kotlinx.android.synthetic.main.fragment_sesion.*
 
 /**
@@ -37,16 +38,20 @@ class Sesion : Fragment() {
         }
 
         boton_InicioSesion.setOnClickListener{
-            //if((activity?.let { Internet.coprobarInternet(it) }!!) && loginSuccessful()) {
-                val intento1 = Intent(activity, MainActivity::class.java)
-                activity?.startActivity(intento1)
-           // }
+            if((activity?.let { Internet.coprobarInternet(it) }!!)) {
+                loginApp()
+            }
         }
     }
 
-    private fun loginSuccessful(): Boolean {
-        //TODO consumo de inicio secion
-        return true
+    private fun loginApp() {
+
+        val numeroEmpleado =txtLogin_usuario.text.toString()
+        val pass_send = Sifrado.convertirSHA256(txtLogin_pass.text.toString())
+        val usuario = pass_send?.let { LoginUser(it,numeroEmpleado) }
+
+        Consumo.pedir_login(usuario!!, activity!!,"Sesion")
+
     }
 
 
@@ -63,5 +68,11 @@ class Sesion : Fragment() {
     interface FormulariosListener{
         fun registroFinishCallback()
     }
+    companion object {
+        fun newInstance(): Sesion =
+            Sesion()
+    }
+
+    fun setNumeroEmpleado(noEmpleado:String){ txtLogin_usuario.setText(noEmpleado) }
 
 }

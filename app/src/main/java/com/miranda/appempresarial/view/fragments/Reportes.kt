@@ -16,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getColor
 import android.widget.Toast
+import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.ReportesSend
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.ApiEmpleados
@@ -34,9 +35,8 @@ import com.miranda.appempresarial.view.fragments.Reportes as Reportes
  * A simple [Fragment] subclass.
  */
 class Reportes : Fragment() {
-
+    
     var clasificacion:Int = 0
-    lateinit var apiReporte: ApiEmpleados
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -95,47 +95,14 @@ class Reportes : Fragment() {
                 descipcion.error="Campo no valido"
 
             }else{
-                val numeroDeEmpleado = "000001"
+                descipcion.error=null
+                val numeroDeEmpleado = "000028"
 
                 val reporte = ReportesSend(descipcion.text.toString(),clasificacion,numeroDeEmpleado)
+                Consumo.registrar_reporte(activity!!,reporte)
 
-                apiReporte = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
-                val callRespuesta = apiReporte.registrar_reporte("text/plain", reporte)
-
-                callRespuesta.enqueue(object: Callback<RegistroReporteResponse>{
-
-                    override fun onFailure(call: Call<RegistroReporteResponse>, t: Throwable) {
-                        activity?.let { it1 -> mensaje(it1, R.string.noneServise.toString(),0) }
-
-                    }
-                    override fun onResponse(
-                        call: Call<RegistroReporteResponse>,
-                        response: Response<RegistroReporteResponse>
-                    ){
-                        if (response.isSuccessful) {
-
-                            when (val codigoOperacion = response.body()?.codigoOperacion) {
-                                0 -> {
-                                    val numeroFolio= response.body()?.folio
-                                    activity?.let { it1 -> mensaje(it1, "Tu Registro fue correcto, tu numerp de reporte es $numeroFolio",0) }
-                                }
-                                -1 -> {
-                                    activity?.let { it1 -> mensaje(it1, "Tu Registro fallo intentalo de nuevo mas tarde",0) }
-                                }
-                                2 -> {
-                                    activity?.let { it1 -> mensaje(it1, "Error inesperado, marcar al soporte para más ayuda",0) }
-                                }
-                            }
-                        } else {
-                            activity?.let { it1 -> mensaje(it1, "Error inesperado, marcar al soporte para más ayuda",0) }
-                        }
-
-                    }
-                })
-
-                descipcion.error=null
             }
-
+                
         }
 
 
@@ -195,7 +162,7 @@ class Reportes : Fragment() {
             Reportes()
     }
 
-    fun mensaje(c:Context, txtmensaje:String, codigo:Int)
+    fun mensajeReporte(c:Context, txtmensaje:String)
     {
         val dialogoRespuesta = AlertDialog.Builder(c)
 

@@ -24,7 +24,8 @@ class InicioDeSesion : AppCompatActivity() ,
                     R.id.contenedorSesion,
                     Sesion(),"")
                 .commit()
-        //Internet.coprobarInternet(this)
+
+
 
     }
     override fun registroFinishCallback() {
