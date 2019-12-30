@@ -6,12 +6,11 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.util.Log
 import com.miranda.appempresarial.R
-import com.miranda.appempresarial.api.ApiEmpleados
-import com.miranda.appempresarial.api.Api_Envio
-import com.miranda.appempresarial.api.LoginUserResponse
-import com.miranda.appempresarial.api.RegistroEmpleadoResponse
+import com.miranda.appempresarial.api.*
 import com.miranda.appempresarial.view.MainActivity
 import com.miranda.appempresarial.view.fragments.Formulario
+import com.miranda.appempresarial.view.fragments.Reportes
+import com.miranda.appempresarial.view.fragments.Sesion
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,6 +38,7 @@ object Consumo {
                     val numeroDeEmpleado = response.body()?.numeroDeEmpleado
                     when (val codigoOperacion = response.body()?.codigoOperacion) {
                         0 -> {
+                            Sesion.newInstance().setNumeroEmpleado(numeroDeEmpleado!!)
                             Formulario.newInstance().mensaje(context,"Tú número de empleado es: $numeroDeEmpleado",0)
                             //retorno = MensajesRespuesta(0, "Tú número de empleado es: $numeroDeEmpleado")
                         }
@@ -60,10 +60,40 @@ object Consumo {
         })
     }
 
-    fun registrar_reporte(){
+    fun registrar_reporte(context:Context, reporte:ReportesSend){
+        val apiReporte = Api_Envio.getApiEnvioTmp().create(ApiEmpleados::class.java)
+        val callRespuesta = apiReporte.registrar_reporte("text/plain", reporte)
+
+        callRespuesta.enqueue(object: Callback<RegistroReporteResponse>{
+            override fun onFailure(call: Call<RegistroReporteResponse>, t: Throwable) {
+                Reportes.newInstance().mensajeReporte(context,R.string.noneServise.toString())
+            }
+            override fun onResponse(
+                call: Call<RegistroReporteResponse>,
+                response: Response<RegistroReporteResponse>
+            ){
+                if (response.isSuccessful) {
+
+                    when (val codigoOperacion = response.body()?.codigoOperacion) {
+                        0 -> {
+                            val numeroFolio= response.body()?.folio
+                            Reportes.newInstance().mensajeReporte(context,
+                                "Tu Registro fue correcto, tu numerp de reporte es $numeroFolio")
+                        }
+                        -1 -> {
+                            Reportes.newInstance().mensajeReporte(context,"Tu Registro fallo intentalo de nuevo mas tarde")
+                        }
+                        2 -> {
+                            Reportes.newInstance().mensajeReporte(context,"Error inesperado, marcar al soporte para más ayuda")
+                        }
+                    }
+                } else {
+                    Reportes.newInstance().mensajeReporte(context,R.string.noneServise.toString())
+                }
+            }
+        })
 
     }
-
 
     fun pedir_login(usuario:LoginUser, context:Context, titulo:String){
 
