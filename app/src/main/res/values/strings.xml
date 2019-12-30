@@ -35,4 +35,6 @@
     <string name="note">(El inicio de sesión con la huella dactilar hace que la aplicación inicie sesión mucho más rápido. Su dispositivo debe tener al menos una huella digital registrada en la configuración del dispositivo)</string>
     <string name="btnCancelar">Cancelar</string>
     <string name="noneServise">No se puedo conectar con el servidor intentelo más tarde</string>
+    <string name="reportes">Reporte</string>
+    <string name="tvLisReportes">Tipo de Problema</string>
 </resources>

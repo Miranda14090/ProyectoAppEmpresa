@@ -37,10 +37,10 @@ class Sesion : Fragment() {
         }
 
         boton_InicioSesion.setOnClickListener{
-            if((activity?.let { Internet.coprobarInternet(it) }!!) && loginSuccessful()) {
+            //if((activity?.let { Internet.coprobarInternet(it) }!!) && loginSuccessful()) {
                 val intento1 = Intent(activity, MainActivity::class.java)
                 activity?.startActivity(intento1)
-            }
+           // }
         }
     }
 
