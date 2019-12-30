@@ -3,12 +3,14 @@ package com.miranda.appempresarial.Model
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.util.Log
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.ApiEmpleados
 import com.miranda.appempresarial.api.Api_Envio
 import com.miranda.appempresarial.api.LoginUserResponse
 import com.miranda.appempresarial.api.RegistroEmpleadoResponse
+import com.miranda.appempresarial.view.MainActivity
 import com.miranda.appempresarial.view.fragments.Formulario
 import retrofit2.Call
 import retrofit2.Callback
@@ -74,9 +76,10 @@ object Consumo {
             override fun onResponse(call: Call<LoginUserResponse>, response:Response<LoginUserResponse>){
                 if(response.isSuccessful)
                 {
-                   when (val codigo = response.body()?.codigoOperacion){
+                   when (response.body()?.codigoOperacion){
                        0 -> {
-                           mensajes(context, titulo, "hola")
+                           val intento1 = Intent(context, MainActivity::class.java)
+                           context.startActivity(intento1)
                        }
                        -1 -> {
                            mensajes(context,titulo,"Error inesperado")

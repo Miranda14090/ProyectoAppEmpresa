@@ -40,22 +40,20 @@ class Sesion : Fragment() {
         }
 
         boton_InicioSesion.setOnClickListener{
-            if((activity?.let { Internet.coprobarInternet(it) }!!) && loginSuccessful()) {
-                val intento1 = Intent(activity, MainActivity::class.java)
-                activity?.startActivity(intento1)
+            if((activity?.let { Internet.coprobarInternet(it) }!!)) {
+                loginApp()
             }
         }
     }
 
-    private fun loginSuccessful(): Boolean {
+    private fun loginApp() {
 
-        var numeroEmpleado =txtLogin_usuario.text.toString()
-        var pass_send = Sifrado.convertirSHA256(txtLogin_pass.text.toString())
-        var usuario = pass_send?.let { LoginUser(it,numeroEmpleado) }
+        val numeroEmpleado =txtLogin_usuario.text.toString()
+        val pass_send = Sifrado.convertirSHA256(txtLogin_pass.text.toString())
+        val usuario = pass_send?.let { LoginUser(it,numeroEmpleado) }
 
         Consumo.pedir_login(usuario!!, activity!!,"Sesion")
 
-        return false
     }
 
 
