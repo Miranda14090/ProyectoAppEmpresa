@@ -16,6 +16,4 @@ class ListaDeReporte(
     @SerializedName("estatus") var estatus:String
 
 ) {
-
-
 }

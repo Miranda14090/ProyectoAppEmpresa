@@ -64,8 +64,8 @@ object Consumo {
     }
 
     fun registrar_reporte(context:Context, reporte:ReportesSend){
-        val apiReporte = Api_Envio.getApiEnvioTmp().create(ApiEmpleados::class.java)
-        val callRespuesta = apiReporte.registrar_reporte("text/plain", reporte)
+
+        val callRespuesta = apiEnvios.registrar_reporte("text/plain", reporte)
 
         callRespuesta.enqueue(object: Callback<RegistroReporteResponse>{
             override fun onFailure(call: Call<RegistroReporteResponse>, t: Throwable) {
@@ -113,6 +113,7 @@ object Consumo {
                        0 -> {
                            val intento1 = Intent(context, MainActivity::class.java)
                            context.startActivity(intento1)
+                           //pasar los datos de login
                        }
                        -1 -> {
                            mensajes(context,titulo,"Error inesperado")
