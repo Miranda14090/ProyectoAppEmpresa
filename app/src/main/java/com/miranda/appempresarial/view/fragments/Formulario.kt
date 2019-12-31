@@ -98,10 +98,11 @@ class Formulario : Fragment() {
         }
 
         boton_cancelar.setOnClickListener {
-            if(mCallback!=null)
+            /*if(mCallback!=null)
             {
                 mCallback!!.loginFinishCallback()
-            }
+            }*/
+            backFragment()
         }
 
 
@@ -171,6 +172,14 @@ class Formulario : Fragment() {
         return true
     }
 
+
+    fun backFragment(){
+        if(mCallback!=null)
+        {
+            mCallback!!.loginFinishCallback()
+        }
+    }
+
     @SuppressLint("SetTextI18n")
 
     fun mensaje(c:Context, txtmensaje:String, codigo:Int)
@@ -189,6 +198,8 @@ class Formulario : Fragment() {
         dialogoRespuesta.create()
         dialogoRespuesta.show()
     }
+
+
 
    /* fun enviar_Datos(empleado:Empleado){
         val CallRespuesta = Consumo.apiEnvios.registrar_empleado("text/plain", empleado)

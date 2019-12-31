@@ -37,4 +37,6 @@
     <string name="noneServise">No se puedo conectar con el servidor intentelo más tarde</string>
     <string name="reportes">Reporte</string>
     <string name="tvLisReportes">Tipo de Problema</string>
+    <string name="ErrorConsultarReporte">Error al consultar los reportes en el servidor </string>
+    <string name="ErrorFormatoReporte">Formato Invalido </string>
 </resources>

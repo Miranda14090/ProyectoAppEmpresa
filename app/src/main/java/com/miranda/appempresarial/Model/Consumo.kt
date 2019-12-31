@@ -155,9 +155,11 @@ object Consumo {
                         }
                         -1 ->{
                             //Error
+                            mensajes(context,titulo,R.string.ErrorConsultarReporte.toString())
                         }
                         2 ->{
                             //Formato Invalido
+                            mensajes(context,titulo,R.string.ErrorFormatoReporte.toString())
                         }
                     }
                 }else{

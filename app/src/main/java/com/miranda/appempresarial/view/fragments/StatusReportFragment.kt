@@ -1,6 +1,9 @@
 package com.miranda.appempresarial.view.fragments
 
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -36,8 +39,5 @@ class StatusReportFragment : Fragment() {
         fun newInstance(): StatusReportFragment =
             StatusReportFragment()
     }
-
-
-
 
 }
