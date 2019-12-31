@@ -13,7 +13,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.miranda.appempresarial.Model.Consumo
-import com.miranda.appempresarial.Model.InboxReport
 import com.miranda.appempresarial.Model.ReportesSend
 import com.miranda.appempresarial.R
 import kotlinx.android.synthetic.main.fragment_reportes.*
@@ -52,7 +51,14 @@ class Reportes : Fragment() {
         return inflater.inflate(R.layout.fragment_reportes, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+        boton_EnviarReporte.visibility=View.INVISIBLE
+        edtDescipcionRepFrac.setText("")
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
 
         clasificacion = 0
 
@@ -79,7 +85,7 @@ class Reportes : Fragment() {
             MostrarColor()
         }
 
-        descipcion.addTextChangedListener(object : TextWatcher {
+        edtDescipcionRepFrac.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
 
@@ -89,7 +95,7 @@ class Reportes : Fragment() {
 
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
-                if(descipcion.length()>=1){
+                if(edtDescipcionRepFrac.length()>=1){
                     boton_EnviarReporte.visibility=View.VISIBLE
                 }else
                     boton_EnviarReporte.visibility=View.INVISIBLE
@@ -97,14 +103,14 @@ class Reportes : Fragment() {
         })
 
         boton_EnviarReporte.setOnClickListener{
-            if(descipcion.text.toString().replace(" ","")=="" || descipcion.text.toString()[0]==' '){
-                descipcion.error="Campo no valido"
+            if(edtDescipcionRepFrac.text.toString().replace(" ","")=="" || edtDescipcionRepFrac.text.toString()[0]==' '){
+                edtDescipcionRepFrac.error="Campo no valido"
 
             }else{
-                descipcion.error=null
+                edtDescipcionRepFrac.error=null
                 val numeroDeEmpleado = "000028"
 
-                val reporte = ReportesSend(descipcion.text.toString(),clasificacion,numeroDeEmpleado)
+                val reporte = ReportesSend(edtDescipcionRepFrac.text.toString(),clasificacion,numeroDeEmpleado)
                 Consumo.registrar_reporte(activity!!,reporte)
 
             }
@@ -162,7 +168,7 @@ class Reportes : Fragment() {
     }
 
     private fun MostrarDescripcion() {
-        descipcion.visibility=View.VISIBLE
+        edtDescipcionRepFrac.visibility=View.VISIBLE
     }
 
 

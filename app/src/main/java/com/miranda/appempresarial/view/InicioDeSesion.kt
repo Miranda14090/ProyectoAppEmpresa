@@ -24,9 +24,6 @@ class InicioDeSesion : AppCompatActivity() ,
                     R.id.contenedorSesion,
                     Sesion(),"")
                 .commit()
-
-
-
     }
     override fun registroFinishCallback() {
         supportFragmentManager
