@@ -39,7 +39,7 @@ class InicioDeSesion : AppCompatActivity() ,
             .beginTransaction()
             .replace(
                 R.id.contenedorSesion,
-                Sesion(),"")
+                Sesion()  ,"")
             .commit()
     }
 

@@ -20,15 +20,15 @@ import retrofit2.Response
 
 object Consumo {
 
+   var TuNumeroDeEmpleado:String=""
+
     var apiEnvios: ApiEmpleados = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
 
-    fun registrar_usuario(empleado:Empleado, context:Context){
-        //var retorno:MensajesRespuesta = MensajesRespuesta(2, "Error inesperado, marcar al soporte para más ayuda")
+    fun registrar_usuario(empleado:Empleado, context:Context, view: View){
         val CallRespuesta = apiEnvios.registrar_empleado("text/plain", empleado)
         CallRespuesta.enqueue(object: Callback<RegistroEmpleadoResponse> {
             override fun onFailure(call: Call<RegistroEmpleadoResponse>, t: Throwable) {
-                Formulario.newInstance().mensaje(context,R.string.noneServise.toString(),404)
-                //retorno = MensajesRespuesta(2, R.string.noneServise.toString())
+                Formulario.newInstance().mensaje(context,R.string.noneServise.toString(),404, view)
             }
 
             override fun onResponse(
@@ -41,22 +41,18 @@ object Consumo {
                     val numeroDeEmpleado = response.body()?.numeroDeEmpleado
                     when (val codigoOperacion = response.body()?.codigoOperacion) {
                         0 -> {
-                            //Sesion.newInstance().setNumeroEmpleado(numeroDeEmpleado!!)
-                            Formulario.newInstance().mensaje(context,"Tú número de empleado es: $numeroDeEmpleado",0)
-                            //retorno = MensajesRespuesta(0, "Tú número de empleado es: $numeroDeEmpleado")
+                            TuNumeroDeEmpleado = numeroDeEmpleado!!
+                            Formulario.newInstance().mensaje(context,"Tú número de empleado es: $numeroDeEmpleado",0, view)
                         }
                         1 -> {
-                            Formulario.newInstance().mensaje(context,"El empleado ${empleado.nombres} ya se encuentra registrado",1)
-                            //retorno = MensajesRespuesta(1,"El empleado ${empleado.nombres} ya se encuentra registrado")
+                            Formulario.newInstance().mensaje(context,"El empleado ${empleado.nombres} ya se encuentra registrado",1, view)
                         }
                         else -> {
-                            Formulario.newInstance().mensaje(context,"Error inesperado, marcar al soporte para más ayuda", 2)
-                            //retorno = MensajesRespuesta(2,"Error inesperado, marcar al soporte para más ayuda")
+                            Formulario.newInstance().mensaje(context,"Error inesperado, marcar al soporte para más ayuda", 2,view)
                         }
                     }
                 } else {
-                    Formulario.newInstance().mensaje(context,R.string.noneServise.toString(),404)
-                    //retorno = MensajesRespuesta(2, R.string.noneServise.toString())
+                    Formulario.newInstance().mensaje(context,R.string.noneServise.toString(),404, view)
                 }
 
             }
@@ -81,7 +77,7 @@ object Consumo {
                         0 -> {
                             val numeroFolio= response.body()?.folio
                             Reportes.newInstance().mensajeReporte(context,
-                                "Tu Registro fue correcto, tu numerp de reporte es $numeroFolio")
+                                "Tu Registro fue correcto, tu numerp de reporte es: $numeroFolio")
                         }
                         -1 -> {
                             Reportes.newInstance().mensajeReporte(context,"Tu Registro fallo intentalo de nuevo mas tarde")
@@ -148,7 +144,7 @@ object Consumo {
                         0 -> {
                             //Consulta Exitosa
                             view.recyclerReportes.layoutManager= LinearLayoutManager(context)
-                            var miAdaptador=AdaptaterReports(response.body()?.reportes as ArrayList<ListaDeReporte>)
+                            val miAdaptador=AdaptaterReports(response.body()?.reportes as ArrayList<ListaDeReporte>)
                             view.recyclerReportes.adapter=miAdaptador
 
 
