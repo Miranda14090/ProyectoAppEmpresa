@@ -108,7 +108,7 @@ class Reportes : Fragment() {
 
             }else{
                 edtDescipcionRepFrac.error=null
-                val numeroDeEmpleado = "000001"
+                val numeroDeEmpleado = Consumo.TuNumeroDeEmpleado
 
                 val reporte = ReportesSend(edtDescipcionRepFrac.text.toString(),clasificacion,numeroDeEmpleado)
                 Consumo.registrar_reporte(activity!!,reporte)

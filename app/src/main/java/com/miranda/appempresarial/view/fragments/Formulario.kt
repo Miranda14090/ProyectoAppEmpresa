@@ -198,7 +198,6 @@ class Formulario : Fragment() {
                 }) //despues del lambda -> se pone la accion
         dialogoRespuesta.create()
         dialogoRespuesta.show()
-
     }
 
 }
