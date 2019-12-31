@@ -146,8 +146,6 @@ object Consumo {
                             view.recyclerReportes.layoutManager= LinearLayoutManager(context)
                             val miAdaptador=AdaptaterReports(response.body()?.reportes as ArrayList<ListaDeReporte>)
                             view.recyclerReportes.adapter=miAdaptador
-
-
                         }
                         -1 ->{
                             //Error
