@@ -10,8 +10,32 @@
 
     <ImageView
         android:id="@+id/imgFoto"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        />
+
+     <ImageButton
+         android:id="@+id/btnFoto"
+         android:src="@drawable/ic_camera"
+         android:layout_width="80dp"
+         android:layout_height="80dp"
+         android:layout_gravity="center"
+         style="@style/Widget.AppCompat.Button.Borderless.Colored"
+         />
+
+    <Button
+        android:id="@+id/btnEnviarFoto"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/borde_circular"
+        android:textColor="@color/blanco"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="@string/btnFoto"
         />
 
 

@@ -28,6 +28,7 @@ class asistencia : Fragment(), PermissionsView {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        var isCameraPer = cameraPermission.cameraPermission(activity!!)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_asistencia, container, false)
     }
