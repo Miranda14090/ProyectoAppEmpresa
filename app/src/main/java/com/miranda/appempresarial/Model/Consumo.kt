@@ -94,7 +94,7 @@ object Consumo {
 
     }
 
-    fun pedir_login(usuario:LoginUser, context:Context, titulo:String){
+    fun pedir_login(usuario:LoginUser, context:Context, titulo:String, empleado:String){
 
         val CallRespuesta = apiEnvios.login_user("text/plain", usuario)
         CallRespuesta.enqueue(object : Callback<LoginUserResponse> {
@@ -107,9 +107,9 @@ object Consumo {
                 {
                    when (response.body()?.codigoOperacion){
                        0 -> {
+                           TuNumeroDeEmpleado=empleado
                            val intento1 = Intent(context, MainActivity::class.java)
                            context.startActivity(intento1)
-                           //pasar los datos de login
                        }
                        -1 -> {
                            mensajes(context,titulo,"Error inesperado")
