@@ -25,13 +25,12 @@ class Sesion : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return inflater.inflate(R.layout.fragment_sesion, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-
+        txtLogin_usuario.setText(Consumo.TuNumeroDeEmpleado)
 
         boton_formulario.setOnClickListener {
 
@@ -74,7 +73,5 @@ class Sesion : Fragment() {
         fun newInstance(): Sesion =
             Sesion()
     }
-
-    fun setNumeroEmpleado(noEmpleado:String){ txtLogin_usuario.setText(noEmpleado!!) }
 
 }

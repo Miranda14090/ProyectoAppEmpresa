@@ -17,6 +17,7 @@ import com.miranda.appempresarial.R
 import com.miranda.appempresarial.presentet.Internet
 import com.miranda.appempresarial.presentet.Sifrado
 import kotlinx.android.synthetic.main.fragment_formulario.*
+import kotlinx.android.synthetic.main.fragment_formulario.view.*
 import java.util.*
 
 
@@ -98,10 +99,9 @@ class Formulario : Fragment() {
         }
 
         boton_cancelar.setOnClickListener {
-            /*if(mCallback!=null)
-            {
-                mCallback!!.loginFinishCallback()
-            }*/
+            backFragment()
+        }
+        btnContinuar.setOnClickListener {
             backFragment()
         }
 
@@ -122,12 +122,19 @@ class Formulario : Fragment() {
                             Empleado(nombres, apellidoP, apellidoM, edad, fechaDeNacimiento, entidadF,
                                 it1
                             )}
-                         Consumo.registrar_usuario(empleado!!,activity!!)
+                         Consumo.registrar_usuario(empleado!!,activity!!, view)
 
                     }
                 }
         }
 
+    }
+
+     fun backFragment() {
+        if(mCallback!=null)
+        {
+            mCallback!!.loginFinishCallback()
+        }
     }
 
 
@@ -172,68 +179,27 @@ class Formulario : Fragment() {
         return true
     }
 
-
-    fun backFragment(){
-        if(mCallback!=null)
-        {
-            mCallback!!.loginFinishCallback()
-        }
-    }
-
     @SuppressLint("SetTextI18n")
 
-    fun mensaje(c:Context, txtmensaje:String, codigo:Int)
+    fun mensaje(c:Context, txtmensaje:String, codigo:Int, v:View)
     {
+        if(codigo==0) {
+            v.btnContinuar.visibility=View.VISIBLE
+            v.boton_cancelar.visibility= View.INVISIBLE
+            v.boton_registrar.visibility= View.INVISIBLE
+        }
         val dialogoRespuesta = AlertDialog.Builder(c)
 
         dialogoRespuesta.setTitle(R.string.registro)
             .setMessage(txtmensaje)
             .setPositiveButton("OK",
                 DialogInterface.OnClickListener { dialog, which ->
-                    if(codigo==0){
-                        if(mCallback!=null)
-                            {mCallback!!.loginFinishCallback()}
-                    }
+
                 }) //despues del lambda -> se pone la accion
         dialogoRespuesta.create()
         dialogoRespuesta.show()
+
     }
-
-
-
-   /* fun enviar_Datos(empleado:Empleado){
-        val CallRespuesta = Consumo.apiEnvios.registrar_empleado("text/plain", empleado)
-        CallRespuesta.enqueue(object: Callback<RegistroEmpleadoResponse> {
-            override fun onFailure(call: Call<RegistroEmpleadoResponse>, t: Throwable) {
-               mensaje(activity!!, R.string.noneServise.toString(),2)
-            }
-
-            override fun onResponse(
-                call: Call<RegistroEmpleadoResponse>,
-                response: Response<RegistroEmpleadoResponse>
-            ){
-                if (response.isSuccessful) {
-                    Log.w("Empleado", "Respuesta correcta")
-                    Log.i("Empleado", response.body().toString())
-                    val numeroDeEmpleado = response.body()?.numeroDeEmpleado
-                    when (val codigoOperacion = response.body()?.codigoOperacion) {
-                        0 -> {
-                            mensaje(activity!!,"Tú número de empleado es: $numeroDeEmpleado",0)
-                        }
-                        1 -> {
-                            mensaje(activity!!,"El empleado ${empleado.nombres} ya se encuentra registrado", 1)
-                        }
-                        else -> {
-                            mensaje(activity!!,"Error inesperado, marcar al soporte para más ayuda",2)
-                        }
-                    }
-                } else {
-                    mensaje(activity!!, R.string.noneServise.toString(),2)
-                }
-
-            }
-        })
-    }*/
 
 }
 
