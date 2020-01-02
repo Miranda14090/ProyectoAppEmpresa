@@ -106,12 +106,17 @@ class Reportes : Fragment() {
             if(edtDescipcionRepFrac.text.toString().replace(" ","")=="" || edtDescipcionRepFrac.text.toString()[0]==' '){
                 edtDescipcionRepFrac.error="Campo no valido"
 
-            }else{
+            }
+            else if(edtDescipcionRepFrac.text.toString()[(edtDescipcionRepFrac.length())-1]==' '){
+                edtDescipcionRepFrac.error="Campo no valido"
+            }
+            else{
                 edtDescipcionRepFrac.error=null
                 val numeroDeEmpleado = Consumo.TuNumeroDeEmpleado
 
                 val reporte = ReportesSend(edtDescipcionRepFrac.text.toString(),clasificacion,numeroDeEmpleado)
                 Consumo.registrar_reporte(activity!!,reporte)
+                edtDescipcionRepFrac.setText("")
 
             }
                 
