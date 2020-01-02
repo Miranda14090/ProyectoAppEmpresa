@@ -76,7 +76,7 @@ object Consumo {
                         0 -> {
                             val numeroFolio= response.body()?.folio
                             Reportes.newInstance().mensajeReporte(context,
-                                "Tu Registro fue correcto, tu numerp de reporte es: $numeroFolio")
+                                "Tu Registro fue correcto, tu numero de reporte es: $numeroFolio")
                         }
                         -1 -> {
                             Reportes.newInstance().mensajeReporte(context,"Tu Registro fallo intentalo de nuevo mas tarde")

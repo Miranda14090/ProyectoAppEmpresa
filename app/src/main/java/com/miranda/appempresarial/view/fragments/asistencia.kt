@@ -70,8 +70,8 @@ class asistencia : Fragment(), PermissionsView {
 
         imgFoto.setImageBitmap(data!!.extras!!.get("data") as Bitmap)
 
-        val alto = 640
-        val ancho = 480
+        val alto = 32 //640
+        val ancho = 32 //480
 
        var imagen = imgFoto.drawable.toBitmap()
 
