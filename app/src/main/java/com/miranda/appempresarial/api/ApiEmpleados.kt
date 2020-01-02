@@ -1,9 +1,6 @@
 package com.miranda.appempresarial.api
 
-import com.miranda.appempresarial.Model.Empleado
-import com.miranda.appempresarial.Model.InboxReport
-import com.miranda.appempresarial.Model.LoginUser
-import com.miranda.appempresarial.Model.ReportesSend
+import com.miranda.appempresarial.Model.*
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Header
@@ -25,4 +22,7 @@ interface ApiEmpleados {
 
     @POST("api/bdm/app-empresarial/consultarReportes")
     fun consultar_reportes(@Header("Content-Type") contentType: String, @Body request:InboxReport):Call<ConsultarReportesResponse>
+
+    @POST("api/bdm/app-empresarial/registrarAsistencia")
+    fun registrar_asistencia(@Header("Content-Type") contentType: String,@Body request: RegistroAsistencia):Call<RegistroAsistenciaResponse>
 }

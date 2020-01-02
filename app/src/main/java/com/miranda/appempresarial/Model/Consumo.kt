@@ -12,7 +12,6 @@ import com.miranda.appempresarial.api.*
 import com.miranda.appempresarial.view.MainActivity
 import com.miranda.appempresarial.view.fragments.Formulario
 import com.miranda.appempresarial.view.fragments.Reportes
-import com.miranda.appempresarial.view.fragments.Sesion
 import kotlinx.android.synthetic.main.fragment_status_report.view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -153,12 +152,47 @@ object Consumo {
                         }
                         2 ->{
                             //Formato Invalido
-                            mensajes(context,titulo,R.string.ErrorFormatoReporte.toString())
+                            mensajes(context,titulo,R.string.ErrorFormatos.toString())
                         }
                     }
                 }else{
                     mensajes(context,titulo,R.string.noneServise.toString())
                 }
+            }
+        })
+    }
+
+    fun registrarAsistencia(asistencia:RegistroAsistencia,context: Context,titulo: String){
+        val callRespuesta = apiEnvios.registrar_asistencia("text/plain",asistencia)
+        callRespuesta.enqueue(object :Callback<RegistroAsistenciaResponse>{
+            override fun onFailure(call: Call<RegistroAsistenciaResponse>, t: Throwable) {
+                mensajes(context,titulo,R.string.noneServise.toString())
+            }
+
+            override fun onResponse(
+                call: Call<RegistroAsistenciaResponse>,
+                response: Response<RegistroAsistenciaResponse>
+            ) {
+                if(response.isSuccessful){
+                    when(response.body()?.codigoOperacion){
+                        0 -> {
+                            //Consulta Exitosa
+                        }
+                        -1 ->{
+                            //Error
+                        }
+                        2 ->{
+                            //Formato Invalido
+                            mensajes(context,titulo,R.string.ErrorFormatos.toString())
+                        }
+
+                    }
+
+                }
+                else{
+                    mensajes(context,titulo,R.string.noneServise.toString())
+                }
+
             }
         })
     }
