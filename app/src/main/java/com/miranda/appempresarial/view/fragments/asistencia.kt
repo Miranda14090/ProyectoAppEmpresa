@@ -1,15 +1,26 @@
 package com.miranda.appempresarial.view.fragments
 
 
+import android.Manifest
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Base64
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
+import com.miranda.appempresarial.Model.Consumo
+import com.miranda.appempresarial.Model.RegistroAsistencia
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.presentet.Permissions
 import com.miranda.appempresarial.presentet.PermissionsImp
@@ -23,13 +34,13 @@ import java.io.ByteArrayOutputStream
 class asistencia : Fragment(), PermissionsView {
 
     var cameraPermission:Permissions= PermissionsImp(this)
+    lateinit var  fotoEnBase64:String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        // Inflate the layout for this fragment
+         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_asistencia, container, false)
     }
     companion object {
@@ -39,7 +50,19 @@ class asistencia : Fragment(), PermissionsView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var isCameraPer = cameraPermission.cameraPermission(activity!!)
+
+        btnFoto.setOnClickListener {
+            var isCameraPer = cameraPermission.cameraPermission(activity!!)
+            val intento = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(intento,0)
+        }
+        btnEnviarFoto.setOnClickListener{
+            btnEnviarFoto.visibility = View.INVISIBLE
+            val numeroDeEmpleado = Consumo.TuNumeroDeEmpleado
+            val asistencia=RegistroAsistencia(fotoEnBase64,numeroDeEmpleado)
+            Consumo.registrarAsistencia(asistencia,activity!!,"Asistencia")
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -47,12 +70,22 @@ class asistencia : Fragment(), PermissionsView {
 
         imgFoto.setImageBitmap(data!!.extras!!.get("data") as Bitmap)
 
-        val imagen = imgFoto.drawable.toBitmap()
+        val alto = 640
+        val ancho = 480
+
+       var imagen = imgFoto.drawable.toBitmap()
+
+        if(imgFoto.drawable != null)
+        {
+            btnEnviarFoto.visibility = View.VISIBLE
+        }
+
+        imagen = Bitmap.createScaledBitmap(imagen,ancho,alto,true)
 
         val byteArrayOutputStream = ByteArrayOutputStream()
-        imagen.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+        imagen.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
         val byteArray = byteArrayOutputStream.toByteArray()
-        val fotoEnBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT)
+        fotoEnBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT)
 
     }
 

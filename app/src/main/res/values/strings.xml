@@ -38,7 +38,7 @@
     <string name="reportes">Reporte</string>
     <string name="tvLisReportes">Tipo de Problema</string>
     <string name="ErrorConsultarReporte">Error al consultar los reportes en el servidor </string>
-    <string name="ErrorFormatoReporte">Formato Invalido </string>
+    <string name="ErrorFormatos">Formato Invalido </string>
     <string name="btnContinuar">Continuar</string>
     <string name="btnFoto">Enviar</string>
 </resources>

@@ -36,6 +36,7 @@
         android:textSize="22sp"
         android:textStyle="bold"
         android:text="@string/btnFoto"
+        android:visibility="invisible"
         />
 
 

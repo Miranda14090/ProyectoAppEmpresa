@@ -2,6 +2,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/Mi_Perfil"
+        android:enabled="true"
+        android:icon="@drawable/ic_add"
+        android:title="Inicio"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/action_asistencia"
         android:enabled="true"
         android:icon="@drawable/ic_asistencia"
@@ -19,11 +26,5 @@
         android:enabled="true"
         android:icon="@drawable/ic_reportar"
         android:title="Reportes"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_noticias"
-        android:enabled="true"
-        android:icon="@drawable/ic_add"
-        android:title="algo mas"
         app:showAsAction="ifRoom" />
 </menu>

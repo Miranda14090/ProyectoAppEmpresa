@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener {
                     true
                 }
 
-                R.id.action_noticias -> {
+                R.id.Mi_Perfil -> {
                     val fragment = PerfilUsuario.newInstance()
                     openFragment(fragment)
                     true
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener {
             }
         }
         navigationBar.selectedItemId =
-            R.id.action_asistencia
+            R.id.Mi_Perfil
     }
 
     private fun openFragment(fragment: Fragment) {
