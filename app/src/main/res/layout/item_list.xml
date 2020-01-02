@@ -5,10 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="10dp"
     android:layout_marginHorizontal="10dp"
-
     app:cardCornerRadius="10dp">
 
     <LinearLayout
+        android:background="@drawable/fondo_consultarr_eportes"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -16,7 +16,7 @@
         <TextView
             android:id="@+id/tvFolio"
             android:text="00001"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"/>
@@ -25,19 +25,19 @@
     android:orientation="horizontal"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
+
     >
     <TextView
         android:id="@+id/tvCuerpoT"
         android:text="Cuerpo: "
         android:textColor="@color/Colornegro"
-        android:textSize="25sp"
+        android:textSize="15sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/tvCuerpo"
         android:text="No funciona la app"
-        android:textSize="30sp"
+        android:textSize="15sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"/>
@@ -46,14 +46,13 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_gravity="center"
         android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tvClasificacionT"
             android:text="Clasificacion: "
             android:textColor="@color/Colornegro"
-            android:textSize="25sp"
+            android:textSize="15sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -61,17 +60,16 @@
         <TextView
             android:id="@+id/tvClasificacion"
             android:text="Mantenimiento"
-            android:textSize="30sp"
+            android:textSize="15sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"/>
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
         <TextView
             android:id="@+id/tvEstatus"
             android:text="Pendiente"
-            android:textSize="30sp"
+            android:textSize="15sp"
             android:textColor="@color/Colornegro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
