@@ -11,6 +11,5 @@
         android:id="@+id/recyclerReportes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layoutAnimation="@anim/animation_layoud_right"
         />
 </LinearLayout>
