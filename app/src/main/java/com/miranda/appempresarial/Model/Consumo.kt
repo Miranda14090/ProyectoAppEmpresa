@@ -41,13 +41,17 @@ object Consumo {
                     when (val codigoOperacion = response.body()?.codigoOperacion) {
                         0 -> {
                             TuNumeroDeEmpleado = numeroDeEmpleado!!
-                            Formulario.newInstance().mensaje(context,"Tú número de empleado es: $numeroDeEmpleado",0, view)
+                            Formulario.newInstance().mensaje(context,"Empleado registrado correctamente,tú número de empleado es: $numeroDeEmpleado",0, view)
                         }
                         1 -> {
                             Formulario.newInstance().mensaje(context,"El empleado ${empleado.nombres} ya se encuentra registrado",1, view)
                         }
+
+                        2 -> {
+                            Formulario.newInstance().mensaje(context,"Formato de datos incorrecto.Intente nuevamente",2,view)
+                        }
                         else -> {
-                            Formulario.newInstance().mensaje(context,"Error inesperado, marcar al soporte para más ayuda", 2,view)
+                            Formulario.newInstance().mensaje(context,"Error inesperado, marcar al soporte tecnico para más ayuda", -1,view)
                         }
                     }
                 } else {
@@ -76,13 +80,13 @@ object Consumo {
                         0 -> {
                             val numeroFolio= response.body()?.folio
                             Reportes.newInstance().mensajeReporte(context,
-                                "Tu Registro fue correcto, tu numero de reporte es: $numeroFolio")
+                                "${response.body()?.descripcion}. $numeroFolio")
                         }
                         -1 -> {
-                            Reportes.newInstance().mensajeReporte(context,"Tu Registro fallo intentalo de nuevo mas tarde")
+                            Reportes.newInstance().mensajeReporte(context,"${response.body()?.descripcion}")
                         }
                         2 -> {
-                            Reportes.newInstance().mensajeReporte(context,"Error inesperado, marcar al soporte para más ayuda")
+                            Reportes.newInstance().mensajeReporte(context,"${response.body()?.descripcion},Verifeque  su reporte,Intentelo denuevo")
                         }
                     }
                 } else {
@@ -114,7 +118,7 @@ object Consumo {
                            mensajes(context,titulo,"Error inesperado")
                        }
                        3 ->{
-                           mensajes(context,titulo,"Usuario o contraseña incorrecto")
+                           mensajes(context,titulo,"Numero de empleado y/o contraseña incorrecto")
                        }
                    }
 
@@ -176,14 +180,20 @@ object Consumo {
                 if(response.isSuccessful){
                     when(response.body()?.codigoOperacion){
                         0 -> {
-                            mensajes(context,titulo,"Registro de asistencia exitoso tu folio es: ${response.body()?.folio}")
+                            mensajes(context,titulo,"Registro de asistencia exitoso, su folio es: ${response.body()?.folio}")
                         }
                         -1 ->{
                             //Error
                         }
                         2 ->{
                             //Formato Invalido
-                            mensajes(context,titulo,R.string.ErrorFormatos.toString())
+                            mensajes(context,titulo,"${response.body()?.descripcion}")
+                        }
+                        4 -> {
+                            mensajes(context,titulo,"${response.body()?.descripcion},Capture otra imagen e intentelo nuevamente")
+                        }
+                        5 -> {
+                            //Asistencia del dia resgistrada
                         }
 
                     }

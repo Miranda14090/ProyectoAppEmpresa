@@ -8,6 +8,3 @@ data class RegistroAsistenciaResponse(
     @SerializedName("folio") var folio:String
 ) {
 }
-// 0 Corrrecto
-// -1 Error
-// 2 Formato invalido
