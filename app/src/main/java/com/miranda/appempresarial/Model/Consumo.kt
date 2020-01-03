@@ -117,7 +117,6 @@ object Consumo {
                            mensajes(context,titulo,"Usuario o contraseña incorrecto")
                        }
                    }
-
                 }
                 else {
                     mensajes(context,titulo,R.string.noneServise.toString())
