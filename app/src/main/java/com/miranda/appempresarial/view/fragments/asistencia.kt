@@ -11,6 +11,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -59,8 +60,10 @@ class asistencia : Fragment(), PermissionsView {
         btnEnviarFoto.setOnClickListener{
             btnEnviarFoto.visibility = View.INVISIBLE
             val numeroDeEmpleado = Consumo.TuNumeroDeEmpleado
-            val asistencia=RegistroAsistencia(fotoEnBase64,numeroDeEmpleado)
+            val enviarFoto = fotoEnBase64.replace("\n","")
+            val asistencia=RegistroAsistencia(enviarFoto,numeroDeEmpleado)
             Consumo.registrarAsistencia(asistencia,activity!!,"Asistencia")
+            imgFoto.setImageBitmap(null)
         }
 
     }
@@ -70,8 +73,8 @@ class asistencia : Fragment(), PermissionsView {
 
         imgFoto.setImageBitmap(data!!.extras!!.get("data") as Bitmap)
 
-        val alto = 32 //640
-        val ancho = 32 //480
+        val alto = 640
+        val ancho = 480
 
        var imagen = imgFoto.drawable.toBitmap()
 

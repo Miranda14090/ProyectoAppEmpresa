@@ -176,7 +176,7 @@ object Consumo {
                 if(response.isSuccessful){
                     when(response.body()?.codigoOperacion){
                         0 -> {
-                            //Consulta Exitosa
+                            mensajes(context,titulo,"Registro de asistencia exitoso tu folio es: ${response.body()?.folio}")
                         }
                         -1 ->{
                             //Error

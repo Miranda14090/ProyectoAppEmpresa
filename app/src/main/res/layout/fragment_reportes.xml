@@ -213,6 +213,7 @@
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:visibility="invisible"
+                      android:digits="@string/caracteres_espesiales"
                       android:hint="@string/tvDescripcionR"
                       android:maxLength="100"
                       />
