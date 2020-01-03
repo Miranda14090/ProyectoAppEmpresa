@@ -192,7 +192,7 @@ class Formulario : Fragment() {
 
         dialogoRespuesta.setTitle(R.string.registro)
             .setMessage(txtmensaje)
-            .setPositiveButton("OK",
+            .setPositiveButton(R.string.msnOk,
                 DialogInterface.OnClickListener { dialog, which ->
 
                 }) //despues del lambda -> se pone la accion

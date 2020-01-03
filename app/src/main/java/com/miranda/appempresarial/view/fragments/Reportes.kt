@@ -184,7 +184,7 @@ class Reportes : Fragment() {
 
         dialogoRespuesta.setTitle(R.string.reportes)
             .setMessage(txtmensaje)
-            .setPositiveButton("OK",
+            .setPositiveButton(R.string.msnOk,
                 DialogInterface.OnClickListener { dialog, which ->    }) //despues del lambda -> se pone la accion
         dialogoRespuesta.create()
         dialogoRespuesta.show()

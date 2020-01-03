@@ -41,4 +41,5 @@
     <string name="ErrorFormatos">Formato Invalido </string>
     <string name="btnContinuar">Continuar</string>
     <string name="btnFoto">Enviar</string>
+    <string name="msnOk">Aceptar</string>
 </resources>
