@@ -63,6 +63,7 @@ class asistencia : Fragment(), PermissionsView {
             val enviarFoto = fotoEnBase64.replace("\n","")
             val asistencia=RegistroAsistencia(enviarFoto,numeroDeEmpleado)
             Consumo.registrarAsistencia(asistencia,activity!!,"Asistencia")
+            imgFoto.setImageBitmap(null)
         }
 
     }
