@@ -36,7 +36,7 @@ object Internet {
 
             dialogo_internet.setTitle(R.string.internet)
                 .setMessage(R.string.mensaje_internet)
-                .setPositiveButton("OK",
+                .setPositiveButton(R.string.msnOk,
                     DialogInterface.OnClickListener { dialog, which ->  }) //despues del lambda -> se pone la accion
             dialogo_internet.create()
             dialogo_internet.show()

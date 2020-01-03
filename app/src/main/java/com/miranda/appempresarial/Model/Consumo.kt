@@ -202,7 +202,7 @@ object Consumo {
 
         dialogoRespuesta.setTitle(titulo)
             .setMessage(s)
-            .setPositiveButton("OK",
+            .setPositiveButton(R.string.msnOk,
                 DialogInterface.OnClickListener { dialog, which ->    }) //despues del lambda -> se pone la accion
         dialogoRespuesta.create()
         dialogoRespuesta.show()
