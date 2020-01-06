@@ -19,7 +19,7 @@ import retrofit2.Response
 
 object Consumo {
 
-   var TuNumeroDeEmpleado:String=""
+    var TuNumeroDeEmpleado:String=""
 
     var apiEnvios: ApiEmpleados = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
 
@@ -27,7 +27,7 @@ object Consumo {
         val CallRespuesta = apiEnvios.registrar_empleado("text/plain", empleado)
         CallRespuesta.enqueue(object: Callback<RegistroEmpleadoResponse> {
             override fun onFailure(call: Call<RegistroEmpleadoResponse>, t: Throwable) {
-                Formulario.newInstance().mensaje(context,R.string.noneServise.toString(),404, view)
+                Formulario.newInstance().mensaje(context,context.resources.getString(R.string.noneServise),404, view)
             }
 
             override fun onResponse(
@@ -55,7 +55,7 @@ object Consumo {
                         }
                     }
                 } else {
-                    Formulario.newInstance().mensaje(context,R.string.noneServise.toString(),404, view)
+                    Formulario.newInstance().mensaje(context,context.resources.getString(R.string.noneServise),404, view)
                 }
 
             }
@@ -68,7 +68,7 @@ object Consumo {
 
         callRespuesta.enqueue(object: Callback<RegistroReporteResponse>{
             override fun onFailure(call: Call<RegistroReporteResponse>, t: Throwable) {
-                Reportes.newInstance().mensajeReporte(context,R.string.noneServise.toString())
+                Reportes.newInstance().mensajeReporte(context,context.resources.getString(R.string.noneServise))
             }
             override fun onResponse(
                 call: Call<RegistroReporteResponse>,
@@ -90,7 +90,7 @@ object Consumo {
                         }
                     }
                 } else {
-                    Reportes.newInstance().mensajeReporte(context,R.string.noneServise.toString())
+                    Reportes.newInstance().mensajeReporte(context,context.resources.getString(R.string.noneServise))
                 }
             }
         })
@@ -103,7 +103,8 @@ object Consumo {
         CallRespuesta.enqueue(object : Callback<LoginUserResponse> {
 
                 override fun onFailure(call: Call<LoginUserResponse>, t: Throwable){
-                mensajes(context, titulo, R.string.noneServise.toString())
+
+                mensajes(context, titulo, context.resources.getString(R.string.noneServise))
             }
             override fun onResponse(call: Call<LoginUserResponse>, response:Response<LoginUserResponse>){
                 if(response.isSuccessful)
@@ -123,7 +124,7 @@ object Consumo {
                    }
                 }
                 else {
-                    mensajes(context,titulo,R.string.noneServise.toString())
+                    mensajes(context,titulo,context.resources.getString(R.string.noneServise))
                 }
             }
         })
@@ -133,7 +134,7 @@ object Consumo {
         val callRespuesta = apiEnvios.consultar_reportes("text/plain",consulta)
         callRespuesta.enqueue(object : Callback<ConsultarReportesResponse>{
             override fun onFailure(call: Call<ConsultarReportesResponse>, t: Throwable) {
-                mensajes(context,titulo,R.string.noneServise.toString())
+                mensajes(context,titulo,context.resources.getString(R.string.noneServise))
             }
 
             override fun onResponse(
@@ -159,7 +160,7 @@ object Consumo {
                         }
                     }
                 }else{
-                    mensajes(context,titulo,R.string.noneServise.toString())
+                    mensajes(context,titulo,context.resources.getString(R.string.noneServise))
                 }
             }
         })
@@ -169,7 +170,7 @@ object Consumo {
         val callRespuesta = apiEnvios.registrar_asistencia("text/plain",asistencia)
         callRespuesta.enqueue(object :Callback<RegistroAsistenciaResponse>{
             override fun onFailure(call: Call<RegistroAsistenciaResponse>, t: Throwable) {
-                mensajes(context,titulo,R.string.noneServise.toString())
+                mensajes(context,titulo,context.resources.getString(R.string.noneServise))
             }
 
             override fun onResponse(
@@ -199,7 +200,7 @@ object Consumo {
 
                 }
                 else{
-                    mensajes(context,titulo,R.string.noneServise.toString())
+                    mensajes(context,titulo,context.resources.getString(R.string.noneServise))
                 }
 
             }

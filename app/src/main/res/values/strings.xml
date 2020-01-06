@@ -43,4 +43,6 @@
     <string name="btnContinuar">Continuar</string>
     <string name="btnFoto">Enviar</string>
     <string name="msnOk">Aceptar</string>
+    <string name="FingerprintAuthentication">Inicio de sesión por huella digital</string>
+    <string name="mnsFingerprint">Por favor ponga su huella en el sensor</string>
 </resources>

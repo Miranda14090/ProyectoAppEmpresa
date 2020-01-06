@@ -38,6 +38,16 @@ class Formulario : Fragment() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        try{
+            mCallback = activity as Formulario.FormulariosListener?
+
+        }catch (e :Exception ){
+
+        }
+    }
+
     interface FormulariosListener {
         fun loginFinishCallback()
     }
@@ -194,7 +204,7 @@ class Formulario : Fragment() {
             .setMessage(txtmensaje)
             .setPositiveButton(R.string.msnOk,
                 DialogInterface.OnClickListener { dialog, which ->
-
+                    backFragment()
                 }) //despues del lambda -> se pone la accion
         dialogoRespuesta.create()
         dialogoRespuesta.show()
