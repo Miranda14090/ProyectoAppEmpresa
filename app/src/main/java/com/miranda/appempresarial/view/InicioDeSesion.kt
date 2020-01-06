@@ -6,6 +6,7 @@ package com.miranda.appempresarial.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.miranda.appempresarial.R
+import com.miranda.appempresarial.view.fragments.FingerprintFragment
 import com.miranda.appempresarial.view.fragments.Formulario
 import com.miranda.appempresarial.view.fragments.Sesion
 
@@ -24,6 +25,13 @@ class InicioDeSesion : AppCompatActivity() ,
                     R.id.contenedorSesion,
                     Sesion(),"")
                 .commit()
+
+        supportFragmentManager
+            .beginTransaction()
+            .add(
+                R.id.contenedorHuella,
+                FingerprintFragment(),"")
+            .commit()
     }
     override fun registroFinishCallback() {
         supportFragmentManager

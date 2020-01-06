@@ -8,6 +8,7 @@
     tools:context=".view.fragments.Sesion">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -44,7 +45,6 @@
 
             </LinearLayout>
 
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/usuario"
                 style="@style/Estilo1"
@@ -55,12 +55,12 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtLogin_usuario"
-                    android:maxLength="6"
                     style="@style/Estilo1"
-                    android:inputType="numberDecimal"
-                    android:digits="@string/numbers"
                     android:backgroundTint="@color/primaryColor"
-                    android:hint="@string/edUsuario" />
+                    android:digits="@string/numbers"
+                    android:hint="@string/edUsuario"
+                    android:inputType="numberDecimal"
+                    android:maxLength="6" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -111,13 +111,18 @@
                     android:text="@string/btnRegistrar"
                     tools:ignore="OnClick" />
 
-
             </LinearLayout>
-
 
         </RelativeLayout>
 
-
     </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/contenedorHuella"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
