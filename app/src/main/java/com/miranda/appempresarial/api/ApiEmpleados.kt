@@ -24,4 +24,7 @@ interface ApiEmpleados {
 
     @POST("api/bdm/app-empresarial/registrarAsistencia")
     fun registrar_asistencia(@Header("Content-Type") contentType: String,@Body request: RegistroAsistencia):Call<RegistroAsistenciaResponse>
+
+    @POST("api/bdm/app-empresarial/consultarAvisos")
+    fun registrar_avisos(@Header("Content-Type") contentType: String,@Body request: RegistroAviso):Call<RegistroAvisoResponse>
 }

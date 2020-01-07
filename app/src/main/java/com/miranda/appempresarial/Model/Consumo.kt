@@ -13,6 +13,7 @@ import com.miranda.appempresarial.view.InicioDeSesion
 import com.miranda.appempresarial.view.MainActivity
 import com.miranda.appempresarial.view.fragments.Formulario
 import com.miranda.appempresarial.view.fragments.Reportes
+import kotlinx.android.synthetic.main.fragment_avisos.view.*
 import kotlinx.android.synthetic.main.fragment_status_report.view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -175,6 +176,45 @@ object Consumo {
             }
         })
     }
+
+
+    fun mostrar_avisos(consulta:RegistroAviso,context: Context,titulo: String,view: View){
+        val callRespuesta= apiEnvios.registrar_avisos("text/plain",consulta)
+        callRespuesta.enqueue(object : Callback<RegistroAvisoResponse>{
+            override fun onFailure(call: Call<RegistroAvisoResponse>, t: Throwable) {
+                mensajes(context,titulo,context.resources.getString(R.string.noneServise))
+            }
+
+            override fun onResponse(
+                call: Call<RegistroAvisoResponse>,
+                response: Response<RegistroAvisoResponse>
+            ) {
+                if(response.isSuccessful){
+                    when(response.body()?.codigoDeOperacion){
+                        0 ->{
+                            //consulta exitosa
+                            view.recyclerNotificaciones.layoutManager=LinearLayoutManager(context)
+                            val miAdaptador=AdapterAvisos(response.body()?.avisos as ArrayList<ListaDeAvisos>)
+                            view.recyclerNotificaciones.adapter=miAdaptador
+                        }
+                        -1 ->{
+                            // ERROR NO CONTROLADO
+                            mensajes(context,titulo,"${response.body()?.descripcion}")
+                        }
+
+                    }
+                }
+            }
+
+
+        })
+    }
+
+
+
+
+
+
 
     fun registrarAsistencia(asistencia:RegistroAsistencia,context: Context,titulo: String){
         val callRespuesta = apiEnvios.registrar_asistencia("text/plain",asistencia)
