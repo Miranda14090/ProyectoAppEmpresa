@@ -6,10 +6,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.miranda.appempresarial.R
-import com.miranda.appempresarial.view.fragments.PerfilUsuario
-import com.miranda.appempresarial.view.fragments.Reportes
-import com.miranda.appempresarial.view.fragments.StatusReportFragment
-import com.miranda.appempresarial.view.fragments.asistencia
+import com.miranda.appempresarial.view.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(),Reportes.ReportesListener {
@@ -42,7 +39,11 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener {
                     val fragment = Reportes.newInstance()
                     openFragment(fragment)
                     true
-                }
+                }R.id.action_notificacion -> {
+                val fragment = notificaciones.newInstance()
+                openFragment(fragment)
+                true
+            }
 
                     else -> false
             }

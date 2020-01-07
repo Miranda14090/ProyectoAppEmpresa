@@ -42,4 +42,5 @@
     <string name="btnContinuar">Continuar</string>
     <string name="btnFoto">Enviar</string>
     <string name="msnOk">Aceptar</string>
+    <string name="eliminar">Eliminar</string>
 </resources>

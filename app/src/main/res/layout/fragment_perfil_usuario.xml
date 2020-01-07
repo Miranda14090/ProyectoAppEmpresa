@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/fondo_consultarr_eportes"
     tools:context=".view.fragments.PerfilUsuario">
 
-    <TextView
-        android:id="@+id/txtNombrePerfil"
-        android:text="Nombre"
-        android:gravity="center"
-        android:textSize="20dp"
+    <LinearLayout
+        android:id="@+id/bg1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="200dp"
+        android:orientation="horizontal"
+        android:background="@drawable/perfil_color"
+        ></LinearLayout>
 
-    <TextView
-        android:id="@+id/txtNumeroEmpleadoPerfil"
-        android:text="Numero de Empleado"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/bg2"
+        android:layout_width="250dp"
+        android:layout_height="210dp"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+       android:background="@drawable/perfil_color2" >
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_talento_azteca" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:textSize="15dp"
+            android:textColor="@color/Colornegro"
+            android:text="Claudia Nohemi Miranda Vildozola"
+            />
+    </LinearLayout>
+</RelativeLayout>
 
-
-</LinearLayout>

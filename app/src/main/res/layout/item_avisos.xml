@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="10dp"
+    android:layout_marginHorizontal="10dp"
+    app:cardCornerRadius="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/txtTitulo"
+            android:text="Cambio de Horario"
+            android:textSize="20dp"
+            android:textColor="@color/Colornegro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/txtFecha"
+            android:text="DD/MM/YY"
+            android:textSize="20dp"
+            android:textColor="@color/Colornegro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+        <ImageView
+            android:id="@+id/txtEstatus"
+            android:layout_gravity="end"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_aviso_red"
+            />
+
+
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
