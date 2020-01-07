@@ -11,12 +11,11 @@ interface ApiEmpleados {
     @POST("api/bdm/app-empresarial/registrarEmpleado")
     fun registrar_empleado(@Header("Content-Type") contentType: String, @Body request: Empleado):Call<RegistroEmpleadoResponse>
 
-    // Inicio sesion
-
     // Reportes
     @POST("api/bdm/app-empresarial/registrarReporte")
     fun registrar_reporte(@Header("Content-Type") contentType: String, @Body request:ReportesSend):Call<RegistroReporteResponse>
 
+    // Inicio sesion
     @POST("api/bdm/app-empresarial/login")
     fun login_user(@Header("Content-Type") contentType: String, @Body request: LoginUser):Call<LoginUserResponse>
 
