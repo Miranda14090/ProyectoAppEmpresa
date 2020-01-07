@@ -40,7 +40,13 @@ class Sesion : Fragment() {
 
         boton_InicioSesion.setOnClickListener{
             if((activity?.let { Internet.coprobarInternet(it) }!!)) {
-                loginApp()
+                if ((txtLogin_usuario.text.toString().replace(" ","") == "")) {
+                    txtLogin_usuario.error="El esta vacío"
+
+                }else
+                {
+                    loginApp()
+                }
             }
         }
     }

@@ -7,6 +7,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,12 +27,12 @@ import java.util.*
  */
 class Formulario : Fragment() {
 
-    var mCallback : Formulario.FormulariosListener?=null
+    var mCallback : FormulariosListener?=null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         try{
-            mCallback = activity as Formulario.FormulariosListener?
+            mCallback = activity as FormulariosListener?
 
         }catch (e :Exception ){
 
@@ -46,6 +47,7 @@ class Formulario : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_formulario, container, false)
     }
@@ -68,6 +70,7 @@ class Formulario : Fragment() {
             val year = calendario.get(Calendar.YEAR)
             var mes: String
             var dia: String
+
 
             val datePD = DatePickerDialog(activity!!, DatePickerDialog.OnDateSetListener{ _, mYear, mMonth, mDay ->
 
@@ -94,7 +97,45 @@ class Formulario : Fragment() {
                     txtFecha.setText("")
                     txtFecha.requestFocus()
                 }
-            }, year, month, day)
+            }, (year-18), month, day)
+            datePD.show()
+        }
+
+        btnFecha.setOnClickListener {
+            val calendario = Calendar.getInstance()
+            val day = calendario.get(Calendar.DAY_OF_MONTH)
+            val month = calendario.get(Calendar.MONTH)
+            val year = calendario.get(Calendar.YEAR)
+            var mes: String
+            var dia: String
+
+
+            val datePD = DatePickerDialog(activity!!, DatePickerDialog.OnDateSetListener{ _, mYear, mMonth, mDay ->
+
+                edad = if((mMonth-month)<0) {
+                    year - mYear
+                } else if ((mMonth-month)==0) {
+                    if((mDay-day)<=0) {
+                        year - mYear
+                    } else (year - mYear) -1
+                } else (year - mYear) -1
+
+                dia = if(mDay < 10) "0${mDay}"
+                else "$mDay"
+                mes = if((mMonth+1)<10) "0${mMonth+1}"
+                else "${mMonth+1}"
+
+                if(edad in 18..70)
+                {
+                    txtFecha.setText("${dia}/${mes}/${mYear}")
+                    txtFecha.error=null
+                }
+                else {
+                    txtFecha.error="Fecha no valida"
+                    txtFecha.setText("")
+                    txtFecha.requestFocus()
+                }
+            }, (year-18), month, day)
             datePD.show()
         }
 
@@ -134,9 +175,8 @@ class Formulario : Fragment() {
         if(mCallback!=null)
         {
             mCallback!!.loginFinishCallback()
-        }
+     }
     }
-
 
     @SuppressLint("SimpleDateFormat")
     fun validacion(): Boolean{

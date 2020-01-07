@@ -40,11 +40,19 @@
                     android:textSize="30dp"
                     android:textColor="@color/primaryColor"
                     android:layout_centerHorizontal="true" />
+                <ImageView
+                    android:id="@+id/imgPeople"
+                    android:layout_below = "@+id/tvFormulario"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:src="@drawable/ic_person_add"
+                    android:layout_centerHorizontal="true"
+                    />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/nombre"
                     style="@style/Estilo1"
-                    android:layout_below="@+id/tvFormulario"
+                    android:layout_below="@+id/imgPeople"
                     app:errorEnabled="true"
                     app:counterEnabled="true">
 
@@ -149,7 +157,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtPass1"
                         android:maxLength="50"
-                        android:digits="@string/caracteres_espesiales"
+                        android:digits="@string/caracteresPassword"
                         style="@style/Estilo1"
                         android:backgroundTint="@color/primaryColor"
                         android:hint="@string/edContrasena"
