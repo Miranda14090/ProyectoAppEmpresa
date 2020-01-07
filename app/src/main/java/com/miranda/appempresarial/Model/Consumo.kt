@@ -9,6 +9,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.*
+import com.miranda.appempresarial.view.InicioDeSesion
 import com.miranda.appempresarial.view.MainActivity
 import com.miranda.appempresarial.view.fragments.Formulario
 import com.miranda.appempresarial.view.fragments.Reportes
@@ -27,7 +28,7 @@ object Consumo {
         val CallRespuesta = apiEnvios.registrar_empleado("text/plain", empleado)
         CallRespuesta.enqueue(object: Callback<RegistroEmpleadoResponse> {
             override fun onFailure(call: Call<RegistroEmpleadoResponse>, t: Throwable) {
-                Formulario.newInstance().mensaje(context,context.resources.getString(R.string.noneServise),404, view)
+                Formulario.newInstance().mensaje(context,context.resources.getString(R.string.noneServise),404,view)
             }
 
             override fun onResponse(
@@ -103,7 +104,6 @@ object Consumo {
         CallRespuesta.enqueue(object : Callback<LoginUserResponse> {
 
                 override fun onFailure(call: Call<LoginUserResponse>, t: Throwable){
-
                 mensajes(context, titulo, context.resources.getString(R.string.noneServise))
             }
             override fun onResponse(call: Call<LoginUserResponse>, response:Response<LoginUserResponse>){

@@ -4,15 +4,18 @@ package com.miranda.appempresarial.view
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.miranda.appempresarial.R
+import com.miranda.appempresarial.presentet.Permissions
+import com.miranda.appempresarial.presentet.PermissionsImp
 import com.miranda.appempresarial.view.fragments.FingerprintFragment
 import com.miranda.appempresarial.view.fragments.Formulario
 import com.miranda.appempresarial.view.fragments.Sesion
 
 
-class InicioDeSesion : AppCompatActivity() ,
-    Sesion.FormulariosListener, Formulario.FormulariosListener {
+class InicioDeSesion : AppCompatActivity(),
+    Sesion.FormulariosListener, Formulario.FormulariosListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,12 +29,7 @@ class InicioDeSesion : AppCompatActivity() ,
                     Sesion(),"")
                 .commit()
 
-        supportFragmentManager
-            .beginTransaction()
-            .add(
-                R.id.contenedorHuella,
-                FingerprintFragment(),"")
-            .commit()
+        //PedirHuella()
     }
     override fun registroFinishCallback() {
         supportFragmentManager
@@ -51,5 +49,13 @@ class InicioDeSesion : AppCompatActivity() ,
             .commit()
     }
 
+    fun PedirHuella(){
+        supportFragmentManager
+            .beginTransaction()
+            .add(
+                R.id.contenedorHuella,
+                FingerprintFragment(),"")
+            .commit()
+    }
 
 }
