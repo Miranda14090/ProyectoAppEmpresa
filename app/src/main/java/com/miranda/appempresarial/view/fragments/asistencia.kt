@@ -52,6 +52,7 @@ class asistencia : Fragment(), PermissionsView {
         var isCameraPer = cameraPermission.cameraPermission(activity!!)
 
         btnFoto.setOnClickListener {
+            isCameraPer = cameraPermission.cameraPermission(activity!!)
             if(isCameraPer) {
                 val option =
                     arrayOf<CharSequence>("Tomar foto", "Elegir de galeria", "Cancelar")
