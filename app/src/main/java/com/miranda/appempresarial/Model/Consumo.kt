@@ -9,7 +9,6 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.*
-import com.miranda.appempresarial.view.InicioDeSesion
 import com.miranda.appempresarial.view.MainActivity
 import com.miranda.appempresarial.view.fragments.Formulario
 import com.miranda.appempresarial.view.fragments.Reportes
@@ -183,9 +182,13 @@ object Consumo {
                     when(response.body()?.codigoDeOperacion){
                         0 ->{
                             //consulta exitosa
-                            view.recyclerNotificaciones.layoutManager=LinearLayoutManager(context)
+                            /*view.recyclerNotificaciones.layoutManager=LinearLayoutManager(context)
                             val miAdaptador=AdapterAvisos(response.body()?.avisos as ArrayList<ListaDeAvisos>)
-                            view.recyclerNotificaciones.adapter=miAdaptador
+                            view.recyclerNotificaciones.adapter=miAdaptador*/
+
+                            var miRecyclerView = view.recyclerNotificaciones
+                            MainActivity.newInstance().llenarRecycler(response.body()?.avisos as ArrayList<ListaDeAvisos>,miRecyclerView)
+
                         }
                         -1 ->{
                             // ERROR NO CONTROLADO
@@ -199,12 +202,6 @@ object Consumo {
 
         })
     }
-
-
-
-
-
-
 
     fun registrarAsistencia(asistencia:RegistroAsistencia,context: Context,titulo: String){
         val callRespuesta = apiEnvios.registrar_asistencia("text/plain",asistencia)

@@ -10,7 +10,7 @@ data class RegistroAvisoResponse (
 }
 
 class ListaDeAvisos(
-    @SerializedName("id") var id:Int,
+    @SerializedName("identificador") var identificador:String,
     @SerializedName("titulo") var titulo:String,
     @SerializedName("cuerpo") var cuerpo:String,
     @SerializedName("estatus") var estatus:Boolean,

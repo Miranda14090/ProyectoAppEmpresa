@@ -15,7 +15,7 @@ import com.miranda.appempresarial.R
 /**
  * A simple [Fragment] subclass.
  */
-class notificaciones : Fragment() {
+class Avisos : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +32,7 @@ class notificaciones : Fragment() {
     }
 
     companion object {
-        fun newInstance(): notificaciones = notificaciones()
+        fun newInstance(): Avisos = Avisos()
     }
 
 }
