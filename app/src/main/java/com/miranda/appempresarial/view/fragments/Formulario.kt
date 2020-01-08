@@ -17,6 +17,7 @@ import com.miranda.appempresarial.Model.Empleado
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.presentet.Internet
 import com.miranda.appempresarial.presentet.Sifrado
+import com.miranda.appempresarial.view.InicioDeSesion
 import kotlinx.android.synthetic.main.fragment_formulario.*
 import kotlinx.android.synthetic.main.fragment_formulario.view.*
 import java.util.*
@@ -223,6 +224,7 @@ class Formulario : Fragment() {
 
     fun mensaje(c:Context, txtmensaje:String, codigo:Int, v:View)
     {
+        val formulario:FormulariosListener = InicioDeSesion()
         if(codigo==0) {
             v.btnContinuar.visibility=View.VISIBLE
             v.boton_cancelar.visibility= View.INVISIBLE
@@ -234,7 +236,7 @@ class Formulario : Fragment() {
             .setMessage(txtmensaje)
             .setPositiveButton(R.string.msnOk,
                 DialogInterface.OnClickListener { dialog, which ->
-
+                  //  formulario.loginFinishCallback()
                 }) //despues del lambda -> se pone la accion
         dialogoRespuesta.create()
         dialogoRespuesta.show()
