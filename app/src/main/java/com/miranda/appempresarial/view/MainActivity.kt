@@ -9,7 +9,7 @@ import com.miranda.appempresarial.R
 import com.miranda.appempresarial.view.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(),Reportes.ReportesListener {
+class MainActivity : AppCompatActivity(),Reportes.ReportesListener,PermissionsView {
     lateinit var toolbar: ActionBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +62,11 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener {
     override fun reporteFinishCallback(){
         val fragment = StatusReportFragment.newInstance()
         openFragment(fragment)
+    }
+
+    companion object {
+        fun newInstance(): MainActivity =
+            MainActivity()
     }
 
 

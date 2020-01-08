@@ -54,7 +54,8 @@ class FingerprintHandler(private val context: Context) :
         if (b == false) {
             txtMensajes.setTextColor(ContextCompat.getColor(context, R.color.error))
         } else {
-            txtMensajes.setTextColor(ContextCompat.getColor(context, R.color.primaryColor))
+            //aqui poner inicio
+            txtMensajes.setTextColor(ContextCompat.getColor(context, R.color.verdeFuerte))
             imageView.setImageResource(R.mipmap.action_done)
         }
     }

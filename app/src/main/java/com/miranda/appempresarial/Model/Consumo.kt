@@ -177,7 +177,6 @@ object Consumo {
         })
     }
 
-
     fun mostrar_avisos(consulta:RegistroAviso,context: Context,titulo: String,view: View){
         val callRespuesta= apiEnvios.registrar_avisos("text/plain",consulta)
         callRespuesta.enqueue(object : Callback<RegistroAvisoResponse>{
@@ -209,12 +208,6 @@ object Consumo {
 
         })
     }
-
-
-
-
-
-
 
     fun registrarAsistencia(asistencia:RegistroAsistencia,context: Context,titulo: String){
         val callRespuesta = apiEnvios.registrar_asistencia("text/plain",asistencia)
