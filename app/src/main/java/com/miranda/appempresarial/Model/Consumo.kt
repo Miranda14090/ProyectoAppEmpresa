@@ -89,6 +89,10 @@ object Consumo {
                         2 -> {
                             Reportes.newInstance().mensajeReporte(context,"${response.body()?.descripcion},Verifeque  su reporte,Intentelo denuevo")
                         }
+                        else ->
+                        {
+                            Reportes.newInstance().mensajeReporte(context,"Error inesperado, marcar al soporte tecnico para más ayuda")
+                        }
                     }
                 } else {
                     Reportes.newInstance().mensajeReporte(context,context.resources.getString(R.string.noneServise))
@@ -120,6 +124,9 @@ object Consumo {
                        }
                        3 ->{
                            mensajes(context,titulo,"Numero de empleado y/o contraseña incorrecto")
+                       }
+                       else ->{
+                           mensajes(context,titulo,"Error inesperado, marcar al soporte tecnico para más ayuda")
                        }
                    }
                 }
@@ -157,7 +164,10 @@ object Consumo {
                         2 ->{
                             //Formato Invalido
                             mensajes(context,titulo,R.string.ErrorFormatos.toString())
-                        }
+                        }else ->{
+                        mensajes(context,titulo,"Error inesperado, marcar al soporte tecnico para más ayuda")
+                    }
+
                     }
                 }else{
                     mensajes(context,titulo,context.resources.getString(R.string.noneServise))
@@ -165,7 +175,6 @@ object Consumo {
             }
         })
     }
-
 
     fun mostrar_avisos(consulta:RegistroAviso,context: Context,titulo: String,view: View){
         val callRespuesta= apiEnvios.registrar_avisos("text/plain",consulta)
@@ -231,8 +240,11 @@ object Consumo {
                         }
                         5 -> {
                             //Asistencia del dia resgistrada
+                            mensajes(context,titulo,"${response.body()?.descripcion}")
                         }
-
+                        else ->{
+                            mensajes(context,titulo,"Error inesperado, marcar al soporte tecnico para más ayuda")
+                        }
                     }
 
                 }

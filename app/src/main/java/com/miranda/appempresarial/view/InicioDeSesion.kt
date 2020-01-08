@@ -3,8 +3,10 @@ package com.miranda.appempresarial.view
 
 
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.presentet.Permissions
@@ -40,7 +42,7 @@ class InicioDeSesion : AppCompatActivity(),
             .commit()
     }
 
-    override fun loginFinishCallback()   {
+    override fun loginFinishCallback(){
         supportFragmentManager
             .beginTransaction()
             .replace(

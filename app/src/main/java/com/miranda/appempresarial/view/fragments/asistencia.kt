@@ -1,6 +1,7 @@
 package com.miranda.appempresarial.view.fragments
 
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
@@ -51,6 +52,7 @@ class asistencia : Fragment(), PermissionsView {
         var isCameraPer = cameraPermission.cameraPermission(activity!!)
 
         btnFoto.setOnClickListener {
+            isCameraPer = cameraPermission.cameraPermission(activity!!)
             if(isCameraPer) {
                 val option =
                     arrayOf<CharSequence>("Tomar foto", "Elegir de galeria", "Cancelar")
@@ -102,13 +104,17 @@ class asistencia : Fragment(), PermissionsView {
         super.onActivityResult(requestCode, resultCode, data)
         val alto = 640
         val ancho = 480
-        when(requestCode){
-            100->{
-                    imgFoto.setImageBitmap(data!!.extras!!.get("data") as Bitmap)
-            }
-            200->{
+
+        if(data!=null) {
+
+            when (requestCode) {
+                100 -> {
+                    if (resultCode == Activity.RESULT_OK)
+                        imgFoto.setImageBitmap(data!!.extras!!.get("data") as Bitmap)
+                }
+                200 -> {
                     var path = data!!.data
-                val selectedPath = path!!.path
+                    val selectedPath = path!!.path
                     if (selectedPath != null) {
                         var imageStream: InputStream? = null
                         try {
@@ -121,24 +127,20 @@ class asistencia : Fragment(), PermissionsView {
                         val bmp = BitmapFactory.decodeStream(imageStream)
                         imgFoto.setImageBitmap(bmp)
                     }
+                }
             }
+            var imagen = imgFoto.drawable.toBitmap()
+
+            if (imgFoto.drawable != null) {
+                btnEnviarFoto.visibility = View.VISIBLE
+            }
+            imagen = Bitmap.createScaledBitmap(imagen, ancho, alto, true)
+
+
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            imagen.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+            val byteArray = byteArrayOutputStream.toByteArray()
+            fotoEnBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT)
         }
-        var imagen = imgFoto.drawable.toBitmap()
-
-        if(imgFoto.drawable != null)
-        {
-            btnEnviarFoto.visibility = View.VISIBLE
-        }
-        imagen = Bitmap.createScaledBitmap(imagen,ancho,alto,true)
-
-
-        val byteArrayOutputStream = ByteArrayOutputStream()
-        imagen.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
-        val byteArray = byteArrayOutputStream.toByteArray()
-        fotoEnBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT)
-
     }
-
-
-
 }

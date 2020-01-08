@@ -77,7 +77,7 @@ class PermissionsImp(var view: PermissionsView):Permissions {
             ) {
                 txtMensajes.text = "No hay permiso de usar el lector de huella"
             } else if (!keyguardManager!!.isKeyguardSecure) {
-                txtMensajes.text = "Add Lock to your Phone in Settings"
+                txtMensajes.text = ""
             } else if (!fingerprintManager!!.hasEnrolledFingerprints()) {
                 txtMensajes.text = "Por favor agregue una huella al dispositivo para poder usar"
             } else {
