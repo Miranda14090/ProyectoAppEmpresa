@@ -4,14 +4,14 @@
     <item
         android:id="@+id/Mi_Perfil"
         android:enabled="true"
-        android:icon="@drawable/ic_add"
+        android:icon="@drawable/ic_perfil"
         android:title="Inicio"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_asistencia"
         android:enabled="true"
-        android:icon="@drawable/ic_asistencia"
+        android:icon="@drawable/ic_date"
         android:title="Asistencia"
         app:showAsAction="ifRoom" />
     <item

@@ -6,8 +6,7 @@ data class ConsultarReportesResponse(
     @SerializedName("codigoOperacion") var codigoDeOperacion:Int,
     @SerializedName("descripcion") var descripcion:String,
     @SerializedName("reportes") var reportes:List<ListaDeReporte>
-) {
-}
+)
 
 class ListaDeReporte(
     @SerializedName("folio") var folio:String,
@@ -15,5 +14,4 @@ class ListaDeReporte(
     @SerializedName("clasificacion") var clasificacion:String,
     @SerializedName("estatus") var estatus:String
 
-) {
-}
+)
