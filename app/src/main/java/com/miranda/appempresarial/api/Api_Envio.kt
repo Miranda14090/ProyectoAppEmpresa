@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object Api_Envio {
 
-    private val BASE_URL = "http://10.95.71.14:8080/"  //"http://192.168.15.20:8080/"
+    private val BASE_URL =   "http://192.168.15.56:8080/" //"http://10.95.71.14:8080/"
 
     private lateinit var retrofit: Retrofit
 

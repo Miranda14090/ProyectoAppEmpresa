@@ -15,6 +15,7 @@
         >
 
         <Button
+            android:id="@+id/btnCerrarSesion"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/cerrarSesion"
@@ -42,7 +43,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_talento_azteca_pink" />
+            android:src="@drawable/ic_talento_azteca" />
 
         <TextView
             android:id="@+id/txtDatosEmpleadoPerfil"

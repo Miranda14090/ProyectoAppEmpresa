@@ -9,13 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.miranda.appempresarial.Model.AdapterAvisos
 import com.miranda.appempresarial.Model.Consumo
-import com.miranda.appempresarial.Model.InfoEmpleado
 import com.miranda.appempresarial.Model.ListaAsistencia
-import com.miranda.appempresarial.view.fragments.CuerpoAviso
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.FragmentoListener
 import com.miranda.appempresarial.api.ListaDeAvisos
-import com.miranda.appempresarial.api.ValidarAsistenciaResponse
 import com.miranda.appempresarial.view.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -31,7 +28,6 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener, FragmentoLis
                 CuerpoAviso(), ""
             )
             .commit()*/
-        openFragment(CuerpoAviso())
     }
 
 

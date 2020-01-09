@@ -6,14 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+
 import androidx.recyclerview.widget.RecyclerView
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.FragmentoListener
 import com.miranda.appempresarial.api.ListaDeAvisos
 import com.miranda.appempresarial.view.AvisosActivity
-import com.miranda.appempresarial.view.MainActivity
-import com.miranda.appempresarial.view.fragments.CuerpoAviso
+
 import kotlinx.android.synthetic.main.item_avisos.view.*
 
 class AdapterAvisos(var lista:ArrayList<ListaDeAvisos>,var vista:FragmentoListener):RecyclerView.Adapter<AdapterAvisos.MyViewHolder>(){

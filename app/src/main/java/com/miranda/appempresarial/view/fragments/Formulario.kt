@@ -7,7 +7,6 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -143,7 +142,7 @@ class Formulario : Fragment() {
         boton_cancelar.setOnClickListener {
             backFragment()
         }
-        btnContinuar.setOnClickListener {
+        btnInisioSesion.setOnClickListener {
             backFragment()
         }
 
@@ -226,7 +225,7 @@ class Formulario : Fragment() {
     {
         val formulario:FormulariosListener = InicioDeSesion()
         if(codigo==0) {
-            v.btnContinuar.visibility=View.VISIBLE
+            v.btnInisioSesion.visibility=View.VISIBLE
             v.boton_cancelar.visibility= View.INVISIBLE
             v.boton_registrar.visibility= View.INVISIBLE
         }
