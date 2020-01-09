@@ -3,6 +3,7 @@
     <color name="primaryColor">#ec407a</color>
     <color name="colorPrimaryDark">#b4004e</color>
     <color name="colorPrimaryLight">#ff77a9</color>
+    <color name="colorHueso">#ffd0b0</color>
     <color name="error">#A53D2B</color>
     <color name="blanco">#FFFFFF</color>
     <color name="verdeFuerte">#078508</color>
@@ -14,6 +15,8 @@
     <color name="colorNoneView">#A53D2B</color>
     <color name="verdeOk">#00FF00</color>
     <color name="SecundariColor1">#2B6813</color>
+    <color name="azukver">#387FA6</color>
+
 
 
 

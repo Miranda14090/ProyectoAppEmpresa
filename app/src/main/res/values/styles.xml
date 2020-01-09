@@ -53,5 +53,7 @@
 
     </style>
 
+    <style name="Widget.MaterialComponents.Button.TextButton.Dialog.Icon"></style>
+
 
 </resources>

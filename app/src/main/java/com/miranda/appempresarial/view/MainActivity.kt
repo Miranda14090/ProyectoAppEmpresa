@@ -92,19 +92,14 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener, FragmentoLis
             fun newInstance(): MainActivity = MainActivity()
         }
 
-        fun llenarRecycler(
-            listaAvisos: ArrayList<ListaDeAvisos>,
-            miRecycler: RecyclerView
-        ) {
-            miRecycler.layoutManager = LinearLayoutManager(this)
-            val miAdaptador =
-                AdapterAvisos(listaAvisos, this)
-            miRecycler.adapter = miAdaptador
-/*            miRecycler.setOnClickListener{
-                openFragment(CuerpoAviso())
-            }*/
-        }
-
+    fun llenarRecycler(
+        listaAvisos: ArrayList<ListaDeAvisos>,
+        miRecycler: RecyclerView
+    ){
+        miRecycler.layoutManager=LinearLayoutManager(this)
+        val miAdaptador=
+            AdapterAvisos(listaAvisos,this)
+        miRecycler.adapter=miAdaptador
+    }
 
 }
-

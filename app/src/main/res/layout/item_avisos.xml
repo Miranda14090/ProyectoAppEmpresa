@@ -12,14 +12,33 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-        <TextView
-            android:id="@+id/txtTitulo"
-            android:text="Cambio de Horario"
-            android:textSize="20dp"
-            android:textColor="@color/Colornegro"
+
+
+        <FrameLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/txtTitulo"
+                android:text="Cambio de Horario"
+                android:textSize="20dp"
+                android:textColor="@color/Colornegro"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+            <Button
+                android:id="@+id/btnVer"
+                android:text="@string/btn_ver"
+                android:layout_gravity="right"
+                android:background="@drawable/boton_ver_borde"
+                android:textColor="@color/blanco"
+                android:backgroundTint="@color/azukver"
+                android:layout_width="60dp"
+                android:layout_height="30dp"/>
+
+        </FrameLayout>
+
 
         <TextView
             android:id="@+id/txtFecha"
@@ -29,11 +48,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center" />
+
+
+
         <ImageView
             android:id="@+id/txtEstatus"
             android:layout_gravity="end"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:src="@drawable/ic_aviso_red"
             />
 
