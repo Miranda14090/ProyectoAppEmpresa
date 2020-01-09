@@ -1,5 +1,6 @@
 package com.miranda.appempresarial.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
@@ -14,25 +15,24 @@ import com.miranda.appempresarial.api.FragmentoListener
 import com.miranda.appempresarial.api.ListaDeAvisos
 import com.miranda.appempresarial.view.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_avisos.*
 
-class MainActivity : AppCompatActivity(),Reportes.ReportesListener, FragmentoListener {
-
+class MainActivity : AppCompatActivity(),Reportes.ReportesListener,FragmentoListener {
     override fun cambiarFragment() {
+        /*val fragment = CuerpoAviso()
+        openFragment(fragment)*/
 
-        /*supportFragmentManager
+       /* supportFragmentManager
             .beginTransaction()
             .replace(
                 R.id.main_container,
-                CuerpoAviso(),"")
+                CuerpoAviso()  ,"")
             .commit()*/
-
-        val fragment = CuerpoAviso()
-        openFragment(fragment)
+        val intento1 = Intent(this, AvisosActivity::class.java)
+        startActivity(intento1)
 
     }
 
-class MainActivity : AppCompatActivity(),Reportes.ReportesListener,PermissionsView {
+
     lateinit var toolbar: ActionBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -95,11 +95,14 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener,PermissionsVi
         listaAvisos: ArrayList<ListaDeAvisos>,
         miRecycler: RecyclerView
     ){
-        miRecycler.layoutManager=LinearLayoutManager(this)
+        miRecycler.layoutManager= LinearLayoutManager(this)
         val miAdaptador=
             AdapterAvisos(listaAvisos,this)
         miRecycler.adapter=miAdaptador
     }
+
+
+
 
 
 }

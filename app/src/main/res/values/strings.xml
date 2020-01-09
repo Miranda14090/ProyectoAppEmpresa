@@ -45,4 +45,8 @@
     <string name="msnOk">Aceptar</string>
     <string name="FingerprintAuthentication">Inicio de sesión por huella digital</string>
     <string name="mnsFingerprint">Por favor ponga su huella en el sensor</string>
+    <string name="tvAvisos">Avisos</string>
+    <string name="btnRegresar">Regresar</string>
+    <string name="btnElininar">Eliminar</string>
+    <string name="btn_ver">Ver</string>
 </resources>

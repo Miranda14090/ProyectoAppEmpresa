@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
+    tools:context=".view.AvisosActivity">
+
+    <LinearLayout
+        android:id="@+id/bg2"
+        android:layout_width="350dp"
+        android:layout_height="700dp"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/perfil_color2" >
+
+
+
+
+
+           <LinearLayout
+               android:orientation="vertical"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+
+               <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_margin="20dp"
+               android:orientation="horizontal"
+               android:padding="5dp">
+
+               <ImageView
+                   android:layout_width="50dp"
+                   android:layout_height="50dp"
+                   android:src="@drawable/avisos" />
+
+               <TextView
+                   android:id="@+id/txtAvisos"
+                   android:textColor="@color/blanco"
+                   android:background="@drawable/borde_circular"
+                   android:gravity="center"
+                   android:layout_width="230dp"
+                   android:layout_height="26dp"
+                   android:layout_marginTop="11dp"
+                   android:text="@string/tvAvisos"
+                   android:textSize="20sp" />
+           </LinearLayout>
+
+
+               <GridLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:alignmentMode="alignMargins"
+                   android:columnCount="1"
+                   android:rowCount="1"
+                   android:orientation="vertical"
+                   android:layout_gravity="center"
+                   android:layout_marginTop="20dp"
+                   >
+
+                   <androidx.cardview.widget.CardView
+                       android:id="@+id/cardViewTecnico"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center_horizontal"
+                       android:layout_margin="1dp"
+                       app:cardCornerRadius="12dp"
+                       app:cardElevation="7dp">
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_gravity="center"
+                           android:gravity="center"
+                           android:orientation="vertical"
+                           android:padding="5dp">
+
+                           <TextView
+                               android:id="@+id/txtTitulo"
+                               android:textColor="@color/primaryColor"
+                               android:text="Cambio de horario"
+                               android:textSize="30dp"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"/>
+
+                           <TextView
+                               android:id="@+id/txtCuerpo"
+                               android:scrollbars="vertical"
+                               android:gravity="center_horizontal|left"
+                               android:textColor="@color/Colornegro"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_gravity="center_horizontal"
+                               android:layout_marginTop="12dp"
+                               android:text="Los estados de Sonora y Quintana Roo no harán el cambio de horario. El primero por un acuerdo entre el gobierno local y el de Arizona, en Estados Unidos; mientras que en el caribe mexicano no aplica porque pertenece al tiempo del sureste, mismo que ya busca aprovechar la luz natural, tal como el horario de invierno"
+                               android:textSize="15sp" />
+                       </LinearLayout>
+                   </androidx.cardview.widget.CardView>
+               </GridLayout>
+
+
+               <LinearLayout
+                   android:layout_below="@+id/Confirmarcontrasena"
+                   android:id="@+id/bottom_bar"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="30dp"
+                   android:layout_alignParentBottom="true"
+                   android:gravity="center_vertical"
+                   android:orientation="vertical">
+
+                   <Button
+                       android:id="@+id/boton_regresar"
+                       style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                       android:layout_marginBottom="10dp"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:background="@drawable/boton_borde"
+                       android:text="@string/btnRegresar" />
+
+                   <Button
+                       android:id="@+id/boton_eliminar"
+                       android:drawableLeft="@drawable/ic_eliminar"
+                       android:paddingLeft="90dp"
+                       android:paddingRight="100dp"
+                       android:layout_width="fill_parent"
+                       android:layout_height="wrap_content"
+                       android:backgroundTint="@color/primaryColor"
+                       android:background="@drawable/boton_borde"
+                       android:text="@string/btnElininar"
+                       android:textColor="@android:color/white" />
+               </LinearLayout>
+
+
+           </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
