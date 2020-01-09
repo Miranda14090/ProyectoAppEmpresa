@@ -6,7 +6,8 @@ data class InfoEmpleadoResponse(
     @SerializedName("codigoOperacion") var codigoOperacion:Int,
     @SerializedName("descripcion") var descripcion:String,
     @SerializedName("nombres") var nombres:String,
-    @SerializedName("apellidoPaterno") var apellidoPaterno:String
+    @SerializedName("apellidoPaterno") var apellidoPaterno:String,
+    @SerializedName("avisosPendientes") var avisosPendientes:Int
 ) {
 }
 

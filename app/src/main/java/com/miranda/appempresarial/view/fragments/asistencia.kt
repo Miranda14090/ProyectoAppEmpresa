@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import com.miranda.appempresarial.Model.Consumo
+import com.miranda.appempresarial.Model.ListaAsistencia
 import com.miranda.appempresarial.Model.RegistroAsistencia
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.presentet.Permissions
@@ -50,9 +51,11 @@ class asistencia : Fragment(), PermissionsView {
         super.onViewCreated(view, savedInstanceState)
 
         var isCameraPer = cameraPermission.cameraPermission(activity!!)
-
+        val asistencia = ListaAsistencia(Consumo.TuNumeroDeEmpleado)
+        Consumo.validarAsistencia(asistencia,activity!!,"Asistencia")
         if(Consumo.asistenciaDelDia){
             btnFoto.isEnabled = false
+            Toast.makeText(activity!!, "Ya registraste la asistencia hoy",Toast.LENGTH_LONG).show()
         }
 
         btnFoto.setOnClickListener {

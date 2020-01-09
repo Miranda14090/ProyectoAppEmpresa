@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.InfoEmpleado
+import com.miranda.appempresarial.Model.ListaAsistencia
 import com.miranda.appempresarial.R
 
 /**
@@ -27,7 +28,9 @@ class PerfilUsuario : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val empleado = InfoEmpleado(Consumo.TuNumeroDeEmpleado)
+        val asistencias = ListaAsistencia(Consumo.TuNumeroDeEmpleado)
         Consumo.datosEmpleado(empleado,activity!!,"Datos", view)
+        Consumo.listaAsistencia(asistencias,activity!!,"Asistencia", view)
     }
 
     companion object {

@@ -3,6 +3,8 @@ package com.miranda.appempresarial.view
 
 
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -58,6 +60,14 @@ class InicioDeSesion : AppCompatActivity(),
                 R.id.contenedorHuella,
                 FingerprintFragment(),"")
             .commit()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    fun cambiarColor(primaryDark:String, primary:String){
+        window.statusBarColor = Color.parseColor(primaryDark)
+        supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor(primary)))
+       // window.navigationBarColor = ColorDrawable //ColorDrawable.Color.parseColor(primary)
+
     }
 
 }

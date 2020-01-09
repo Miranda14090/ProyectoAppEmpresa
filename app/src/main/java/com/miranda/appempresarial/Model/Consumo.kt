@@ -49,7 +49,7 @@ object Consumo {
                             TuNumeroDeEmpleado = numeroDeEmpleado!!
                             Formulario.newInstance().mensaje(
                                 context,
-                                "Empleado registrado correctamente,tú número de empleado es: $numeroDeEmpleado",
+                                "Empleado registrado correctamente, tu número de empleado es: $numeroDeEmpleado",
                                 0,
                                 view
                             )
@@ -343,13 +343,10 @@ object Consumo {
                     when (response.body()?.codigoOperacion) {
                         0 -> {
                             view.txtDatosEmpleadoPerfil.text = "${response.body()?.nombres} ${response.body()?.apellidoPaterno}"
+                            Toast.makeText(context, "Ustet tiene: ${response.body()?.avisosPendientes} avisos pendientes" , Toast.LENGTH_LONG).show()
                         }
                         -1 -> {
-                            Toast.makeText(
-                                context,
-                                "${response.body()?.descripcion}",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast.makeText(context, "${response.body()?.descripcion}", Toast.LENGTH_SHORT).show()
                         }
                         2 -> {
                             //Formato Invalido
@@ -440,7 +437,7 @@ object Consumo {
         })
     }
 
-    fun listaAsistencia(asistencia:ListaAsistencia,context: Context, title: String){
+    fun listaAsistencia(asistencia:ListaAsistencia,context: Context, title: String, view: View){
         val callR = apiEnvios.listaAsistencia("text/plain",asistencia)
         callR.enqueue(object :Callback<ListaAsistenciaResponse>{
             override fun onFailure(call: Call<ListaAsistenciaResponse>, t: Throwable) {
@@ -455,7 +452,11 @@ object Consumo {
                     when (response.body()?.codigoOperacion) {
                         0->{
                             //0 exito
-                            //TODO agregar acciones
+                            view.recyclerAsistencia.layoutManager = LinearLayoutManager(context)
+                            val miAdaptador =
+                                AdapterAsistencia(response.body()?.asistencias as ArrayList<Asistencia>)
+                            view.recyclerAsistencia.adapter = miAdaptador
+
                         }
                         -1->{
                             //-1 error no controlado

@@ -10,9 +10,8 @@
     <string name="btnRegistrar">Registrarse</string>
     <string name="EdFechaN">Fecha de Nacimiento:</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="tvInicioSesion">Inicio de Sesion</string>
+    <string name="tvInicioSesion">Inicio de Sesión</string>
     <string name="edUsuario">Numero de Empleado</string>
     <string name="btnInicioSesion">Ingresar</string>
 
@@ -30,6 +29,8 @@
     <string name="tvDescripcionR">Descripcion</string>
     <string name="btnEnviarReporte">Enviar</string>
     <string name="registro">Registro</string>
+    <string name="cerrarSesion">Cerrar Sesión</string>
+    <string name="HistorialAsistencia">Historial de Asistencia</string>
 
     <string name="title_fingerprint">Logueo con un toque</string>
     <string name="desc_fingerprint">Coloque la yema del dedo en el escáner para verificar su identidad</string>
@@ -40,7 +41,7 @@
     <string name="tvLisReportes">Tipo de Problema</string>
     <string name="ErrorConsultarReporte">Error al consultar los reportes en el servidor </string>
     <string name="ErrorFormatos">Formato Invalido </string>
-    <string name="btnContinuar">Continuar</string>
+    <string name="btnContinuar">Iniciar Sesión</string>
     <string name="btnFoto">Enviar</string>
     <string name="msnOk">Aceptar</string>
     <string name="FingerprintAuthentication">Inicio de sesión por huella digital</string>

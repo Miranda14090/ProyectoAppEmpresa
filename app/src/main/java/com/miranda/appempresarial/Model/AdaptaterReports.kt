@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 import com.miranda.appempresarial.R
-import com.miranda.appempresarial.api.ConsultarReportesResponse
 import com.miranda.appempresarial.api.ListaDeReporte
 import kotlinx.android.synthetic.main.item_list.view.*
 
@@ -28,7 +27,7 @@ class AdaptaterReports(var lista:ArrayList<ListaDeReporte>):RecyclerView.Adapter
 
     class MyViewHolder(itemView:View):RecyclerView.ViewHolder(itemView) {
 
-        fun enlazarItem(listaDeReporte:ListaDeReporte){
+        fun enlazarItem(listaDeReporte: ListaDeReporte){
             itemView.tvFolio.text=listaDeReporte.folio
             itemView.tvCuerpo.text=listaDeReporte.cuerpo
             itemView.tvClasificacion.text=listaDeReporte.clasificacion
