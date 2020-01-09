@@ -4,10 +4,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.FragmentoListener
 import com.miranda.appempresarial.api.ListaDeAvisos
+import com.miranda.appempresarial.view.MainActivity
+import com.miranda.appempresarial.view.fragments.CuerpoAviso
 import kotlinx.android.synthetic.main.item_avisos.view.*
 
 class AdapterAvisos(var lista:ArrayList<ListaDeAvisos>,var vista:FragmentoListener):RecyclerView.Adapter<AdapterAvisos.MyViewHolder>(){
@@ -25,14 +28,16 @@ class AdapterAvisos(var lista:ArrayList<ListaDeAvisos>,var vista:FragmentoListen
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         var item=lista.get(position)
         holder.enlazarItem(item,vista)
+/*        holder.itemView.setOnClickListener {
+            //vista.cambiarFragment()
+        }*/
     }
 
-    class MyViewHolder(itemView: View, view: FragmentoListener):RecyclerView.ViewHolder(itemView) {
+    class MyViewHolder(itemView: View, val view: FragmentoListener):RecyclerView.ViewHolder(itemView) {
         fun enlazarItem(
             listaDeAvisos: ListaDeAvisos,
-            vista:FragmentoListener
+            vista:FragmentoListener = view
         ){
-
             itemView.txtTitulo.text=listaDeAvisos.titulo
             itemView.txtFecha.text=listaDeAvisos.emision
 
@@ -47,10 +52,6 @@ class AdapterAvisos(var lista:ArrayList<ListaDeAvisos>,var vista:FragmentoListen
             itemView.txtFecha.setOnClickListener {
                 vista.cambiarFragment()
             }
-
-
-
-
 
         }
 

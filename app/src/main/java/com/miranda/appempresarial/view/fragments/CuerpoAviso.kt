@@ -1,4 +1,4 @@
-package com.miranda.appempresarial.Model
+package com.miranda.appempresarial.view.fragments
 
 
 import android.os.Bundle
@@ -21,7 +21,8 @@ class CuerpoAviso : Fragment() {
         return inflater.inflate(R.layout.fragment_cuerpo_aviso, container, false)
     }
     companion object {
-        fun newInstance(): CuerpoAviso = CuerpoAviso()
+        fun newInstance(): CuerpoAviso =
+            CuerpoAviso()
     }
 
 }

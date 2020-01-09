@@ -51,6 +51,10 @@ class asistencia : Fragment(), PermissionsView {
 
         var isCameraPer = cameraPermission.cameraPermission(activity!!)
 
+        if(Consumo.asistenciaDelDia){
+            btnFoto.isEnabled = false
+        }
+
         btnFoto.setOnClickListener {
             isCameraPer = cameraPermission.cameraPermission(activity!!)
             if(isCameraPer) {

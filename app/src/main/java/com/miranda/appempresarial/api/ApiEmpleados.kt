@@ -27,4 +27,19 @@ interface ApiEmpleados {
 
     @POST("api/bdm/app-empresarial/consultarAvisos")
     fun registrar_avisos(@Header("Content-Type") contentType: String,@Body request: RegistroAviso):Call<RegistroAvisoResponse>
+
+    @POST("api/bdm/app-empresarial/informacionEmpleado")
+    fun pedirInformacionEmpleado(@Header("Content-Type") contentType: String,@Body request:InfoEmpleado):Call<InfoEmpleadoResponse>
+
+    @POST("/api/bdm/app-empresarial/cambiarEstado")
+    fun cambiarEstadoAviso(@Header("Content-Type") contentType: String,@Body request:CambiarEstadoAviso):Call<CambiarEstadoAvisoResponse>
+
+    @POST("/api/bdm/app-empresarial/borrarAviso")
+    fun borrarAviso(@Header("Content-Type") contentType: String,@Body request:CambiarEstadoAviso):Call<BorrarAvisoResponse>
+
+    @POST("/api/bdm/app-empresarial/consultarAsistencias")
+    fun listaAsistencia(@Header("Content-Type") contentType: String,@Body request:ListaAsistencia):Call<ListaAsistenciaResponse>
+
+    @POST("/api/bdm/app-empresarial/validarAsistencia")
+    fun validarAsistencia(@Header("Content-Type") contentType: String,@Body request:ListaAsistencia):Call<ValidarAsistenciaResponse>
 }
