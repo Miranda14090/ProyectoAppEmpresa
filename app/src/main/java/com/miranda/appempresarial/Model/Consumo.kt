@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.*
 import com.miranda.appempresarial.view.MainActivity
+import com.miranda.appempresarial.view.fragments.Avisos
 import com.miranda.appempresarial.view.fragments.Formulario
 import com.miranda.appempresarial.view.fragments.Reportes
 import kotlinx.android.synthetic.main.fragment_avisos.view.*
@@ -211,7 +212,7 @@ object Consumo {
                         }
                         -1 -> {
                             //Error
-                            mensajes(context, title, R.string.ErrorConsultarReporte.toString())
+                            mensajes(context, title, context.resources.getString(R.string.ErrorConsultarReporte))
                         }
                         2 -> {
                             //Formato Invalido
@@ -253,10 +254,8 @@ object Consumo {
                             view.recyclerNotificaciones.adapter=miAdaptador*/
 
                             var miRecyclerView = view.recyclerNotificaciones
-                            MainActivity.newInstance().llenarRecycler(
-                                response.body()?.avisos as ArrayList<ListaDeAvisos>,
-                                miRecyclerView
-                            )
+//                            MainActivity.newInstance().llenarRecycler(response.body()?.avisos as ArrayList<ListaDeAvisos>, miRecyclerView)
+                            Avisos.newInstance().llenarRecycler(response.body()?.avisos as ArrayList<ListaDeAvisos>, miRecyclerView)
 
                         }
                         -1 -> {
@@ -343,7 +342,7 @@ object Consumo {
                     when (response.body()?.codigoOperacion) {
                         0 -> {
                             view.txtDatosEmpleadoPerfil.text = "${response.body()?.nombres} ${response.body()?.apellidoPaterno}"
-                            Toast.makeText(context, "Ustet tiene: ${response.body()?.avisosPendientes} avisos pendientes" , Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, "Usted tiene: ${response.body()?.avisosPendientes} avisos pendientes" , Toast.LENGTH_LONG).show()
                         }
                         -1 -> {
                             Toast.makeText(context, "${response.body()?.descripcion}", Toast.LENGTH_SHORT).show()

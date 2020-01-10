@@ -42,7 +42,7 @@ class FingerprintHandler(private val context: Context) :
     }
 
     override fun onAuthenticationSucceeded(result: FingerprintManager.AuthenticationResult) {
-        update("Biembenido", true)
+        update("Bienvenido", true)
     }
 
     private fun update(s: String, b: Boolean) {
@@ -55,6 +55,7 @@ class FingerprintHandler(private val context: Context) :
             txtMensajes.setTextColor(ContextCompat.getColor(context, R.color.error))
         } else {
             //aqui poner inicio
+
             txtMensajes.setTextColor(ContextCompat.getColor(context, R.color.verdeFuerte))
             imageView.setImageResource(R.mipmap.action_done)
         }

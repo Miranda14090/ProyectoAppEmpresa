@@ -53,6 +53,7 @@ class asistencia : Fragment(), PermissionsView {
         var isCameraPer = cameraPermission.cameraPermission(activity!!)
         val asistencia = ListaAsistencia(Consumo.TuNumeroDeEmpleado)
         Consumo.validarAsistencia(asistencia,activity!!,"Asistencia")
+
         if(Consumo.asistenciaDelDia){
             btnFoto.isEnabled = false
             Toast.makeText(activity!!, "Ya registraste la asistencia hoy",Toast.LENGTH_LONG).show()

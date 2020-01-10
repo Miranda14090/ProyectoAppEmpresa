@@ -29,7 +29,7 @@ class AdapterAvisos(var lista:ArrayList<ListaDeAvisos>,var vista:FragmentoListen
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         var item=lista.get(position)
-        holder.enlazarItem(item,vista)
+        holder.enlazarItem(item,vista,position)
     }
 
     class MyViewHolder(itemView: View, view: FragmentoListener):RecyclerView.ViewHolder(itemView), View.OnClickListener {
@@ -48,13 +48,14 @@ class AdapterAvisos(var lista:ArrayList<ListaDeAvisos>,var vista:FragmentoListen
 
         fun enlazarItem(
             listaDeAvisos: ListaDeAvisos,
-            vista:FragmentoListener
+            vista:FragmentoListener,
+            position: Int
         ){
 
             itemView.txtTitulo.text=listaDeAvisos.titulo
             itemView.txtFecha.text=listaDeAvisos.emision
 
-            Log.d("mensaje","${listaDeAvisos.estatus}")
+
             if(listaDeAvisos.estatus == true){
                 itemView.txtEstatus.visibility=View.INVISIBLE
 
