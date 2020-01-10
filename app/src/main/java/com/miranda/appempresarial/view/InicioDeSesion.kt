@@ -41,6 +41,7 @@ class InicioDeSesion : AppCompatActivity(),
             .replace(
                 R.id.contenedorSesion,
                 Formulario(),"")
+            .addToBackStack(null)
             .commit()
     }
 
@@ -59,6 +60,7 @@ class InicioDeSesion : AppCompatActivity(),
             .add(
                 R.id.contenedorHuella,
                 FingerprintFragment(),"")
+            .addToBackStack(null)
             .commit()
     }
 

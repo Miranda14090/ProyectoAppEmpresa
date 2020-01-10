@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener, FragmentoLis
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_main)
-
             toolbar = supportActionBar!!
             val asistencia = ListaAsistencia(Consumo.TuNumeroDeEmpleado)
             Consumo.validarAsistencia(asistencia,applicationContext,"Asistencia")

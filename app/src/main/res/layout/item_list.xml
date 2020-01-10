@@ -8,7 +8,7 @@
     app:cardCornerRadius="10dp">
 
     <LinearLayout
-        android:background="@drawable/fondo_consultarr_eportes"
+        android:background="@drawable/perfil_color"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -6,7 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+
 import androidx.recyclerview.widget.RecyclerView
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.FragmentoListener
@@ -15,6 +15,7 @@ import com.miranda.appempresarial.api.RegistroAvisoResponse
 import com.miranda.appempresarial.view.AvisosActivity
 import com.miranda.appempresarial.view.MainActivity
 import kotlinx.android.synthetic.main.activity_avisos.view.*
+
 import kotlinx.android.synthetic.main.item_avisos.view.*
 import kotlinx.android.synthetic.main.item_avisos.view.txtTitulo
 
