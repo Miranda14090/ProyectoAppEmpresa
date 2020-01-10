@@ -2,6 +2,7 @@ package com.miranda.appempresarial.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Adapter
 import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(),Reportes.ReportesListener, FragmentoListener {
 
     lateinit var toolbar: ActionBar
+    lateinit var miAdaptador:AdapterAvisos
 
     override fun cambiarFragment() {
         /*supportFragmentManager
@@ -44,8 +46,9 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener, FragmentoLis
             navigationBar.setOnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.action_asistencia -> {
+                        if(!Consumo.asistenciaDelDia){
                         val fragment = asistencia.newInstance()
-                        openFragment(fragment)
+                        openFragment(fragment)}
                         true
                     }
 
@@ -93,7 +96,7 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener, FragmentoLis
         miRecycler: RecyclerView
     ){
         miRecycler.layoutManager=LinearLayoutManager(this)
-        val miAdaptador=
+        /*val*/ miAdaptador=
             AdapterAvisos(listaAvisos,this)
         miRecycler.adapter=miAdaptador
     }
