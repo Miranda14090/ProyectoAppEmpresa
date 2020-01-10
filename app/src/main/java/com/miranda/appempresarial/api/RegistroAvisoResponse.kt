@@ -1,13 +1,14 @@
 package com.miranda.appempresarial.api
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-data class RegistroAvisoResponse (
+data class RegistroAvisoResponse(
     @SerializedName("codigoOperacion") var codigoDeOperacion:Int,
     @SerializedName("descripcion") var descripcion:String,
     @SerializedName("avisos") var avisos:List<ListaDeAvisos>
-) {
-}
+)
+
 
 class ListaDeAvisos(
     @SerializedName("identificador") var identificador:String,
@@ -17,4 +18,4 @@ class ListaDeAvisos(
     @SerializedName("emision") var emision:String,
     @SerializedName("lectura") var lectura:String
 
-){}
+):Serializable

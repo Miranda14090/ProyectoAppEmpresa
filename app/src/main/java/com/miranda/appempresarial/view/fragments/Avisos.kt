@@ -27,12 +27,18 @@ class Avisos : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         var  datosEmpleado=RegistroAviso(Consumo.TuNumeroDeEmpleado)
         Consumo.mostrar_avisos(datosEmpleado!!,activity!!,"Avisos",view)
     }
 
     companion object {
         fun newInstance(): Avisos = Avisos()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 
 }

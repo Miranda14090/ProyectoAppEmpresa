@@ -5,16 +5,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="10dp"
     android:layout_marginHorizontal="10dp"
+    android:padding="12dp"
     app:cardCornerRadius="10dp">
 
     <LinearLayout
+        android:padding="12dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
 
 
-        <FrameLayout
+        <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -23,12 +25,14 @@
                 android:text="Cambio de Horario"
                 android:textSize="20dp"
                 android:textColor="@color/Colornegro"
-                android:layout_width="match_parent"
+                android:layout_weight="35"
+                android:layout_width="0dp"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:gravity="center" />
             <Button
                 android:id="@+id/btnVer"
+                android:layout_weight="1"
                 android:text="@string/btn_ver"
                 android:layout_gravity="right"
                 android:background="@drawable/boton_ver_borde"
@@ -37,7 +41,7 @@
                 android:layout_width="60dp"
                 android:layout_height="30dp"/>
 
-        </FrameLayout>
+        </LinearLayout>
 
 
         <TextView
@@ -54,8 +58,8 @@
         <ImageView
             android:id="@+id/txtEstatus"
             android:layout_gravity="end"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@drawable/ic_aviso_red"
             />
 

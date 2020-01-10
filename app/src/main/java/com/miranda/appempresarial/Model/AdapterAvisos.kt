@@ -11,10 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.FragmentoListener
 import com.miranda.appempresarial.api.ListaDeAvisos
+import com.miranda.appempresarial.api.RegistroAvisoResponse
 import com.miranda.appempresarial.view.AvisosActivity
 import com.miranda.appempresarial.view.MainActivity
-import com.miranda.appempresarial.view.fragments.CuerpoAviso
+import kotlinx.android.synthetic.main.activity_avisos.view.*
 import kotlinx.android.synthetic.main.item_avisos.view.*
+import kotlinx.android.synthetic.main.item_avisos.view.txtTitulo
 
 class AdapterAvisos(var lista:ArrayList<ListaDeAvisos>,var vista:FragmentoListener):RecyclerView.Adapter<AdapterAvisos.MyViewHolder>(){
 
@@ -30,26 +32,28 @@ class AdapterAvisos(var lista:ArrayList<ListaDeAvisos>,var vista:FragmentoListen
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         var item=lista.get(position)
-        holder.enlazarItem(item,vista)
+        holder.enlazarItem(item,vista,position)
     }
 
-    class MyViewHolder(itemView: View, view: FragmentoListener):RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    class MyViewHolder(itemView: View, view: FragmentoListener):RecyclerView.ViewHolder(itemView) {
 
-        init {
+        /*init {
             itemView.btnVer.setOnClickListener(this)
-        }
-        override fun onClick(v: View?) {
-           // val bundle = Bundle()
-            //bundle.putSerializable("Avisos", lista[adapterPosition])
+        }*/
+       /* override fun onClick(v: View?) {
+
+            val bundle = Bundle()
+            bundle.putSerializable("Avisos", lista[adapterPosition])
 
             val intent = Intent(itemView.context, AvisosActivity::class.java)
-            //intent.putExtras(bundle)
+            intent.putExtras(bundle)
             itemView.context.startActivity(intent)
-        }
+        }*/
 
         fun enlazarItem(
             listaDeAvisos: ListaDeAvisos,
-            vista:FragmentoListener
+            vista:FragmentoListener,
+            position: Int
         ){
 
             itemView.txtTitulo.text=listaDeAvisos.titulo
@@ -59,16 +63,38 @@ class AdapterAvisos(var lista:ArrayList<ListaDeAvisos>,var vista:FragmentoListen
             if(listaDeAvisos.estatus == true){
                 itemView.txtEstatus.visibility=View.INVISIBLE
 
-                Log.d("mensaje","Estoy 6235")
 
             }else { itemView.txtEstatus.setImageResource(R.drawable.ic_aviso_red) }
 
 
-            /*itemView.btnVer.setOnClickListener {
-                vista.cambiarFragment()
-            }*/
+            itemView.btnVer.setOnClickListener {
+
+                itemView.txtEstatus.visibility=View.INVISIBLE
+                val bundle = Bundle()
+                bundle.putSerializable("Avisos", listaDeAvisos)
+
+                val intent = Intent(itemView.context, AvisosActivity::class.java)
+                intent.putExtras(bundle)
+                itemView.context.startActivity(intent)
+                itemView.btnVer.isEnabled = false
+              //  Log.d("Mensaje",position.toString())
+            }
 
         }
 
     }
+
+    fun opdateData(listaAvisos:ArrayList<ListaDeAvisos>){
+        lista.clear()
+        lista.addAll(listaAvisos)
+        notifyDataSetChanged()
+    }
+
+    fun removeItem(position: Int){
+        lista.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
+
 }
+

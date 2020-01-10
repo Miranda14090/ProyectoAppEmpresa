@@ -9,19 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.miranda.appempresarial.Model.AdapterAvisos
 import com.miranda.appempresarial.Model.Consumo
-import com.miranda.appempresarial.Model.InfoEmpleado
+
 import com.miranda.appempresarial.Model.ListaAsistencia
-import com.miranda.appempresarial.view.fragments.CuerpoAviso
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.FragmentoListener
 import com.miranda.appempresarial.api.ListaDeAvisos
-import com.miranda.appempresarial.api.ValidarAsistenciaResponse
 import com.miranda.appempresarial.view.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(),Reportes.ReportesListener, FragmentoListener {
 
     lateinit var toolbar: ActionBar
+    lateinit var  miAdaptador:AdapterAvisos
+    var abierto=false
 
     override fun cambiarFragment() {
         /*supportFragmentManager
@@ -31,13 +31,14 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener, FragmentoLis
                 CuerpoAviso(), ""
             )
             .commit()*/
-        openFragment(CuerpoAviso())
+       // openFragment(CuerpoAviso())
     }
 
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_main)
+
             toolbar = supportActionBar!!
             val asistencia = ListaAsistencia(Consumo.TuNumeroDeEmpleado)
             Consumo.validarAsistencia(asistencia,applicationContext,"Asistencia")
@@ -97,9 +98,19 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener, FragmentoLis
         miRecycler: RecyclerView
     ){
         miRecycler.layoutManager=LinearLayoutManager(this)
-        val miAdaptador=
-            AdapterAvisos(listaAvisos,this)
+         miAdaptador= AdapterAvisos(listaAvisos,this)
         miRecycler.adapter=miAdaptador
+
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+
+        if(newInstance().abierto){
+            newInstance().openFragment(Avisos.newInstance())
+            newInstance().abierto=false
+        }
     }
 
 }

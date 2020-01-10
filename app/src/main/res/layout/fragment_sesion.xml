@@ -65,7 +65,6 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/contrasena"
-
                 style="@style/Estilo1"
                 android:layout_below="@+id/usuario"
                 app:errorEnabled="true"
@@ -79,12 +78,30 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:text="@string/txtRecordarContra"
+                android:layout_below="@+id/contrasena"
+                android:layout_toLeftOf="@id/btnswitch"
+                android:textColor="@color/primaryColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Switch
+                android:id="@+id/btnswitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/contrasena"
+                android:checked="false"
+                android:theme="@style/SCBSwitch"
+                />
 
             <LinearLayout
                 android:id="@+id/LayoudBotones"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/contrasena"
+                android:layout_marginTop="25dp"
                 android:orientation="vertical">
 
                 <Button

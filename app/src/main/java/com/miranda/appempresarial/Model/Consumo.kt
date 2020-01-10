@@ -343,7 +343,7 @@ object Consumo {
                     when (response.body()?.codigoOperacion) {
                         0 -> {
                             view.txtDatosEmpleadoPerfil.text = "${response.body()?.nombres} ${response.body()?.apellidoPaterno}"
-                            Toast.makeText(context, "Ustet tiene: ${response.body()?.avisosPendientes} avisos pendientes" , Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, "Usted tiene: ${response.body()?.avisosPendientes} avisos pendientes" , Toast.LENGTH_LONG).show()
                         }
                         -1 -> {
                             Toast.makeText(context, "${response.body()?.descripcion}", Toast.LENGTH_SHORT).show()
