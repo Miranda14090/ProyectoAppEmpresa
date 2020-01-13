@@ -16,23 +16,13 @@ import com.miranda.appempresarial.api.FragmentoListener
 import com.miranda.appempresarial.api.ListaDeAvisos
 import com.miranda.appempresarial.view.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.properties.Delegates
 
-class MainActivity : AppCompatActivity(),Reportes.ReportesListener, FragmentoListener {
+class MainActivity : AppCompatActivity(),Reportes.ReportesListener{
 
     lateinit var toolbar: ActionBar
     lateinit var  miAdaptador:AdapterAvisos
     var abierto=false
-
-    override fun cambiarFragment() {
-        /*supportFragmentManager
-            .beginTransaction()
-            .replace(
-                R.id.main_container,
-                CuerpoAviso(), ""
-            )
-            .commit()*/
-    }
-
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -43,14 +33,40 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener, FragmentoLis
             setupNavigation(bottom_navigation)
         }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        when(bottom_navigation.selectedItemId){
+            R.id.action_asistencia ->{
+                bottom_navigation.selectedItemId = R.id.Mi_Perfil
+            }
+
+            R.id.Mi_Perfil -> {
+               finish()
+            }
+            R.id.action_Rproblema -> {
+                if(!Consumo.focusReportsView){
+                bottom_navigation.selectedItemId = R.id.action_notificacion}
+            }
+            R.id.action_notificacion -> {
+                bottom_navigation.selectedItemId = R.id.action_asistencia
+            }
+        }
+        Consumo.focusReportsView = false
+    }
+
         fun setupNavigation(navigationBar: BottomNavigationView) {
             navigationBar.setOnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.action_asistencia -> {
                         if(!Consumo.asistenciaDelDia){
-                        val fragment = asistencia.newInstance()
-                        openFragment(fragment)}
-                        true
+                            val fragment = asistencia.newInstance()
+                            openFragment(fragment)
+                            true
+                        }else{
+                            bottom_navigation.selectedItemId = R.id.Mi_Perfil
+                            false
+                        }
                     }
 
                     R.id.Mi_Perfil -> {
@@ -68,7 +84,6 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener, FragmentoLis
                         openFragment(fragment)
                         true
                     }
-
                     else -> false
                 }
             }

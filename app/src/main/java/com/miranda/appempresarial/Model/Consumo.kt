@@ -26,6 +26,7 @@ object Consumo {
 
     var TuNumeroDeEmpleado: String = ""
     var asistenciaDelDia: Boolean = false
+    var focusReportsView:Boolean=false
 
     var apiEnvios: ApiEmpleados = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
 

@@ -4,8 +4,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object Api_Envio {
+    /*"https://rompope.fi-b.unam.mx:8443/"*/   /*"http://192.168.15.56:8080/"*/
 
-    private val BASE_URL =   "http://192.168.15.56:8080/" //"http://10.95.71.14:8080/"
+    private val BASE_URL =  "http://10.95.71.24:8080/"
 
     private lateinit var retrofit: Retrofit
 

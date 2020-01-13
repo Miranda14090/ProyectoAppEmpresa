@@ -15,7 +15,10 @@ import android.view.ViewGroup
 import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.ReportesSend
 import com.miranda.appempresarial.R
+import com.miranda.appempresarial.view.MainActivity
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_reportes.*
+import kotlin.random.Random
 import com.miranda.appempresarial.view.fragments.Reportes as Reportes
 
 /**
@@ -122,12 +125,11 @@ class Reportes : Fragment() {
                 
         }
 
-
         btnListaReportes.setOnClickListener {
+            Consumo.focusReportsView = true
             if(mCallBack!= null){
                 mCallBack!!.reporteFinishCallback()
             }
-
         }
 
     }
