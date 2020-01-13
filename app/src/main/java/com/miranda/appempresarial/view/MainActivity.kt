@@ -20,7 +20,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(),Reportes.ReportesListener, FragmentoListener {
 
     lateinit var toolbar: ActionBar
-    lateinit var miAdaptador:AdapterAvisos
+    lateinit var  miAdaptador:AdapterAvisos
+    var abierto=false
 
     override fun cambiarFragment() {
         /*supportFragmentManager
@@ -96,9 +97,19 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener, FragmentoLis
         miRecycler: RecyclerView
     ){
         miRecycler.layoutManager=LinearLayoutManager(this)
-        /*val*/ miAdaptador=
-            AdapterAvisos(listaAvisos,this)
+         miAdaptador= AdapterAvisos(listaAvisos)
         miRecycler.adapter=miAdaptador
+
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+
+        if(newInstance().abierto){
+            newInstance().openFragment(Avisos.newInstance())
+            newInstance().abierto=false
+        }
     }
 
 }

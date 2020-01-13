@@ -254,8 +254,7 @@ object Consumo {
                             view.recyclerNotificaciones.adapter=miAdaptador*/
 
                             var miRecyclerView = view.recyclerNotificaciones
-//                            MainActivity.newInstance().llenarRecycler(response.body()?.avisos as ArrayList<ListaDeAvisos>, miRecyclerView)
-                            Avisos.newInstance().llenarRecycler(response.body()?.avisos as ArrayList<ListaDeAvisos>, miRecyclerView)
+                            MainActivity.newInstance().llenarRecycler(response.body()?.avisos as ArrayList<ListaDeAvisos>, miRecyclerView)
 
                         }
                         -1 -> {
