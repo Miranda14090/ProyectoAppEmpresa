@@ -33,19 +33,6 @@ class AdapterAvisos(var lista:ArrayList<ListaDeAvisos>):RecyclerView.Adapter<Ada
 
     class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
 
-        /*init {
-            itemView.btnVer.setOnClickListener(this)
-        }*/
-       /* override fun onClick(v: View?) {
-
-            val bundle = Bundle()
-            bundle.putSerializable("Avisos", lista[adapterPosition])
-
-            val intent = Intent(itemView.context, AvisosActivity::class.java)
-            intent.putExtras(bundle)
-            itemView.context.startActivity(intent)
-        }*/
-
         fun enlazarItem(
             listaDeAvisos: ListaDeAvisos
         ){
@@ -71,7 +58,6 @@ class AdapterAvisos(var lista:ArrayList<ListaDeAvisos>):RecyclerView.Adapter<Ada
                 intent.putExtras(bundle)
                 itemView.context.startActivity(intent)
                 itemView.btnVer.isEnabled = false
-              //  Log.d("Mensaje",position.toString())
             }
 
         }

@@ -3,27 +3,42 @@ package com.miranda.appempresarial.view
 
 
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.miranda.appempresarial.R
-import com.miranda.appempresarial.presentet.Permissions
-import com.miranda.appempresarial.presentet.PermissionsImp
+import com.miranda.appempresarial.api.Servicios.ServiciosEntidades
+import com.miranda.appempresarial.presentet.Entidades
+import com.miranda.appempresarial.presentet.EntidadesImp
 import com.miranda.appempresarial.view.fragments.FingerprintFragment
 import com.miranda.appempresarial.view.fragments.Formulario
 import com.miranda.appempresarial.view.fragments.Sesion
+import io.realm.Realm
+import io.realm.RealmConfiguration
 
 
 class InicioDeSesion : AppCompatActivity(),
-    Sesion.FormulariosListener, Formulario.FormulariosListener{
+    Sesion.FormulariosListener,
+    Formulario.FormulariosListener, DatabaseView
+{
+
+    var DB_KEY = "basedatos"
+    var DB_CREATE = "baseCreada"
+    lateinit var serviciosEntidades: ServiciosEntidades
+    var firstT: SharedPreferences? = null
+    var preseterDb:Entidades=EntidadesImp(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inicio_de_sesion)
+
+        getFirstTimeRun()
 
         if(savedInstanceState == null)
             supportFragmentManager
@@ -62,6 +77,34 @@ class InicioDeSesion : AppCompatActivity(),
                 FingerprintFragment(),"")
             .addToBackStack(null)
             .commit()
+    }
+
+    private fun  getFirstTimeRun(){
+        firstT = applicationContext.getSharedPreferences(DB_KEY, Context.MODE_PRIVATE)
+
+        Realm.init(this)
+        val config: RealmConfiguration = RealmConfiguration.Builder()
+            .name(getString(R.string.entidades))
+            .deleteRealmIfMigrationNeeded()
+            .schemaVersion(1)
+            .build()
+        Realm.setDefaultConfiguration(config)
+        serviciosEntidades = ServiciosEntidades(Realm.getDefaultInstance())
+
+        if (leerPreferencias()) {
+            Toast.makeText(applicationContext, "base de datos ya creada", Toast.LENGTH_LONG).show()
+        } else {
+            val editor = firstT!!.edit()
+            editor.putString(DB_CREATE, "base de datos")
+            editor.commit()
+            preseterDb.createDB(serviciosEntidades)
+            Toast.makeText(applicationContext, "Creando base de datos", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun leerPreferencias(): Boolean {
+        val correo = firstT!!.getString(DB_CREATE, null)
+        return correo != null
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)

@@ -2,8 +2,10 @@ package com.miranda.appempresarial.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Adapter
 import androidx.appcompat.app.ActionBar
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,28 +35,6 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener{
             setupNavigation(bottom_navigation)
         }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-
-        when(bottom_navigation.selectedItemId){
-            R.id.action_asistencia ->{
-                bottom_navigation.selectedItemId = R.id.Mi_Perfil
-            }
-
-            R.id.Mi_Perfil -> {
-               finish()
-            }
-            R.id.action_Rproblema -> {
-                if(!Consumo.focusReportsView){
-                bottom_navigation.selectedItemId = R.id.action_notificacion}
-            }
-            R.id.action_notificacion -> {
-                bottom_navigation.selectedItemId = R.id.action_asistencia
-            }
-        }
-        Consumo.focusReportsView = false
-    }
-
         fun setupNavigation(navigationBar: BottomNavigationView) {
             navigationBar.setOnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
@@ -68,7 +48,6 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener{
                             false
                         }
                     }
-
                     R.id.Mi_Perfil -> {
                         val fragment = PerfilUsuario.newInstance()
                         openFragment(fragment)
@@ -91,21 +70,42 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener{
                 R.id.Mi_Perfil
         }
 
-        fun openFragment(fragment: Fragment) {
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.main_container, fragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
-        }
+    fun openFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.main_container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
 
-        override fun reporteFinishCallback() {
-            val fragment = StatusReportFragment.newInstance()
-            openFragment(fragment)
-        }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        when(bottom_navigation.selectedItemId){
+            R.id.action_asistencia ->{
+                bottom_navigation.selectedItemId = R.id.Mi_Perfil
+            }
 
-        companion object {
-            fun newInstance(): MainActivity = MainActivity()
+            R.id.Mi_Perfil -> {
+                finish()
+            }
+            R.id.action_Rproblema -> {
+                if(!Consumo.focusReportsView){
+                    bottom_navigation.selectedItemId = R.id.action_notificacion}
+            }
+            R.id.action_notificacion -> {
+                bottom_navigation.selectedItemId = R.id.action_asistencia
+            }
         }
+        Consumo.focusReportsView = false
+    }
+
+    override fun reporteFinishCallback() {
+        val fragment = StatusReportFragment.newInstance()
+        openFragment(fragment)
+    }
+
+    companion object {
+        fun newInstance(): MainActivity = MainActivity()
+    }
 
     fun llenarRecycler(
         listaAvisos: ArrayList<ListaDeAvisos>,

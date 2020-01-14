@@ -8,6 +8,7 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -65,6 +66,7 @@ class Reportes : Fragment() {
 
         clasificacion = 0
 
+
         cardViewTecnico.setOnClickListener {
             clasificacion = 1
             MostrarDescripcion()
@@ -87,7 +89,6 @@ class Reportes : Fragment() {
             MostrarDescripcion()
             MostrarColor()
         }
-
         edtDescipcionRepFrac.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}

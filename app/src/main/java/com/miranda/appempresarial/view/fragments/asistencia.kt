@@ -6,6 +6,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
@@ -156,7 +157,9 @@ class asistencia : Fragment(), PermissionsView {
             val byteArrayOutputStream = ByteArrayOutputStream()
             imagen.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
             val byteArray = byteArrayOutputStream.toByteArray()
-            fotoEnBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT)}
+            fotoEnBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT)
+                imgFoto.setBackgroundColor(Color.WHITE)
+            }
         }
     }
 }

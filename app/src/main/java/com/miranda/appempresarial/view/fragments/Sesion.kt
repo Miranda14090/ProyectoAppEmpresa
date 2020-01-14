@@ -36,7 +36,7 @@ class Sesion : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(com.miranda.appempresarial.R.layout.fragment_sesion, container, false)
+        return inflater.inflate(R.layout.fragment_sesion, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
