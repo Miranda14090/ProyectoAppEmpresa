@@ -25,6 +25,8 @@ class InicioDeSesion : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inicio_de_sesion)
 
+        title="Talento Azteca"
+
         if(savedInstanceState == null)
             supportFragmentManager
                 .beginTransaction()

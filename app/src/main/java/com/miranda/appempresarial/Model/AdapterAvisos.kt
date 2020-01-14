@@ -9,22 +9,17 @@ import android.view.ViewGroup
 
 import androidx.recyclerview.widget.RecyclerView
 import com.miranda.appempresarial.R
-import com.miranda.appempresarial.api.FragmentoListener
 import com.miranda.appempresarial.api.ListaDeAvisos
-import com.miranda.appempresarial.api.RegistroAvisoResponse
 import com.miranda.appempresarial.view.AvisosActivity
-import com.miranda.appempresarial.view.MainActivity
-import kotlinx.android.synthetic.main.activity_avisos.view.*
-
 import kotlinx.android.synthetic.main.item_avisos.view.*
 import kotlinx.android.synthetic.main.item_avisos.view.txtTitulo
 
-class AdapterAvisos(var lista:ArrayList<ListaDeAvisos>,var vista:FragmentoListener):RecyclerView.Adapter<AdapterAvisos.MyViewHolder>(){
+class AdapterAvisos(var lista:ArrayList<ListaDeAvisos>):RecyclerView.Adapter<AdapterAvisos.MyViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         var vistaAvisos = LayoutInflater.from(parent.context).inflate(R.layout.item_avisos,parent,false)
 
-        return MyViewHolder(vistaAvisos,vista)
+        return MyViewHolder(vistaAvisos)
     }
 
     override fun getItemCount(): Int {
@@ -33,10 +28,10 @@ class AdapterAvisos(var lista:ArrayList<ListaDeAvisos>,var vista:FragmentoListen
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         var item=lista.get(position)
-        holder.enlazarItem(item,vista,position)
+        holder.enlazarItem(item,position)
     }
 
-    class MyViewHolder(itemView: View, view: FragmentoListener):RecyclerView.ViewHolder(itemView) {
+    class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
 
         /*init {
             itemView.btnVer.setOnClickListener(this)
@@ -53,14 +48,13 @@ class AdapterAvisos(var lista:ArrayList<ListaDeAvisos>,var vista:FragmentoListen
 
         fun enlazarItem(
             listaDeAvisos: ListaDeAvisos,
-            vista:FragmentoListener,
             position: Int
         ){
 
             itemView.txtTitulo.text=listaDeAvisos.titulo
             itemView.txtFecha.text=listaDeAvisos.emision
 
-            Log.d("mensaje","${listaDeAvisos.estatus}")
+            Log.d("mensaje","${position}")
             if(listaDeAvisos.estatus == true){
                 itemView.txtEstatus.visibility=View.INVISIBLE
 

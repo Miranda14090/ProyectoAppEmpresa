@@ -51,7 +51,7 @@
 
 
             <GridLayout
-                android:layout_width="310dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:alignmentMode="alignMargins"
                 android:columnCount="1"
@@ -65,7 +65,6 @@
                       android:id="@+id/cardViewTecnico"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-
                       android:layout_margin="1dp"
                       app:cardCornerRadius="12dp"
                       app:cardElevation="6dp">
@@ -80,6 +79,7 @@
                               <ImageView
                                   android:layout_width="50dp"
                                   android:layout_height="50dp"
+                                  android:layout_gravity="center"
                                   android:src="@drawable/tecnico" />
 
                               <TextView
@@ -87,6 +87,9 @@
                                   android:textColor="@color/gris"
                                   android:layout_width="wrap_content"
                                   android:layout_height="wrap_content"
+                                  android:layout_gravity="center"
+                                  android:paddingRight="15dp"
+                                  android:paddingLeft="15dp"
                                   android:layout_marginTop="12dp"
                                   android:text="@string/tvTecnico"
                                   android:textSize="12sp" />
@@ -191,6 +194,9 @@
                                   android:textColor="@color/gris"
                                   android:layout_width="wrap_content"
                                   android:layout_height="wrap_content"
+                                  android:layout_gravity="center"
+                                  android:paddingRight="11dp"
+                                  android:paddingLeft="11dp"
                                   android:layout_marginTop="12dp"
                                   android:text="@string/tvServicio"
                                   android:textSize="12sp" />

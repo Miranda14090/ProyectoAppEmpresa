@@ -22,7 +22,7 @@
     <string name="mensaje_internet">El dispositivo no está conectado a internet, compruebe su conexión e intente de nuevo</string>
     <string name="internet">Internet</string>
     <string name="EdReporte">Reportes</string>
-    <string name="tvTecnico">Tecnico</string>
+    <string name="tvTecnico">   Tecnico   </string>
     <string name="tvMantenimiento">Mantenimiento</string>
     <string name="tvAdministrativo">Administrativo</string>
     <string name="tvServicio">Servicios</string>
@@ -50,5 +50,5 @@
     <string name="btnRegresar">Regresar</string>
     <string name="btnElininar">Eliminar</string>
     <string name="btn_ver">Ver</string>
-    <string name="txtRecordarContra">Recordar Contraseña</string>
+    <string name="txtRecordarContra">Recordar</string>
 </resources>

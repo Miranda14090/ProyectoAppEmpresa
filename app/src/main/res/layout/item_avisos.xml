@@ -37,7 +37,7 @@
                 android:layout_gravity="right"
                 android:background="@drawable/boton_ver_borde"
                 android:textColor="@color/blanco"
-                android:backgroundTint="@color/azukver"
+                android:backgroundTint="@color/colorPrimaryLight"
                 android:layout_width="60dp"
                 android:layout_height="30dp"/>
 
@@ -62,10 +62,6 @@
             android:layout_height="20dp"
             android:src="@drawable/ic_aviso_red"
             />
-
-
-
-
 
     </LinearLayout>
 

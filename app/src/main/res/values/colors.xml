@@ -3,22 +3,12 @@
     <color name="primaryColor">#1192D6</color>
     <color name="colorPrimaryDark">#00227b</color>
     <color name="colorPrimaryLight">#0081cb</color>
-    <color name="colorHueso">#ffd0b0</color>
-    <color name="error">#A53D2B</color>
     <color name="blanco">#FFFFFF</color>
-    <color name="verdeFuerte">#078508</color>
     <color name="gris">#747474</color>
     <color name="finger_gris">#DADADA</color>
     <color name="Colornegro">#111010</color>
-    <color name="ColorRojo">#720303</color>
-
-    <color name="colorNoneView">#A53D2B</color>
-    <color name="verdeOk">#00FF00</color>
-    <color name="SecundariColor1">#2B6813</color>
-    <color name="azukver">#387FA6</color>
-
-
-
+    <color name="error">#6B0404</color>
+    <color name="verdeFuerte">#055A08</color>
 
 </resources>
 

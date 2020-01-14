@@ -95,7 +95,7 @@
                                android:layout_width="match_parent"
                                android:layout_height="wrap_content"
                                android:layout_gravity="center_horizontal"
-                               android:layout_marginTop="12dp"
+                               android:layout_marginTop="15dp"
                                android:text="Los estados de Sonora y Quintana Roo no harán el cambio de horario. El primero por un acuerdo entre el gobierno local y el de Arizona, en Estados Unidos; mientras que en el caribe mexicano no aplica porque pertenece al tiempo del sureste, mismo que ya busca aprovechar la luz natural, tal como el horario de invierno"
                                android:textSize="15sp" />
                        </LinearLayout>

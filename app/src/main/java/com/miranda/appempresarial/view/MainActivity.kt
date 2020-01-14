@@ -2,38 +2,42 @@ package com.miranda.appempresarial.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.ActionBar
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.miranda.appempresarial.Model.AdapterAvisos
 import com.miranda.appempresarial.Model.Consumo
-
 import com.miranda.appempresarial.Model.ListaAsistencia
 import com.miranda.appempresarial.R
-import com.miranda.appempresarial.api.FragmentoListener
 import com.miranda.appempresarial.api.ListaDeAvisos
 import com.miranda.appempresarial.view.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(),Reportes.ReportesListener, FragmentoListener {
+class MainActivity : AppCompatActivity(),Reportes.ReportesListener {
 
     lateinit var toolbar: ActionBar
     lateinit var  miAdaptador:AdapterAvisos
-    var abierto=false
 
-    override fun cambiarFragment() {
-        /*supportFragmentManager
-            .beginTransaction()
-            .replace(
-                R.id.main_container,
-                CuerpoAviso(), ""
-            )
-            .commit()*/
-       // openFragment(CuerpoAviso())
+   // var abierto=false
+   override fun mostrarBarra() {
+       bottom_navigation.visibility= View.VISIBLE
+   }
+
+    override fun ocuktarBarra() {
+        bottom_navigation.visibility= View.INVISIBLE
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        if(!bottom_navigation.isVisible){
+            bottom_navigation.visibility= View.VISIBLE
+        }
+    }
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -97,19 +101,19 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener, FragmentoLis
         miRecycler: RecyclerView
     ){
         miRecycler.layoutManager=LinearLayoutManager(this)
-         miAdaptador= AdapterAvisos(listaAvisos,this)
+         miAdaptador= AdapterAvisos(listaAvisos)
         miRecycler.adapter=miAdaptador
 
     }
 
 
-    override fun onResume() {
+   /* override fun onResume() {
         super.onResume()
 
         if(newInstance().abierto){
             newInstance().openFragment(Avisos.newInstance())
             newInstance().abierto=false
         }
-    }
+    }*/
 
 }

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
 import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.ReportesSend
 import com.miranda.appempresarial.R
@@ -36,6 +37,8 @@ class Reportes : Fragment() {
 
     interface ReportesListener {
         fun reporteFinishCallback()
+        fun ocuktarBarra()
+        fun mostrarBarra()
     }
 
     companion object {
@@ -85,6 +88,11 @@ class Reportes : Fragment() {
             MostrarColor()
         }
 
+       /* edtDescipcionRepFrac.setOnClickListener {
+            mCallBack?.ocuktarBarra()
+        }*/
+
+
         edtDescipcionRepFrac.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
@@ -95,6 +103,7 @@ class Reportes : Fragment() {
 
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
+
                 if(edtDescipcionRepFrac.length()>=1){
                     boton_EnviarReporte.visibility=View.VISIBLE
                 }else
@@ -117,6 +126,7 @@ class Reportes : Fragment() {
                 val reporte = ReportesSend(edtDescipcionRepFrac.text.toString(),clasificacion,numeroDeEmpleado)
                 Consumo.registrar_reporte(activity!!,reporte)
                 edtDescipcionRepFrac.setText("")
+               // mCallBack?.mostrarBarra()
 
             }
                 
@@ -185,7 +195,7 @@ class Reportes : Fragment() {
         dialogoRespuesta.setTitle(R.string.reportes)
             .setMessage(txtmensaje)
             .setPositiveButton(R.string.msnOk,
-                DialogInterface.OnClickListener { dialog, which ->    }) //despues del lambda -> se pone la accion
+                DialogInterface.OnClickListener {dialog, which ->    }) //despues del lambda -> se pone la accion
         dialogoRespuesta.create()
         dialogoRespuesta.show()
     }

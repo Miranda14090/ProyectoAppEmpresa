@@ -26,7 +26,7 @@ class AvisosActivity : AppCompatActivity() {
 
         txtCuerpo.setMovementMethod(ScrollingMovementMethod())
 
-        MainActivity.newInstance().abierto=true
+       // MainActivity.newInstance().abierto=true
         txtTitulo.text=recibido.titulo
         txtCuerpo.text=recibido.cuerpo
 
