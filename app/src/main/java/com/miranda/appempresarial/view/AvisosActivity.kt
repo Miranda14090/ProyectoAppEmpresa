@@ -1,9 +1,9 @@
 package com.miranda.appempresarial.view
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
+import android.widget.Adapter
 import com.miranda.appempresarial.Model.AdapterAvisos
 import com.miranda.appempresarial.Model.CambiarEstadoAviso
 import com.miranda.appempresarial.Model.Consumo
@@ -18,6 +18,8 @@ class AvisosActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_avisos)
         var recibido=(intent.getSerializableExtra("Avisos")as? ListaDeAvisos)!!
+        var posicionItem=(intent.getSerializableExtra("posicion")as? Int)!!
+
 
         val identificador=recibido.identificador
         val numEp=Consumo.TuNumeroDeEmpleado
@@ -25,8 +27,6 @@ class AvisosActivity : AppCompatActivity() {
         Consumo.cambiarEstadoDeAviso(aviso,applicationContext,"Avisos")
 
         txtCuerpo.setMovementMethod(ScrollingMovementMethod())
-
-       // MainActivity.newInstance().abierto=true
         txtTitulo.text=recibido.titulo
         txtCuerpo.text=recibido.cuerpo
 
@@ -36,6 +36,7 @@ class AvisosActivity : AppCompatActivity() {
 
         boton_eliminar.setOnClickListener {
             Consumo.borrarAviso(aviso,applicationContext,"Avisos")
+//            MainActivity.newInstance().miAdaptador.lista.removeAt(posicionItem)
             finish()
         }
     }

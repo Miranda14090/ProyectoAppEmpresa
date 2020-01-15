@@ -2,7 +2,6 @@ package com.miranda.appempresarial.Model
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.ListaDeAvisos
 import com.miranda.appempresarial.view.AvisosActivity
+
 import kotlinx.android.synthetic.main.item_avisos.view.*
 import kotlinx.android.synthetic.main.item_avisos.view.txtTitulo
 
@@ -28,33 +28,19 @@ class AdapterAvisos(var lista:ArrayList<ListaDeAvisos>):RecyclerView.Adapter<Ada
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         var item=lista.get(position)
-        holder.enlazarItem(item,position)
+        holder.enlazarItem(item)
     }
 
     class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
 
-        /*init {
-            itemView.btnVer.setOnClickListener(this)
-        }*/
-       /* override fun onClick(v: View?) {
-
-            val bundle = Bundle()
-            bundle.putSerializable("Avisos", lista[adapterPosition])
-
-            val intent = Intent(itemView.context, AvisosActivity::class.java)
-            intent.putExtras(bundle)
-            itemView.context.startActivity(intent)
-        }*/
-
         fun enlazarItem(
-            listaDeAvisos: ListaDeAvisos,
-            position: Int
+            listaDeAvisos: ListaDeAvisos
         ){
 
             itemView.txtTitulo.text=listaDeAvisos.titulo
             itemView.txtFecha.text=listaDeAvisos.emision
 
-            Log.d("mensaje","${position}")
+
             if(listaDeAvisos.estatus == true){
                 itemView.txtEstatus.visibility=View.INVISIBLE
 
@@ -77,17 +63,6 @@ class AdapterAvisos(var lista:ArrayList<ListaDeAvisos>):RecyclerView.Adapter<Ada
 
         }
 
-    }
-
-    fun opdateData(listaAvisos:ArrayList<ListaDeAvisos>){
-        lista.clear()
-        lista.addAll(listaAvisos)
-        notifyDataSetChanged()
-    }
-
-    fun removeItem(position: Int){
-        lista.removeAt(position)
-        notifyItemRemoved(position)
     }
 
 

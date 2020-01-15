@@ -6,6 +6,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
@@ -26,6 +27,7 @@ import kotlinx.android.synthetic.main.fragment_asistencia.*
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
 import java.io.InputStream
+import java.lang.Exception
 
 /**
  * A simple [Fragment] subclass.
@@ -53,6 +55,7 @@ class asistencia : Fragment(), PermissionsView {
         var isCameraPer = cameraPermission.cameraPermission(activity!!)
         val asistencia = ListaAsistencia(Consumo.TuNumeroDeEmpleado)
         Consumo.validarAsistencia(asistencia,activity!!,"Asistencia")
+
         if(Consumo.asistenciaDelDia){
             btnFoto.isEnabled = false
             Toast.makeText(activity!!, "Ya registraste la asistencia hoy",Toast.LENGTH_LONG).show()
@@ -136,11 +139,18 @@ class asistencia : Fragment(), PermissionsView {
                     }
                 }
             }
-            var imagen = imgFoto.drawable.toBitmap()
+            lateinit var imagen:Bitmap
+            var flag = false
+            try{
+            imagen = imgFoto.drawable.toBitmap()
+            flag=true}
+            catch (e: Exception){flag = false}
 
             if (imgFoto.drawable != null) {
                 btnEnviarFoto.visibility = View.VISIBLE
+                flag = true
             }
+            if(flag){
             imagen = Bitmap.createScaledBitmap(imagen, ancho, alto, true)
 
 
@@ -148,6 +158,8 @@ class asistencia : Fragment(), PermissionsView {
             imagen.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
             val byteArray = byteArrayOutputStream.toByteArray()
             fotoEnBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT)
+                imgFoto.setBackgroundColor(Color.WHITE)
+            }
         }
     }
 }

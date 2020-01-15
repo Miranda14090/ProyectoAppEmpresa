@@ -11,6 +11,7 @@ import com.miranda.appempresarial.Model.RegistroAviso
 
 
 import com.miranda.appempresarial.R
+import kotlinx.android.synthetic.main.fragment_avisos.*
 
 /**
  * A simple [Fragment] subclass.
@@ -27,9 +28,8 @@ class Avisos : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         var  datosEmpleado=RegistroAviso(Consumo.TuNumeroDeEmpleado)
-        Consumo.mostrar_avisos(datosEmpleado!!,activity!!,"Avisos",view)
+        Consumo.mostrar_avisos(datosEmpleado,activity!!,"Avisos",recyclerNotificaciones)
     }
 
     companion object {
@@ -38,7 +38,8 @@ class Avisos : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
+        var  datosEmpleado=RegistroAviso(Consumo.TuNumeroDeEmpleado)
+        Consumo.mostrar_avisos(datosEmpleado,activity!!,"Avisos",recyclerNotificaciones)
     }
 
 }

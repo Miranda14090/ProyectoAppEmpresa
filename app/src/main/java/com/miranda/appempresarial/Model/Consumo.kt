@@ -9,14 +9,18 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.*
+import com.miranda.appempresarial.view.InicioDeSesion
 import com.miranda.appempresarial.view.MainActivity
 import com.miranda.appempresarial.view.fragments.Formulario
 import com.miranda.appempresarial.view.fragments.Reportes
-import kotlinx.android.synthetic.main.fragment_avisos.view.*
+import kotlinx.android.synthetic.main.fragment_formulario.*
+import kotlinx.android.synthetic.main.fragment_formulario.view.*
 import kotlinx.android.synthetic.main.fragment_perfil_usuario.view.*
 import kotlinx.android.synthetic.main.fragment_status_report.view.*
 import retrofit2.Call
@@ -27,6 +31,7 @@ object Consumo {
 
     var TuNumeroDeEmpleado: String = ""
     var asistenciaDelDia: Boolean = false
+    var focusReportsView:Boolean=false
 
     var apiEnvios: ApiEmpleados = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
 
@@ -145,13 +150,15 @@ object Consumo {
 
     }
 
-    fun pedir_login(usuario: LoginUser, context: Context, title: String, empleado: String) {
+    fun pedir_login(usuario: LoginUser, context: Context, title: String, empleado: String, botonIniciosesion: Button) {
 
         val CallRespuesta = apiEnvios.login_user("text/plain", usuario)
         CallRespuesta.enqueue(object : Callback<LoginUserResponse> {
 
             override fun onFailure(call: Call<LoginUserResponse>, t: Throwable) {
                 mensajes(context, title, context.resources.getString(R.string.noneServise))
+                botonIniciosesion.isEnabled = true
+                botonIniciosesion.setBackgroundResource(R.drawable.borde_circular)
             }
 
             override fun onResponse(
@@ -213,7 +220,7 @@ object Consumo {
                         }
                         -1 -> {
                             //Error
-                            mensajes(context, title, R.string.ErrorConsultarReporte.toString())
+                            mensajes(context, title, context.resources.getString(R.string.ErrorConsultarReporte))
                         }
                         2 -> {
                             //Formato Invalido
@@ -235,7 +242,7 @@ object Consumo {
         })
     }
 
-    fun mostrar_avisos(consulta: RegistroAviso, context: Context, title: String, view: View) {
+    fun mostrar_avisos(consulta: RegistroAviso, context: Context, title: String, view: RecyclerView) {
         val callRespuesta = apiEnvios.registrar_avisos("text/plain", consulta)
         callRespuesta.enqueue(object : Callback<RegistroAvisoResponse> {
             override fun onFailure(call: Call<RegistroAvisoResponse>, t: Throwable) {
@@ -254,11 +261,8 @@ object Consumo {
                             val miAdaptador=AdapterAvisos(response.body()?.avisos as ArrayList<ListaDeAvisos>)
                             view.recyclerNotificaciones.adapter=miAdaptador*/
 
-                            var miRecyclerView = view.recyclerNotificaciones
-                            MainActivity.newInstance().llenarRecycler(
-                                response.body()?.avisos as ArrayList<ListaDeAvisos>,
-                                miRecyclerView
-                            )
+                            //var miRecyclerView = view.recyclerNotificaciones
+                            MainActivity.newInstance().llenarRecycler(response.body()?.avisos as ArrayList<ListaDeAvisos>, view)
 
                         }
                         -1 -> {
@@ -345,7 +349,7 @@ object Consumo {
                     when (response.body()?.codigoOperacion) {
                         0 -> {
                             view.txtDatosEmpleadoPerfil.text = "${response.body()?.nombres} ${response.body()?.apellidoPaterno}"
-                            Toast.makeText(context, "Usted tiene: ${response.body()?.avisosPendientes} avisos pendientes" , Toast.LENGTH_LONG).show()
+                            mensajes(context,"Avisos", "Tiene: ${response.body()?.avisosPendientes} avisos sin leer")
                         }
                         -1 -> {
                             Toast.makeText(context, "${response.body()?.descripcion}", Toast.LENGTH_SHORT).show()

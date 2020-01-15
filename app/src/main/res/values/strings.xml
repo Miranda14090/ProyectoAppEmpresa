@@ -22,7 +22,7 @@
     <string name="mensaje_internet">El dispositivo no está conectado a internet, compruebe su conexión e intente de nuevo</string>
     <string name="internet">Internet</string>
     <string name="EdReporte">Reportes</string>
-    <string name="tvTecnico">   Tecnico   </string>
+    <string name="tvTecnico">Tecnico</string>
     <string name="tvMantenimiento">Mantenimiento</string>
     <string name="tvAdministrativo">Administrativo</string>
     <string name="tvServicio">Servicios</string>
@@ -36,7 +36,7 @@
     <string name="desc_fingerprint">Coloque la yema del dedo en el escáner para verificar su identidad</string>
     <string name="note">(El inicio de sesión con la huella dactilar hace que la aplicación inicie sesión mucho más rápido. Su dispositivo debe tener al menos una huella digital registrada en la configuración del dispositivo)</string>
     <string name="btnCancelar">Cancelar</string>
-    <string name="noneServise">No se puedo conectar con el servidor inténtelo más tarde</string>
+    <string name="noneServise">No se pudo conectar con el servidor inténtelo más tarde</string>
     <string name="reportes">Reporte</string>
     <string name="tvLisReportes">Tipo de Problema</string>
     <string name="ErrorConsultarReporte">Error al consultar los reportes en el servidor </string>
@@ -51,4 +51,5 @@
     <string name="btnElininar">Eliminar</string>
     <string name="btn_ver">Ver</string>
     <string name="txtRecordarContra">Recordar</string>
+    <string name="entidades">entidades</string>
 </resources>

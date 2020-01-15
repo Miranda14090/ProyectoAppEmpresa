@@ -4,11 +4,14 @@
         <domain includeSubdomains="true">10.95.71.15</domain>
         <domain includeSubdomains="true">10.95.71.25</domain>
         <domain includeSubdomains="true">10.95.71.6</domain>
-        <domain includeSubdomains="true">10.95.71.9</domain>
+        <domain includeSubdomains="true">132.248.59.72</domain>
         <domain includeSubdomains="true">10.95.71.14</domain>
         <domain includeSubdomains="true">192.168.15.20</domain>
+        <domain includeSubdomains="true">192.168.15.22</domain>
         <domain includeSubdomains="true">192.168.15.56</domain>
-        <domain includeSubdomains="true">10.95.71.24</domain>
-        <domain includeSubdomains="true">132.248.59.72</domain>
+        <domain includeSubdomains="true">10.95.71.10</domain>
+        <domain includeSubdomains="true">10.95.71.22</domain>
+        <domain includeSubdomains="true">rompope.fi-b.unam.mx</domain>
+
     </domain-config>
 </network-security-config>

@@ -57,6 +57,7 @@ class Formulario : Fragment() {
             Formulario()
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         var edad = 0
@@ -163,6 +164,9 @@ class Formulario : Fragment() {
                             Empleado(nombres, apellidoP, apellidoM, edad, fechaDeNacimiento, entidadF,
                                 it1
                             )}
+                        boton_registrar.setBackgroundColor(R.color.gris)
+                        boton_registrar.isEnabled = false
+                        boton_cancelar.isEnabled = false
                          Consumo.registrar_usuario(empleado!!,activity!!, view)
 
                     }
@@ -219,7 +223,7 @@ class Formulario : Fragment() {
         return true
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "ResourceAsColor")
 
     fun mensaje(c:Context, txtmensaje:String, codigo:Int, v:View)
     {
@@ -229,13 +233,16 @@ class Formulario : Fragment() {
             v.boton_cancelar.visibility= View.INVISIBLE
             v.boton_registrar.visibility= View.INVISIBLE
         }
+        v.boton_registrar.isEnabled = true
+        v.boton_cancelar.isEnabled = true
+        v.boton_registrar.setBackgroundResource(R.drawable.btn_estilo_rectangula)
         val dialogoRespuesta = AlertDialog.Builder(c)
 
         dialogoRespuesta.setTitle(R.string.registro)
             .setMessage(txtmensaje)
             .setPositiveButton(R.string.msnOk,
                 DialogInterface.OnClickListener { dialog, which ->
-                  //  formulario.loginFinishCallback()
+
                 }) //despues del lambda -> se pone la accion
         dialogoRespuesta.create()
         dialogoRespuesta.show()
