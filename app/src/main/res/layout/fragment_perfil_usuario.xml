@@ -6,42 +6,33 @@
     android:background="@drawable/perfil_color"
     tools:context=".view.fragments.PerfilUsuario">
 
-    <LinearLayout
-        android:id="@+id/bg1"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:orientation="vertical"
-        android:background="@drawable/perfil_color"
-        >
-
-        <Button
-            android:id="@+id/btnCerrarSesion"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="@string/cerrarSesion"
-            android:background="@drawable/borde_circular"
-            android:textColor="@color/blanco"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_gravity="end"
-            android:layout_marginRight="12dp"
-            />
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="end"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="311dp"
+        android:background="@drawable/borde_circular"
+        android:text="@string/cerrarSesion"
+        android:textColor="@color/blanco" />
 
     <LinearLayout
         android:id="@+id/bg2"
-        android:layout_width="250dp"
-        android:layout_height="210dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:orientation="vertical"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
        android:background="@drawable/perfil_color2" >
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="90dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_talento_azteca" />
 
@@ -50,10 +41,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:textSize="15dp"
+            android:layout_marginTop="8dp"
+            android:textSize="14dp"
             android:textColor="@color/Colornegro"
-            android:text="Nombre empleado"
             />
     </LinearLayout>
 
@@ -62,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bg2"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:gravity="center"
         android:textSize="18dp"
         android:background="@color/primaryColor"

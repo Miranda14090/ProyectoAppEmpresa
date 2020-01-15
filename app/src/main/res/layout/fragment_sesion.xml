@@ -59,7 +59,7 @@
                     android:backgroundTint="@color/primaryColor"
                     android:digits="@string/numbers"
                     android:hint="@string/edUsuario"
-                    android:inputType="numberDecimal"
+                    android:inputType="number"
                     android:maxLength="6" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,7 +75,8 @@
                     style="@style/Estilo1"
                     android:backgroundTint="@color/primaryColor"
                     android:hint="@string/edContrasena"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:maxLength="50"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
