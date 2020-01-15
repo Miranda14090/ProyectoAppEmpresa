@@ -30,6 +30,7 @@ object Consumo {
     var TuNumeroDeEmpleado: String = ""
     var asistenciaDelDia: Boolean = false
     var focusReportsView:Boolean=false
+    var entidades= arrayOfNulls<String>(32)
 
     var apiEnvios: ApiEmpleados = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
 
@@ -167,18 +168,20 @@ object Consumo {
                     when (response.body()?.codigoOperacion) {
                         0 -> {
                             TuNumeroDeEmpleado = empleado
+                            botonIniciosesion.isEnabled = true
+                            botonIniciosesion.setBackgroundResource(R.drawable.borde_circular)
                             val intento1 = Intent(context, MainActivity::class.java)
                             context.startActivity(intento1)
                         }
                         -1 -> {
                             mensajes(context, title, "Error inesperado")
+                            botonIniciosesion.isEnabled = true
+                            botonIniciosesion.setBackgroundResource(R.drawable.borde_circular)
                         }
                         3 -> {
-                            mensajes(
-                                context,
-                                title,
-                                "Numero de empleado y/o contraseña incorrecto"
-                            )
+                            mensajes(context, title, "Numero de empleado y/o contraseña incorrecto")
+                            botonIniciosesion.isEnabled = true
+                            botonIniciosesion.setBackgroundResource(R.drawable.borde_circular)
                         }
                         else -> {
                             mensajes(
@@ -186,10 +189,14 @@ object Consumo {
                                 title,
                                 "Error inesperado, marcar al soporte tecnico para más ayuda"
                             )
+                            botonIniciosesion.isEnabled = true
+                            botonIniciosesion.setBackgroundResource(R.drawable.borde_circular)
                         }
                     }
                 } else {
                     mensajes(context, title, context.resources.getString(R.string.noneServise))
+                    botonIniciosesion.isEnabled = true
+                    botonIniciosesion.setBackgroundResource(R.drawable.borde_circular)
                 }
             }
         })

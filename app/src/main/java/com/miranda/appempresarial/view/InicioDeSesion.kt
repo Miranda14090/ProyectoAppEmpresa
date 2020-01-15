@@ -92,7 +92,7 @@ class InicioDeSesion : AppCompatActivity(),
         serviciosEntidades = ServiciosEntidades(Realm.getDefaultInstance())
 
         if (leerPreferencias()) {
-
+            preseterDb.spinnerEstados(serviciosEntidades)
         } else {
             val editor = firstT!!.edit()
             editor.putString(DB_CREATE, "base de datos")
