@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Adapter
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -13,11 +14,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.miranda.appempresarial.Model.AdapterAvisos
 import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.ListaAsistencia
+import com.miranda.appempresarial.Model.RegistroAviso
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.FragmentoListener
 import com.miranda.appempresarial.api.ListaDeAvisos
 import com.miranda.appempresarial.view.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_avisos.*
 import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity(),Reportes.ReportesListener{
@@ -33,6 +36,7 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener{
             val asistencia = ListaAsistencia(Consumo.TuNumeroDeEmpleado)
             Consumo.validarAsistencia(asistencia,applicationContext,"Asistencia")
             setupNavigation(bottom_navigation)
+
         }
 
         fun setupNavigation(navigationBar: BottomNavigationView) {
@@ -115,16 +119,6 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener{
          miAdaptador= AdapterAvisos(listaAvisos)
         miRecycler.adapter=miAdaptador
 
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-
-        if(newInstance().abierto){
-            newInstance().openFragment(Avisos.newInstance())
-            newInstance().abierto=false
-        }
     }
 
 }
