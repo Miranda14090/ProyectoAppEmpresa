@@ -10,6 +10,7 @@ import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.InfoEmpleado
 import com.miranda.appempresarial.Model.ListaAsistencia
 import com.miranda.appempresarial.R
+import com.miranda.appempresarial.presentet.Internet
 import kotlinx.android.synthetic.main.fragment_perfil_usuario.*
 
 
@@ -29,13 +30,16 @@ class PerfilUsuario : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val asistencias = ListaAsistencia(Consumo.TuNumeroDeEmpleado)
-        Consumo.listaAsistencia(asistencias, activity!!, "Asistencia", view)
+        if((activity?.let { Internet.coprobarInternet(it) }!!)) {
 
-        if(Consumo.firstLoging) {
-            Consumo.firstLoging = false
-            val empleado = InfoEmpleado(Consumo.TuNumeroDeEmpleado)
-            Consumo.datosEmpleado(empleado, activity!!, "Datos", view)
+            val asistencias = ListaAsistencia(Consumo.TuNumeroDeEmpleado)
+            Consumo.listaAsistencia(asistencias, activity!!, "Asistencia", view)
+
+            if (Consumo.firstLoging) {
+                Consumo.firstLoging = false
+                val empleado = InfoEmpleado(Consumo.TuNumeroDeEmpleado)
+                Consumo.datosEmpleado(empleado, activity!!, "Datos", view)
+            }
         }
 
         txtDatosEmpleadoPerfil.text = Consumo.datosEmpleado
