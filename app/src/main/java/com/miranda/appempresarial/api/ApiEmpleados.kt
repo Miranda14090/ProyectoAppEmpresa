@@ -31,15 +31,15 @@ interface ApiEmpleados {
     @POST("app/api/bdm/app-empresarial/informacionEmpleado")
     fun pedirInformacionEmpleado(@Header("Content-Type") contentType: String,@Body request:InfoEmpleado):Call<InfoEmpleadoResponse>
 
-    @POST("app/api/bdm/app-empresarial/cambiarEstado")
+    @POST("app//api/bdm/app-empresarial/cambiarEstado")
     fun cambiarEstadoAviso(@Header("Content-Type") contentType: String,@Body request:CambiarEstadoAviso):Call<CambiarEstadoAvisoResponse>
 
-    @POST("app/api/bdm/app-empresarial/borrarAviso")
+    @POST("app//api/bdm/app-empresarial/borrarAviso")
     fun borrarAviso(@Header("Content-Type") contentType: String,@Body request:CambiarEstadoAviso):Call<BorrarAvisoResponse>
 
-    @POST("app/api/bdm/app-empresarial/consultarAsistencias")
+    @POST("app//api/bdm/app-empresarial/consultarAsistencias")
     fun listaAsistencia(@Header("Content-Type") contentType: String,@Body request:ListaAsistencia):Call<ListaAsistenciaResponse>
 
-    @POST("app/api/bdm/app-empresarial/validarAsistencia")
+    @POST("app//api/bdm/app-empresarial/validarAsistencia")
     fun validarAsistencia(@Header("Content-Type") contentType: String,@Body request:ListaAsistencia):Call<ValidarAsistenciaResponse>
 }

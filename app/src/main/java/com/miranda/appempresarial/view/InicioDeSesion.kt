@@ -34,9 +34,12 @@ class InicioDeSesion : AppCompatActivity(),
     var firstT: SharedPreferences? = null
     var preseterDb:Entidades=EntidadesImp(this)
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inicio_de_sesion)
+
+        title="Talento Azteca"
 
         getFirstTimeRun()
 

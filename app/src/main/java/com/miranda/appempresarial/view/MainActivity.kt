@@ -16,7 +16,6 @@ import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.ListaAsistencia
 import com.miranda.appempresarial.Model.RegistroAviso
 import com.miranda.appempresarial.R
-import com.miranda.appempresarial.api.FragmentoListener
 import com.miranda.appempresarial.api.ListaDeAvisos
 import com.miranda.appempresarial.view.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*

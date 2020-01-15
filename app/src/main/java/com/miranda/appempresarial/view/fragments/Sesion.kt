@@ -79,21 +79,6 @@ class Sesion : Fragment() {
         }
     }
 
-   /* private val PREFS_KEY = "mispreferencias"
-
-    fun guardarValor(context: Context, keyPref: String, valor: String) {
-        val settings = context.getSharedPreferences(PREFS_KEY, MODE_PRIVATE)
-        val editor: SharedPreferences.Editor
-        editor = settings.edit()
-        editor.putString(keyPref, mostrar)
-        editor.commit()
-    }
-
-    fun leerValor(context: Context, keyPref: String): String {
-        val preferences = context.getSharedPreferences(PREFS_KEY, MODE_PRIVATE)
-        return preferences.getString(keyPref, "")
-    }*/
-
     private fun loginApp() {
         val numeroEmpleado =txtLogin_usuario.text.toString()
         val pass_send = Sifrado.convertirSHA256(txtLogin_pass.text.toString())

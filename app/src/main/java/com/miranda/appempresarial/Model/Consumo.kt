@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_ANONYMOUS_PARAMETER")
+
 package com.miranda.appempresarial.Model
 
 import android.annotation.SuppressLint
@@ -50,7 +52,7 @@ object Consumo {
                     Log.w("Empleado", "Respuesta correcta")
                     Log.i("Empleado", response.body().toString())
                     val numeroDeEmpleado = response.body()?.numeroDeEmpleado
-                    when (val codigoOperacion = response.body()?.codigoOperacion) {
+                    when (response.body()?.codigoOperacion) {
                         0 -> {
                             TuNumeroDeEmpleado = numeroDeEmpleado!!
                             Formulario.newInstance().mensaje(
@@ -115,7 +117,7 @@ object Consumo {
             ) {
                 if (response.isSuccessful) {
 
-                    when (val codigoOperacion = response.body()?.codigoOperacion) {
+                    when (response.body()?.codigoOperacion) {
                         0 -> {
                             val numeroFolio = response.body()?.folio
                             Reportes.newInstance().mensajeReporte(
