@@ -203,7 +203,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:backgroundTint="@color/primaryColor"
+                        android:background="@drawable/btn_estilo_rectangula"
                         android:text="@string/btnRegistrar"
                         android:textColor="@android:color/white" />
                 </LinearLayout>

@@ -92,19 +92,22 @@ class InicioDeSesion : AppCompatActivity(),
         serviciosEntidades = ServiciosEntidades(Realm.getDefaultInstance())
 
         if (leerPreferencias()) {
-            Toast.makeText(applicationContext, "base de datos ya creada", Toast.LENGTH_LONG).show()
+
         } else {
             val editor = firstT!!.edit()
             editor.putString(DB_CREATE, "base de datos")
             editor.commit()
             preseterDb.createDB(serviciosEntidades)
-            Toast.makeText(applicationContext, "Creando base de datos", Toast.LENGTH_LONG).show()
         }
     }
 
     private fun leerPreferencias(): Boolean {
         val correo = firstT!!.getString(DB_CREATE, null)
         return correo != null
+    }
+
+    companion object{
+        fun newInstance(): InicioDeSesion = InicioDeSesion()
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)

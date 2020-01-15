@@ -1,27 +1,21 @@
 package com.miranda.appempresarial.view.fragments
 
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.provider.AlarmClock.EXTRA_MESSAGE
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.LoginUser
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.presentet.Internet
 import com.miranda.appempresarial.presentet.Sifrado
-import com.miranda.appempresarial.view.MainActivity
 import kotlinx.android.synthetic.main.fragment_sesion.*
-import android.content.Context.MODE_PRIVATE
-import android.content.SharedPreferences
-
-
-
+import com.miranda.appempresarial.R.color.gris
+import com.miranda.appempresarial.view.InicioDeSesion
 
 
 /**
@@ -39,6 +33,7 @@ class Sesion : Fragment() {
         return inflater.inflate(R.layout.fragment_sesion, container, false)
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         txtLogin_usuario.setText(Consumo.TuNumeroDeEmpleado)
@@ -52,11 +47,24 @@ class Sesion : Fragment() {
         boton_InicioSesion.setOnClickListener{
             if((activity?.let { Internet.coprobarInternet(it) }!!)) {
                 if ((txtLogin_usuario.text.toString().replace(" ","") == "")) {
-                    txtLogin_usuario.error="El esta vacío"
+                    usuario.error="Campo requerido"
 
-                }else
-                {
-                    loginApp()
+                }else if(txtLogin_usuario.text.toString().length != 6){
+                    usuario.error="Tienen que ser 6 caracteres"
+                }
+                else{
+                    usuario.error = null
+                    if(txtLogin_pass.text.toString().replace(" ","") == ""){
+                        contrasena.error="Campo requerido"
+                    }
+                    else{
+                        usuario.error = null
+                        contrasena.error = null
+                        txtLogin_pass.setText("")
+                        loginApp()
+                        boton_InicioSesion.isEnabled = false
+                        boton_InicioSesion.setBackgroundColor(gris)
+                    }
                 }
             }
         }
@@ -93,7 +101,7 @@ class Sesion : Fragment() {
         val pass_send = Sifrado.convertirSHA256(txtLogin_pass.text.toString())
         val usuario = pass_send?.let { LoginUser(it,numeroEmpleado) }
 
-        Consumo.pedir_login(usuario!!, activity!!,"Sesion",numeroEmpleado)
+        Consumo.pedir_login(usuario!!, activity!!,"Sesion",numeroEmpleado, boton_InicioSesion)
 
     }
 

@@ -7,16 +7,18 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.*
+import com.miranda.appempresarial.view.InicioDeSesion
 import com.miranda.appempresarial.view.MainActivity
-import com.miranda.appempresarial.view.fragments.Avisos
 import com.miranda.appempresarial.view.fragments.Formulario
 import com.miranda.appempresarial.view.fragments.Reportes
-import kotlinx.android.synthetic.main.fragment_avisos.view.*
+import kotlinx.android.synthetic.main.fragment_formulario.*
+import kotlinx.android.synthetic.main.fragment_formulario.view.*
 import kotlinx.android.synthetic.main.fragment_perfil_usuario.view.*
 import kotlinx.android.synthetic.main.fragment_status_report.view.*
 import retrofit2.Call
@@ -146,13 +148,15 @@ object Consumo {
 
     }
 
-    fun pedir_login(usuario: LoginUser, context: Context, title: String, empleado: String) {
+    fun pedir_login(usuario: LoginUser, context: Context, title: String, empleado: String, botonIniciosesion: Button) {
 
         val CallRespuesta = apiEnvios.login_user("text/plain", usuario)
         CallRespuesta.enqueue(object : Callback<LoginUserResponse> {
 
             override fun onFailure(call: Call<LoginUserResponse>, t: Throwable) {
                 mensajes(context, title, context.resources.getString(R.string.noneServise))
+                botonIniciosesion.isEnabled = true
+                botonIniciosesion.setBackgroundResource(R.drawable.borde_circular)
             }
 
             override fun onResponse(
