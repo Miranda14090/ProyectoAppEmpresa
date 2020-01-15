@@ -15,12 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.*
-import com.miranda.appempresarial.view.InicioDeSesion
 import com.miranda.appempresarial.view.MainActivity
 import com.miranda.appempresarial.view.fragments.Formulario
 import com.miranda.appempresarial.view.fragments.Reportes
-import kotlinx.android.synthetic.main.fragment_formulario.*
-import kotlinx.android.synthetic.main.fragment_formulario.view.*
 import kotlinx.android.synthetic.main.fragment_perfil_usuario.view.*
 import kotlinx.android.synthetic.main.fragment_status_report.view.*
 import retrofit2.Call
@@ -30,9 +27,11 @@ import retrofit2.Response
 object Consumo {
 
     var TuNumeroDeEmpleado: String = ""
+    var datosEmpleado:String = ""
     var asistenciaDelDia: Boolean = false
     var focusReportsView:Boolean=false
     var entidades= arrayOfNulls<String>(32)
+    var firstLoging = true
 
     var apiEnvios: ApiEmpleados = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
 
@@ -355,7 +354,8 @@ object Consumo {
                 if (response.isSuccessful) {
                     when (response.body()?.codigoOperacion) {
                         0 -> {
-                            view.txtDatosEmpleadoPerfil.text = "${response.body()?.nombres} ${response.body()?.apellidoPaterno}"
+                            datosEmpleado = "${response.body()?.nombres} ${response.body()?.apellidoPaterno}"
+                            view.txtDatosEmpleadoPerfil.text = datosEmpleado
                             mensajes(context,"Avisos", "Tiene: ${response.body()?.avisosPendientes} avisos sin leer")
                         }
                         -1 -> {

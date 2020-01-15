@@ -33,7 +33,7 @@ class StatusReportFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var datosEmpleado: InboxReport = InboxReport(Consumo.TuNumeroDeEmpleado)
-        Consumo.mostrar_reportes(datosEmpleado!!, activity!!, "",view )
+        Consumo.mostrar_reportes(datosEmpleado!!, activity!!, "Reportes",view )
     }
     companion object {
         fun newInstance(): StatusReportFragment =

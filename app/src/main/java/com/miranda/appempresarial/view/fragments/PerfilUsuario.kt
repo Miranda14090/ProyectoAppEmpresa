@@ -18,8 +18,6 @@ import kotlinx.android.synthetic.main.fragment_perfil_usuario.*
  */
 class PerfilUsuario : Fragment() {
 
-    var firstLoging = true
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,13 +29,17 @@ class PerfilUsuario : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(firstLoging) {
+        val asistencias = ListaAsistencia(Consumo.TuNumeroDeEmpleado)
+        Consumo.listaAsistencia(asistencias, activity!!, "Asistencia", view)
+
+        if(Consumo.firstLoging) {
+            Consumo.firstLoging = false
             val empleado = InfoEmpleado(Consumo.TuNumeroDeEmpleado)
-            val asistencias = ListaAsistencia(Consumo.TuNumeroDeEmpleado)
             Consumo.datosEmpleado(empleado, activity!!, "Datos", view)
-            Consumo.listaAsistencia(asistencias, activity!!, "Asistencia", view)
-            firstLoging = false
         }
+
+        txtDatosEmpleadoPerfil.text = Consumo.datosEmpleado
+
         btnCerrarSesion.setOnClickListener {
             activity!!.finish()
         }
@@ -47,6 +49,4 @@ class PerfilUsuario : Fragment() {
         fun newInstance(): PerfilUsuario =
             PerfilUsuario()
     }
-
-
 }
