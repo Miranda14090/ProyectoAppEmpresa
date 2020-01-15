@@ -12,4 +12,8 @@ class EntidadesImp(var view: DatabaseView):Entidades {
     override fun createDB(serviciosEntidades: ServiciosEntidades) {
         datos.createDB(serviciosEntidades)
     }
+
+    override fun spinnerEstados(serviciosEntidades: ServiciosEntidades) {
+        datos.spinnerEstados(serviciosEntidades)
+    }
 }

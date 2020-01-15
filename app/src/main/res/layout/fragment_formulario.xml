@@ -103,15 +103,13 @@
                     style="@style/Estilo1"
                     app:errorEnabled="true">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/txtEntidad"
-                        style="@style/Estilo1"
-                        android:maxLength="50"
-                        android:digits="@string/alfa"
-                        android:backgroundTint="@color/primaryColor"
-                        android:hint="@string/edEntidad" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    <Spinner
+                        android:id="@+id/spnEntidad"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"/>
 
+                </com.google.android.material.textfield.TextInputLayout>
 
 
                 <FrameLayout
@@ -119,7 +117,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/entidadFederativa">
-
 
 
                     <com.google.android.material.textfield.TextInputLayout

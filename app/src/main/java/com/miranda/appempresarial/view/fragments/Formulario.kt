@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.Empleado
@@ -61,6 +62,9 @@ class Formulario : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         var edad = 0
+
+        val adapterspiner = ArrayAdapter<String>(activity!!, R.layout.sppinner_item, Consumo.entidades)
+        spnEntidad.adapter = adapterspiner
 
         txtFecha.isFocusable = false
         txtFecha.setOnClickListener {
@@ -156,7 +160,7 @@ class Formulario : Fragment() {
                         val nombres = txtNombre.text.toString()
                         val apellidoP = txtApellidoP.text.toString()
                         val apellidoM = txtApellidoM.text.toString()
-                        val entidadF = txtEntidad.text.toString()
+                        val entidadF = spnEntidad.selectedItem.toString()
                         val pass = txtPass1.text.toString()
                         val fechaDeNacimiento: String = txtFecha.text.toString()
 
@@ -197,11 +201,11 @@ class Formulario : Fragment() {
             return  false
         }else txtApellidoP.error=null
 
-        if(txtEntidad.text.toString().replace(" ","") == "" || (txtNombre.text.toString())[0] == ' '){
+     /*   if(txtEntidad.text.toString().replace(" ","") == "" || (txtNombre.text.toString())[0] == ' '){
             txtEntidad.error="No valido"
             txtEntidad.requestFocus()
             return  false
-        }else txtEntidad.error=null
+        }else txtEntidad.error=null*/
 
         if(txtFecha.text.toString().equals("")){
             txtFecha.error="campo vacio"

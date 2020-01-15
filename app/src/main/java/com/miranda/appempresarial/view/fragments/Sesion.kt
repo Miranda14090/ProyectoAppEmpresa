@@ -60,7 +60,6 @@ class Sesion : Fragment() {
                     else{
                         usuario.error = null
                         contrasena.error = null
-                        txtLogin_pass.setText("")
                         loginApp()
                         boton_InicioSesion.isEnabled = false
                         boton_InicioSesion.setBackgroundColor(gris)
@@ -81,13 +80,11 @@ class Sesion : Fragment() {
     }
 
     private fun loginApp() {
-
         val numeroEmpleado =txtLogin_usuario.text.toString()
         val pass_send = Sifrado.convertirSHA256(txtLogin_pass.text.toString())
         val usuario = pass_send?.let { LoginUser(it,numeroEmpleado) }
-
         Consumo.pedir_login(usuario!!, activity!!,"Sesion",numeroEmpleado, boton_InicioSesion)
-
+        txtLogin_pass.setText("")
     }
 
 
