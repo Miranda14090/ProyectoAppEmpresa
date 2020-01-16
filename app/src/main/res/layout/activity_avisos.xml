@@ -41,11 +41,12 @@
                <TextView
                    android:id="@+id/txtAvisos"
                    android:textColor="@color/blanco"
-                   android:background="@drawable/borde_circular"
+                   android:background="@color/primaryColor"
                    android:gravity="center"
-                   android:layout_width="230dp"
+                   android:layout_width="220dp"
                    android:layout_height="26dp"
                    android:layout_marginTop="11dp"
+                   android:layout_marginLeft="12dp"
                    android:text="@string/tvAvisos"
                    android:textSize="20sp" />
            </LinearLayout>

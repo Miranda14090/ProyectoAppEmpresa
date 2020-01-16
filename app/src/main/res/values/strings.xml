@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">appEmpresarial</string>
+    <string name="app_name">Talento Azteca</string>
     <string name="tvFormulario">Registro de Empleado</string>
     <string name="tvNombre">Nombre(s)</string>
     <string name="edApaterno">Apellido Paterno</string>
