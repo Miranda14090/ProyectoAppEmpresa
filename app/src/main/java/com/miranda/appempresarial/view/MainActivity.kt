@@ -2,6 +2,7 @@ package com.miranda.appempresarial.view
 
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -40,8 +41,10 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener,StatusReportF
                             openFragment(fragment)
                             true
                         }else{
+                            mensajeAs(this,"Asistencia", "Ya registraste la asistencia hoy")
                             bottom_navigation.selectedItemId = R.id.Mi_Perfil
                             false
+
                         }
                     }
                     R.id.Mi_Perfil -> {
@@ -84,8 +87,8 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener,StatusReportF
             }
 
             R.id.Mi_Perfil -> {
-               // mensaje(getString(R.string.sesion), getString(R.string.cerrarSesionPregunta))
-                bottom_navigation.selectedItemId = R.id.action_Rproblema
+                mensaje(this,getString(R.string.sesion), getString(R.string.cerrarSesionPregunta))
+                 bottom_navigation.selectedItemId = R.id.Mi_Perfil
             }
             R.id.action_Rproblema -> {
                 if(!Consumo.focusReportsView){
@@ -117,8 +120,8 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener,StatusReportF
 
     }
 
-    private fun mensaje(titulo: String, s: String) {
-        val dialogoRespuesta = AlertDialog.Builder(applicationContext)
+    private fun mensaje(c: Context, titulo: String, s: String) {
+        val dialogoRespuesta = AlertDialog.Builder(c)
 
         dialogoRespuesta.setTitle(titulo)
             .setMessage(s)
@@ -136,6 +139,19 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener,StatusReportF
         dialogoRespuesta.create()
         dialogoRespuesta.show()
     }
+
+    private fun mensajeAs(c: Context, titulo: String, s: String) {
+        val dialogoRespuesta = AlertDialog.Builder(c)
+
+        dialogoRespuesta.setTitle(titulo)
+            .setMessage(s)
+            .setPositiveButton(R.string.msnOk,
+                DialogInterface.OnClickListener { _, _ ->
+                }) //despues del lambda -> se pone la accion
+        dialogoRespuesta.create()
+        dialogoRespuesta.show()
+    }
+
 
     override fun statusFinishCallback() {
         val fragment = Reportes.newInstance()

@@ -399,17 +399,17 @@ object Consumo {
                 if (response.isSuccessful) {
                     when (response.body()?.codigoOperacion) {
                         0 -> {
-                            Toast.makeText(context, "${response.body()?.descripcion}", Toast.LENGTH_SHORT).show()
+                            //Toast.makeText(context, "${response.body()?.descripcion}", Toast.LENGTH_SHORT).show()
                         }
                         -1 -> {
-                            Toast.makeText(context, "${response.body()?.descripcion}", Toast.LENGTH_SHORT).show()
+                            //Toast.makeText(context, "${response.body()?.descripcion}", Toast.LENGTH_SHORT).show()
                         }
                         6 -> {
                             //Actualizado
-                            Toast.makeText(context, "${response.body()?.descripcion}", Toast.LENGTH_SHORT).show()
+                            //Toast.makeText(context, "${response.body()?.descripcion}", Toast.LENGTH_SHORT).show()
                         }
                         else -> {
-                            mensajes(context, title, "Error inesperado, marcar al soporte tecnico para más ayuda")
+                            //mensajes(context, title, "Error inesperado, marcar al soporte tecnico para más ayuda")
                         }
                     }
                 } else {
@@ -434,13 +434,13 @@ object Consumo {
                 if(response.isSuccessful){
                     when (response.body()?.codigoOperacion) {
                         0 -> {
-                            Toast.makeText(context, "${response.body()?.descripcion}", Toast.LENGTH_SHORT).show()
+                            //Toast.makeText(context, "${response.body()?.descripcion}", Toast.LENGTH_SHORT).show()
                         }
                         -1 -> {
-                            Toast.makeText(context, "${response.body()?.descripcion}", Toast.LENGTH_SHORT).show()
+                            //Toast.makeText(context, "${response.body()?.descripcion}", Toast.LENGTH_SHORT).show()
                         }
                         else -> {
-                            mensajes(context, title, "Error inesperado, marcar al soporte tecnico para más ayuda")
+                            //mensajes(context, title, "Error inesperado, marcar al soporte tecnico para más ayuda")
                         }
                     }
                 }else{

@@ -1,6 +1,7 @@
 package com.miranda.appempresarial.view.fragments
 
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
@@ -50,6 +51,7 @@ class asistencia : Fragment(), PermissionsView {
             asistencia()
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -108,6 +110,8 @@ class asistencia : Fragment(), PermissionsView {
                 val asistencia = RegistroAsistencia(enviarFoto, numeroDeEmpleado)
                 Consumo.registrarAsistencia(asistencia, activity!!, "Asistencia")
                 imgFoto.setImageBitmap(null)
+                imgFoto.setBackgroundColor(R.color.empty)
+                Consumo.asistenciaDelDia=true
             }
         }
 
