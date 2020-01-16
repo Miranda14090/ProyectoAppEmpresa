@@ -97,26 +97,19 @@
                         android:hint="@string/edAmaterno" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/entidadFederativa"
-                    android:layout_below="@id/apellidoM"
-                    style="@style/Estilo1"
-                    app:errorEnabled="true">
-
-                    <Spinner
-                        android:id="@+id/spnEntidad"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_gravity="center"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
+                <Spinner
+                    android:id="@+id/spnEntidad"
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/apellidoM"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"/>
 
 
                 <FrameLayout
                     android:id="@+id/frameFecha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/entidadFederativa">
+                    android:layout_below="@id/spnEntidad">
 
 
                     <com.google.android.material.textfield.TextInputLayout
