@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener,StatusReportF
                 when (item.itemId) {
                     R.id.action_asistencia -> {
                         if(!Consumo.asistenciaDelDia){
+                            title="Asistencia"
                             val fragment = asistencia.newInstance()
                             openFragment(fragment)
                             true
@@ -44,16 +45,19 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener,StatusReportF
                         }
                     }
                     R.id.Mi_Perfil -> {
+                        title="Inicio"
                         val fragment = PerfilUsuario.newInstance()
                         openFragment(fragment)
                         true
                     }
                     R.id.action_Rproblema -> {
+                        title="Reportes"
                         val fragment = Reportes.newInstance()
                         openFragment(fragment)
                         true
                     }
                     R.id.action_notificacion -> {
+                        title="Avisos"
                         val fragment = Avisos.newInstance()
                         openFragment(fragment)
                         true

@@ -15,7 +15,7 @@ class AvisosActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        title="Aviso"
         setContentView(R.layout.activity_avisos)
         var recibido=(intent.getSerializableExtra("Avisos")as? ListaDeAvisos)!!
 
