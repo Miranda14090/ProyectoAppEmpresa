@@ -1,13 +1,10 @@
-package com.miranda.appempresarial.api
+package com.miranda.appempresarial.Model
 
 
-import android.util.Log
-import com.miranda.appempresarial.Model.Consumo
-import com.miranda.appempresarial.Model.EntidadesFederativa
 import com.miranda.appempresarial.api.Servicios.ServiciosEntidades
 
 
-class DatabaseEntidadesImp:DatabaseEntidades {
+class DatabaseEntidadesImp: DatabaseEntidades {
 
     val entidases = arrayOf("Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "CDMX",
         "Chiapas", "Chihuahua", "Coahuila", "Colima", "Durango", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "México",

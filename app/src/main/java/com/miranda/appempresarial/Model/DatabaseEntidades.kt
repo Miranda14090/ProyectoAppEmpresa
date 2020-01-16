@@ -1,4 +1,4 @@
-package com.miranda.appempresarial.api
+package com.miranda.appempresarial.Model
 
 import com.miranda.appempresarial.api.Servicios.ServiciosEntidades
 

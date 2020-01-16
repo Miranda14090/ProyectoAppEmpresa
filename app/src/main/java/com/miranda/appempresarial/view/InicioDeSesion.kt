@@ -111,12 +111,4 @@ class InicioDeSesion : AppCompatActivity(),
         fun newInstance(): InicioDeSesion = InicioDeSesion()
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    fun cambiarColor(primaryDark:String, primary:String){
-        window.statusBarColor = Color.parseColor(primaryDark)
-        supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor(primary)))
-       // window.navigationBarColor = ColorDrawable //ColorDrawable.Color.parseColor(primary)
-
-    }
-
 }
