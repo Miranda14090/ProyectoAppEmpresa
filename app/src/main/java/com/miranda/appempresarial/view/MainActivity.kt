@@ -16,7 +16,7 @@ import com.miranda.appempresarial.api.ListaDeAvisos
 import com.miranda.appempresarial.view.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(),Reportes.ReportesListener{
+class MainActivity : AppCompatActivity(),Reportes.ReportesListener,StatusReportFragment.StatusListener{
 
         lateinit var toolbar: ActionBar
         lateinit var  miAdaptador:AdapterAvisos
@@ -80,7 +80,8 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener{
             }
 
             R.id.Mi_Perfil -> {
-                mensaje(getString(R.string.sesion), getString(R.string.cerrarSesionPregunta))
+               // mensaje(getString(R.string.sesion), getString(R.string.cerrarSesionPregunta))
+                bottom_navigation.selectedItemId = R.id.action_Rproblema
             }
             R.id.action_Rproblema -> {
                 if(!Consumo.focusReportsView){
@@ -130,5 +131,10 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener{
                 })
         dialogoRespuesta.create()
         dialogoRespuesta.show()
+    }
+
+    override fun statusFinishCallback() {
+        val fragment = Reportes.newInstance()
+        openFragment(fragment)
     }
 }

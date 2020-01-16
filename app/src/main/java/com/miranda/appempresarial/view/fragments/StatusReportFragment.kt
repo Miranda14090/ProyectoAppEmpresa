@@ -14,12 +14,13 @@ import com.miranda.appempresarial.Model.InboxReport
 
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.presentet.Internet
+import kotlinx.android.synthetic.main.fragment_status_report.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class StatusReportFragment : Fragment() {
-
+    var mCallBack: StatusListener?=null
 
 
     override fun onCreateView(
@@ -36,11 +37,28 @@ class StatusReportFragment : Fragment() {
         if((activity?.let { Internet.coprobarInternet(it) }!!)){
             val datosEmpleado: InboxReport = InboxReport(Consumo.TuNumeroDeEmpleado)
             Consumo.mostrar_reportes(datosEmpleado, activity!!, "Reportes",view )
+
+            btnRegresarListReport.setOnClickListener {
+                if(mCallBack!= null){
+                    mCallBack!!.statusFinishCallback()
+                }
+            }
         }
     }
     companion object {
         fun newInstance(): StatusReportFragment =
             StatusReportFragment()
+    }
+
+    interface StatusListener{
+        fun statusFinishCallback()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        try{
+            mCallBack=activity as StatusListener?
+        }catch (e :Exception){}
     }
 
 }

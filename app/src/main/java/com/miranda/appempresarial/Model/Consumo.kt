@@ -219,8 +219,8 @@ object Consumo {
 
                         0 -> {
                             //Consulta Exitosa
-                            if(response.body()?.reportes!!.isNotEmpty()){
-                                mensajes(context, title, "No tiene reportes")
+                            if(response.body()?.reportes!!.isEmpty()){
+                                mensajes(context, title, "No tiene reportes registrados")
                             }
                             view.recyclerReportes.layoutManager = LinearLayoutManager(context)
                             val miAdaptador =
