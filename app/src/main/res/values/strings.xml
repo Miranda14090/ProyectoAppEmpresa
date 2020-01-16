@@ -10,8 +10,7 @@
     <string name="btnRegistrar">Registrarse</string>
     <string name="EdFechaN">Fecha de Nacimiento:</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="tvInicioSesion">Inicio de Sesión</string>
+        <string name="tvInicioSesion">Inicio de Sesión</string>
     <string name="edUsuario">Número de Empleado</string>
     <string name="btnInicioSesion">Ingresar</string>
 
@@ -22,11 +21,11 @@
     <string name="mensaje_internet">El dispositivo no está conectado a internet, compruebe su conexión e intente de nuevo</string>
     <string name="internet">Internet</string>
     <string name="EdReporte">Reportes</string>
-    <string name="tvTecnico">Tecnico</string>
+    <string name="tvTecnico">Técnico</string>
     <string name="tvMantenimiento">Mantenimiento</string>
     <string name="tvAdministrativo">Administrativo</string>
     <string name="tvServicio">Servicios</string>
-    <string name="tvDescripcionR">Descripcion</string>
+    <string name="tvDescripcionR">Descripción</string>
     <string name="btnEnviarReporte">Enviar</string>
     <string name="registro">Registro</string>
     <string name="cerrarSesion">Cerrar Sesión</string>
@@ -40,7 +39,7 @@
     <string name="reportes">Reporte</string>
     <string name="tvLisReportes">Tipo de Problema</string>
     <string name="ErrorConsultarReporte">Error al consultar los reportes en el servidor </string>
-    <string name="ErrorFormatos">Formato Invalido </string>
+    <string name="ErrorFormatos">Formato Inválido </string>
     <string name="btnContinuar">Iniciar Sesión</string>
     <string name="btnFoto">Enviar</string>
     <string name="msnOk">Aceptar</string>
