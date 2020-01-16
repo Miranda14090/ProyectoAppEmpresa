@@ -20,6 +20,7 @@ import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.ListaAsistencia
 import com.miranda.appempresarial.Model.RegistroAsistencia
 import com.miranda.appempresarial.R
+import com.miranda.appempresarial.presentet.Internet
 import com.miranda.appempresarial.presentet.Permissions
 import com.miranda.appempresarial.presentet.PermissionsImp
 import com.miranda.appempresarial.view.PermissionsView
@@ -100,12 +101,14 @@ class asistencia : Fragment(), PermissionsView {
         }
 
         btnEnviarFoto.setOnClickListener{
-            btnEnviarFoto.visibility = View.INVISIBLE
-            val numeroDeEmpleado = Consumo.TuNumeroDeEmpleado
-            val enviarFoto = fotoEnBase64.replace("\n","")
-            val asistencia=RegistroAsistencia(enviarFoto,numeroDeEmpleado)
-            Consumo.registrarAsistencia(asistencia,activity!!,"Asistencia")
-            imgFoto.setImageBitmap(null)
+            if((activity?.let { Internet.coprobarInternet(it) }!!)) {
+                btnEnviarFoto.visibility = View.INVISIBLE
+                val numeroDeEmpleado = Consumo.TuNumeroDeEmpleado
+                val enviarFoto = fotoEnBase64.replace("\n", "")
+                val asistencia = RegistroAsistencia(enviarFoto, numeroDeEmpleado)
+                Consumo.registrarAsistencia(asistencia, activity!!, "Asistencia")
+                imgFoto.setImageBitmap(null)
+            }
         }
 
     }

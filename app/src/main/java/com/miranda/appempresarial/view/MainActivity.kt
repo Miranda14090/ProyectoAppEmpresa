@@ -1,6 +1,8 @@
 package com.miranda.appempresarial.view
 
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
@@ -78,7 +80,7 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener{
             }
 
             R.id.Mi_Perfil -> {
-                finish()
+                mensaje(getString(R.string.sesion), getString(R.string.cerrarSesionPregunta))
             }
             R.id.action_Rproblema -> {
                 if(!Consumo.focusReportsView){
@@ -108,5 +110,25 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener{
          miAdaptador= AdapterAvisos(listaAvisos)
         miRecycler.adapter=miAdaptador
 
+    }
+
+    private fun mensaje(titulo: String, s: String) {
+        val dialogoRespuesta = AlertDialog.Builder(applicationContext)
+
+        dialogoRespuesta.setTitle(titulo)
+            .setMessage(s)
+            .setPositiveButton(R.string.msnOk,
+                DialogInterface.OnClickListener { _, _ ->
+                    Consumo.datosEmpleado = ""
+                    Consumo.asistenciaDelDia = false
+                    Consumo.firstLoging = true
+                    finish()
+                }) //despues del lambda -> se pone la accion
+            .setNegativeButton(R.string.btnCancelar,
+                DialogInterface.OnClickListener { dialog, _ ->
+                    dialog.dismiss()
+                })
+        dialogoRespuesta.create()
+        dialogoRespuesta.show()
     }
 }

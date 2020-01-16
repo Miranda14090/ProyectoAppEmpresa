@@ -16,6 +16,7 @@ import android.view.ViewGroup
 import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.ReportesSend
 import com.miranda.appempresarial.R
+import com.miranda.appempresarial.presentet.Internet
 import com.miranda.appempresarial.view.MainActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_reportes.*
@@ -116,11 +117,12 @@ class Reportes : Fragment() {
             }
             else{
                 edtDescipcionRepFrac.error=null
+                if((activity?.let { Internet.coprobarInternet(it) }!!)){
                 val numeroDeEmpleado = Consumo.TuNumeroDeEmpleado
-
                 val reporte = ReportesSend(edtDescipcionRepFrac.text.toString(),clasificacion,numeroDeEmpleado)
                 Consumo.registrar_reporte(activity!!,reporte)
                 edtDescipcionRepFrac.setText("")
+                }
 
             }
                 

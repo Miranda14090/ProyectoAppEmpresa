@@ -1,6 +1,9 @@
 package com.miranda.appempresarial.view.fragments
 
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -45,12 +48,33 @@ class PerfilUsuario : Fragment() {
         txtDatosEmpleadoPerfil.text = Consumo.datosEmpleado
 
         btnCerrarSesion.setOnClickListener {
-            activity!!.finish()
+            mensaje(activity!!,getString(R.string.sesion), getString(R.string.cerrarSesionPregunta))
         }
     }
 
     companion object {
         fun newInstance(): PerfilUsuario =
             PerfilUsuario()
+    }
+
+    private fun mensaje(context: Context, titulo: String, s: String) {
+        val dialogoRespuesta = AlertDialog.Builder(context)
+
+        dialogoRespuesta.setTitle(titulo)
+            .setMessage(s)
+            .setPositiveButton(R.string.msnOk,
+                DialogInterface.OnClickListener { _, _ ->
+                    Consumo.datosEmpleado = ""
+                    Consumo.asistenciaDelDia = false
+                    Consumo.firstLoging = true
+                    activity!!.finish()
+                }) //despues del lambda -> se pone la accion
+            .setNegativeButton(R.string.btnCancelar,
+                DialogInterface.OnClickListener { dialog, _ ->
+                    dialog.dismiss()
+                })
+        dialogoRespuesta.create()
+        dialogoRespuesta.show()
+
     }
 }

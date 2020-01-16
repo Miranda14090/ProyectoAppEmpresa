@@ -83,7 +83,7 @@ class Sesion : Fragment() {
         val numeroEmpleado =txtLogin_usuario.text.toString()
         val pass_send = Sifrado.convertirSHA256(txtLogin_pass.text.toString())
         val usuario = pass_send?.let { LoginUser(it,numeroEmpleado) }
-        Consumo.pedir_login(usuario!!, activity!!,"Sesion",numeroEmpleado, boton_InicioSesion)
+        Consumo.pedir_login(usuario!!, activity!!,getString(R.string.sesion),numeroEmpleado, boton_InicioSesion)
         txtLogin_pass.setText("")
     }
 

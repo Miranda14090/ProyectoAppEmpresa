@@ -219,6 +219,9 @@ object Consumo {
 
                         0 -> {
                             //Consulta Exitosa
+                            if(response.body()?.reportes!!.isNotEmpty()){
+                                mensajes(context, title, "No tiene reportes")
+                            }
                             view.recyclerReportes.layoutManager = LinearLayoutManager(context)
                             val miAdaptador =
                                 AdaptaterReports(response.body()?.reportes as ArrayList<ListaDeReporte>)
@@ -248,7 +251,7 @@ object Consumo {
         })
     }
 
-    fun mostrar_avisos(consulta: RegistroAviso, context: Context, title: String, view: RecyclerView) {
+    fun mostrar_avisos(consulta: RegistroAviso, context: Context, title: String, recyclerView: RecyclerView) {
         val callRespuesta = apiEnvios.registrar_avisos("text/plain", consulta)
         callRespuesta.enqueue(object : Callback<RegistroAvisoResponse> {
             override fun onFailure(call: Call<RegistroAvisoResponse>, t: Throwable) {
@@ -263,12 +266,10 @@ object Consumo {
                     when (response.body()?.codigoDeOperacion) {
                         0 -> {
                             //consulta exitosa
-                            /*view.recyclerNotificaciones.layoutManager=LinearLayoutManager(context)
-                            val miAdaptador=AdapterAvisos(response.body()?.avisos as ArrayList<ListaDeAvisos>)
-                            view.recyclerNotificaciones.adapter=miAdaptador*/
-
-                            //var miRecyclerView = view.recyclerNotificaciones
-                            MainActivity.newInstance().llenarRecycler(response.body()?.avisos as ArrayList<ListaDeAvisos>, view)
+                            if (response.body()?.avisos!!.isEmpty()){
+                                mensajes(context,title,"No tiene avisos")
+                            }
+                            MainActivity.newInstance().llenarRecycler(response.body()?.avisos as ArrayList<ListaDeAvisos>, recyclerView)
 
                         }
                         -1 -> {

@@ -13,6 +13,7 @@ import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.InboxReport
 
 import com.miranda.appempresarial.R
+import com.miranda.appempresarial.presentet.Internet
 
 /**
  * A simple [Fragment] subclass.
@@ -32,8 +33,10 @@ class StatusReportFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var datosEmpleado: InboxReport = InboxReport(Consumo.TuNumeroDeEmpleado)
-        Consumo.mostrar_reportes(datosEmpleado!!, activity!!, "Reportes",view )
+        if((activity?.let { Internet.coprobarInternet(it) }!!)){
+            val datosEmpleado: InboxReport = InboxReport(Consumo.TuNumeroDeEmpleado)
+            Consumo.mostrar_reportes(datosEmpleado, activity!!, "Reportes",view )
+        }
     }
     companion object {
         fun newInstance(): StatusReportFragment =

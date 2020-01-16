@@ -11,6 +11,7 @@ import com.miranda.appempresarial.Model.RegistroAviso
 
 
 import com.miranda.appempresarial.R
+import com.miranda.appempresarial.presentet.Internet
 import kotlinx.android.synthetic.main.fragment_avisos.*
 
 /**
@@ -26,20 +27,14 @@ class Avisos : Fragment() {
         return inflater.inflate(R.layout.fragment_avisos, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        var  datosEmpleado=RegistroAviso(Consumo.TuNumeroDeEmpleado)
-        Consumo.mostrar_avisos(datosEmpleado,activity!!,"Avisos",recyclerNotificaciones)
-    }
-
     companion object {
         fun newInstance(): Avisos = Avisos()
     }
 
     override fun onResume() {
         super.onResume()
-        var  datosEmpleado=RegistroAviso(Consumo.TuNumeroDeEmpleado)
-        Consumo.mostrar_avisos(datosEmpleado,activity!!,"Avisos",recyclerNotificaciones)
+        if((activity?.let { Internet.coprobarInternet(it) }!!)){
+            val  datosEmpleado=RegistroAviso(Consumo.TuNumeroDeEmpleado)
+            Consumo.mostrar_avisos(datosEmpleado,activity!!,"Avisos",recyclerNotificaciones)}
     }
-
 }
