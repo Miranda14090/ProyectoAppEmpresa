@@ -6,7 +6,7 @@ import com.miranda.appempresarial.api.Servicios.ServiciosEntidades
 
 class DatabaseEntidadesImp: DatabaseEntidades {
 
-    val entidases = arrayOf("Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "CDMX",
+    val entidases = arrayOf("Entidad Federativa","Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "CDMX",
         "Chiapas", "Chihuahua", "Coahuila", "Colima", "Durango", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "México",
         "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí",
         "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas")
@@ -29,7 +29,7 @@ class DatabaseEntidadesImp: DatabaseEntidades {
 
     override fun spinnerEstados(serviciosEntidades: ServiciosEntidades) {
         val serviEnt = serviciosEntidades
-        for (i in 1..32){
+        for (i in 1..33){
             entidadesList = serviEnt.obtenerEntidadPorId(i)!!
             Consumo.entidades[i-1] = entidadesList.entidad
         }

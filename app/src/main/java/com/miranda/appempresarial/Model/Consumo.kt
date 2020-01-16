@@ -30,7 +30,7 @@ object Consumo {
     var datosEmpleado:String = ""
     var asistenciaDelDia: Boolean = false
     var focusReportsView:Boolean=false
-    var entidades= arrayOfNulls<String>(32)
+    var entidades= arrayOfNulls<String>(33)
     var firstLoging = true
 
     var apiEnvios: ApiEmpleados = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)

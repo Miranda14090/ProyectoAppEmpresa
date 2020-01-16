@@ -201,11 +201,10 @@ class Formulario : Fragment() {
             return  false
         }else txtApellidoP.error=null
 
-     /*   if(txtEntidad.text.toString().replace(" ","") == "" || (txtNombre.text.toString())[0] == ' '){
-            txtEntidad.error="No valido"
-            txtEntidad.requestFocus()
+        if(spnEntidad.selectedItem.toString()== "Entidad Federativa"){
+            mensajeEntidad(activity!!,getString(R.string.errorEntidad))
             return  false
-        }else txtEntidad.error=null*/
+        }
 
         if(txtFecha.text.toString().equals("")){
             txtFecha.error="campo vacio"
@@ -225,6 +224,20 @@ class Formulario : Fragment() {
             return false
         }else Confirmarcontrasena.error=null
         return true
+    }
+
+    fun mensajeEntidad(c:Context, txtmensaje:String)
+    {
+        val dialogoRespuesta = AlertDialog.Builder(c)
+
+        dialogoRespuesta.setTitle(R.string.registro)
+            .setMessage(txtmensaje)
+            .setPositiveButton(R.string.msnOk,
+                DialogInterface.OnClickListener { dialog, which ->
+
+                }) //despues del lambda -> se pone la accion
+        dialogoRespuesta.create()
+        dialogoRespuesta.show()
     }
 
     @SuppressLint("SetTextI18n", "ResourceAsColor")
