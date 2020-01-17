@@ -4,6 +4,7 @@ package com.miranda.appempresarial.view
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener,StatusReportF
             val asistencia = ListaAsistencia(Consumo.TuNumeroDeEmpleado)
             Consumo.validarAsistencia(asistencia,applicationContext,"Asistencia")
             setupNavigation(bottom_navigation)
+            Consumo.TuPassword = ""
         }
 
         fun setupNavigation(navigationBar: BottomNavigationView) {
@@ -130,6 +132,8 @@ class MainActivity : AppCompatActivity(),Reportes.ReportesListener,StatusReportF
                     Consumo.datosEmpleado = ""
                     Consumo.asistenciaDelDia = false
                     Consumo.firstLoging = true
+                    val intent = Intent(applicationContext, InicioDeSesion::class.java)
+                    startActivity(intent)
                     finish()
                 }) //despues del lambda -> se pone la accion
             .setNegativeButton(R.string.btnCancelar,

@@ -4,6 +4,7 @@ package com.miranda.appempresarial.view.fragments
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.miranda.appempresarial.Model.InfoEmpleado
 import com.miranda.appempresarial.Model.ListaAsistencia
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.presentet.Internet
+import com.miranda.appempresarial.view.InicioDeSesion
 import kotlinx.android.synthetic.main.fragment_perfil_usuario.*
 
 
@@ -67,6 +69,8 @@ class PerfilUsuario : Fragment() {
                     Consumo.datosEmpleado = ""
                     Consumo.asistenciaDelDia = false
                     Consumo.firstLoging = true
+                    val intent = Intent(context, InicioDeSesion::class.java)
+                    startActivity(intent)
                     activity!!.finish()
                 }) //despues del lambda -> se pone la accion
             .setNegativeButton(R.string.btnCancelar,

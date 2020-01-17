@@ -11,10 +11,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.miranda.appempresarial.R
+import com.miranda.appempresarial.presentet.Entidades
+import com.miranda.appempresarial.presentet.EntidadesImp
+import com.miranda.appempresarial.view.DatabaseView
 
 @TargetApi(Build.VERSION_CODES.M)
 class FingerprintHandler(private val context: Context) :
-    FingerprintManager.AuthenticationCallback() {
+    FingerprintManager.AuthenticationCallback(), DatabaseView {
+
+    var preseterDbUser: Entidades = EntidadesImp(this)
+
     fun startAuth(
         fingerprintManager: FingerprintManager,
         cryptoObject: FingerprintManager.CryptoObject?
@@ -27,11 +33,12 @@ class FingerprintHandler(private val context: Context) :
         errorCode: Int,
         errString: CharSequence
     ) {
-        update("A ocurrido un error. $errString", false)
+        update("Hubo un error de autenticación. $errString", false)
     }
 
     override fun onAuthenticationFailed() {
-        update("Huella no reconocida. ", false)
+        update("\n" +
+                "Error de autenticación. ", false)
     }
 
     override fun onAuthenticationHelp(
@@ -45,6 +52,7 @@ class FingerprintHandler(private val context: Context) :
         update("Bienvenido", true)
     }
 
+
     private fun update(s: String, b: Boolean) {
         val txtMensajes =
             (context as Activity).findViewById<View>(R.id.txtMensajesFingerprint) as TextView
@@ -55,6 +63,9 @@ class FingerprintHandler(private val context: Context) :
             txtMensajes.setTextColor(ContextCompat.getColor(context, R.color.error))
         } else {
             //aqui poner inicio
+            val datosUser = preseterDbUser.obtenerUsuario(Consumo.serviciosDataOnjet)
+            val usuario = LoginUser(datosUser!!.password, datosUser.numeroEmpledo)
+            Consumo.pedir_loginHuella(usuario,context, datosUser.numeroEmpledo)
 
             txtMensajes.setTextColor(ContextCompat.getColor(context, R.color.verdeFuerte))
             imageView.setImageResource(R.mipmap.action_done)

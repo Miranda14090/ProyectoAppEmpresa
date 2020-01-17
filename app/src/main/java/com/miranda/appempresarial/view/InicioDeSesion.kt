@@ -5,15 +5,11 @@ package com.miranda.appempresarial.view
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.R
-import com.miranda.appempresarial.api.Servicios.ServiciosEntidades
+import com.miranda.appempresarial.api.Servicios.ServiciosDatabase
 import com.miranda.appempresarial.presentet.Entidades
 import com.miranda.appempresarial.presentet.EntidadesImp
 import com.miranda.appempresarial.view.fragments.FingerprintFragment
@@ -30,7 +26,7 @@ class InicioDeSesion : AppCompatActivity(),
 
     var DB_KEY = "basedatos"
     var DB_CREATE = "baseCreada"
-    lateinit var serviciosEntidades: ServiciosEntidades
+    lateinit var serviciosDatabase: ServiciosDatabase
     var firstT: SharedPreferences? = null
     var preseterDb:Entidades=EntidadesImp(this)
 
@@ -48,8 +44,6 @@ class InicioDeSesion : AppCompatActivity(),
                     R.id.contenedorSesion,
                     Sesion(),"")
                 .commit()
-
-        //PedirHuella()
     }
     override fun registroFinishCallback() {
         supportFragmentManager
@@ -57,6 +51,16 @@ class InicioDeSesion : AppCompatActivity(),
             .replace(
                 R.id.contenedorSesion,
                 Formulario(),"")
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun pedirHuella() {
+        supportFragmentManager
+            .beginTransaction()
+            .add(
+                R.id.contenedorHuella,
+                FingerprintFragment(),"")
             .addToBackStack(null)
             .commit()
     }
@@ -70,16 +74,6 @@ class InicioDeSesion : AppCompatActivity(),
             .commit()
     }
 
-    fun PedirHuella(){
-        supportFragmentManager
-            .beginTransaction()
-            .add(
-                R.id.contenedorHuella,
-                FingerprintFragment(),"")
-            .addToBackStack(null)
-            .commit()
-    }
-
     private fun  getFirstTimeRun(){
         firstT = applicationContext.getSharedPreferences(DB_KEY, Context.MODE_PRIVATE)
 
@@ -90,15 +84,16 @@ class InicioDeSesion : AppCompatActivity(),
             .schemaVersion(1)
             .build()
         Realm.setDefaultConfiguration(config)
-        serviciosEntidades = ServiciosEntidades(Realm.getDefaultInstance())
+        serviciosDatabase = ServiciosDatabase(Realm.getDefaultInstance())
+        Consumo.serviciosDataOnjet = serviciosDatabase
 
         if (leerPreferencias()) {
-            preseterDb.spinnerEstados(serviciosEntidades)
+            preseterDb.spinnerEstados(serviciosDatabase)
         } else {
             val editor = firstT!!.edit()
             editor.putString(DB_CREATE, "base de datos")
             editor.commit()
-            preseterDb.createDB(serviciosEntidades)
+            preseterDb.createDB(serviciosDatabase)
         }
     }
 

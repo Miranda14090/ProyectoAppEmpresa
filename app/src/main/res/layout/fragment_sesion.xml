@@ -31,7 +31,7 @@
             <LinearLayout
                 android:id="@+id/layoutImagen"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/tvInicioSesion"
                 android:layout_marginTop="30dp"
                 android:orientation="vertical">
@@ -39,7 +39,7 @@
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_talento_azteca" />
 
@@ -117,6 +117,16 @@
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
+                <ImageButton
+                    android:id="@+id/btnFingerprint"
+                    android:layout_marginTop="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/empty"
+                    android:src="@drawable/ic_fingerprint_btn"
+                    />
+
                 <Button
                     android:id="@+id/boton_formulario"
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
@@ -124,7 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/boton_InicioSesion"
                     android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
+                    android:layout_gravity="right"
                     android:layout_weight="1"
                     android:text="@string/btnRegistrar"
                     tools:ignore="OnClick" />
@@ -141,6 +151,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,7 +21,6 @@ import android.widget.TextView
 import com.miranda.appempresarial.Model.FingerprintHandler
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.view.PermissionsView
-import com.miranda.appempresarial.view.fragments.FingerprintFragment
 import java.io.IOException
 import java.security.*
 import java.security.cert.CertificateException
@@ -57,31 +56,28 @@ class PermissionsImp(var view: PermissionsView):Permissions {
             return true
         }
     }
-    override fun permisosFingerprint(c: Context): Boolean {
 
+    override fun permisosFingerprint(c: Context): Boolean {
 
         val txtMensajes =
             (c as Activity).findViewById<View>(R.id.txtMensajesFingerprint) as TextView
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            fingerprintManager =
-                c.getSystemService(Context.FINGERPRINT_SERVICE) as FingerprintManager
-            keyguardManager =
-                c.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+            fingerprintManager = c.getSystemService(Context.FINGERPRINT_SERVICE) as FingerprintManager
+            keyguardManager = c.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+
             if (!fingerprintManager!!.isHardwareDetected) {
-                txtMensajes.text = "No se encontro sensor de huella"
-            } else if (ContextCompat.checkSelfPermission(
-                    c,
-                    Manifest.permission.USE_FINGERPRINT
-                ) != PackageManager.PERMISSION_GRANTED
+                txtMensajes.text = "Escáner de huellas digitales no detectado en el dispositivo"
+            }else if (ContextCompat.checkSelfPermission(c, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED
             ) {
-                txtMensajes.text = "No hay permiso de usar el lector de huella"
+                txtMensajes.text = "No hay permiso de usar el escáner de huellas digitales"
             } else if (!keyguardManager!!.isKeyguardSecure) {
-                txtMensajes.text = ""
+                txtMensajes.text = "Agregar bloqueo a su teléfono en la configuración"
             } else if (!fingerprintManager!!.hasEnrolledFingerprints()) {
-                txtMensajes.text = "Por favor agregue una huella al dispositivo para poder usar"
+                txtMensajes.text = "Debe agregar al menos 1 huella digital para usar esta función"
             } else {
-                txtMensajes.text = "Ponga su huella en el escaner"
+                txtMensajes.text = "Coloque su dedo en el escáner."
+
                 generateKey()
                 if (cipherInit()) {
                     val cryptoObject =

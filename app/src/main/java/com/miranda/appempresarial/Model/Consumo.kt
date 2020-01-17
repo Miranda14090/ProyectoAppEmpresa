@@ -3,6 +3,7 @@
 package com.miranda.appempresarial.Model
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
@@ -15,9 +16,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.*
+import com.miranda.appempresarial.api.Servicios.ServiciosDatabase
 import com.miranda.appempresarial.view.MainActivity
 import com.miranda.appempresarial.view.fragments.Formulario
 import com.miranda.appempresarial.view.fragments.Reportes
+import com.miranda.appempresarial.view.fragments.Sesion
 import kotlinx.android.synthetic.main.fragment_perfil_usuario.view.*
 import kotlinx.android.synthetic.main.fragment_status_report.view.*
 import retrofit2.Call
@@ -27,7 +30,9 @@ import retrofit2.Response
 object Consumo {
 
     var TuNumeroDeEmpleado: String = ""
+    var TuPassword:String = ""
     var datosEmpleado:String = ""
+    lateinit var serviciosDataOnjet: ServiciosDatabase
     var asistenciaDelDia: Boolean = false
     var focusReportsView:Boolean=false
     var entidades= arrayOfNulls<String>(33)
@@ -150,7 +155,7 @@ object Consumo {
 
     }
 
-    fun pedir_login(usuario: LoginUser, context: Context, title: String, empleado: String, botonIniciosesion: Button) {
+    fun pedir_login(usuario: LoginUser, context: Context, title: String, empleado: String, passB64:String, botonIniciosesion: Button) {
 
         val CallRespuesta = apiEnvios.login_user("text/plain", usuario)
         CallRespuesta.enqueue(object : Callback<LoginUserResponse> {
@@ -169,10 +174,10 @@ object Consumo {
                     when (response.body()?.codigoOperacion) {
                         0 -> {
                             TuNumeroDeEmpleado = empleado
+                            TuPassword = passB64
                             botonIniciosesion.isEnabled = true
                             botonIniciosesion.setBackgroundResource(R.drawable.borde_circular)
-                            val intento1 = Intent(context, MainActivity::class.java)
-                            context.startActivity(intento1)
+                            Sesion.newInstance().mensajeHuella(context,title,context.resources.getString(R.string.guardarHuella))
                         }
                         -1 -> {
                             mensajes(context, title, "Error inesperado")
@@ -198,6 +203,49 @@ object Consumo {
                     mensajes(context, title, context.resources.getString(R.string.noneServise))
                     botonIniciosesion.isEnabled = true
                     botonIniciosesion.setBackgroundResource(R.drawable.borde_circular)
+                }
+            }
+        })
+    }
+
+    fun pedir_loginHuella(usuario: LoginUser, context: Context, empleado: String) {
+
+        val CallRespuesta = apiEnvios.login_user("text/plain", usuario)
+        CallRespuesta.enqueue(object : Callback<LoginUserResponse> {
+
+            override fun onFailure(call: Call<LoginUserResponse>, t: Throwable) {
+                mensajes(context, context.resources.getString(R.string.sesion), context.resources.getString(R.string.noneServise))
+            }
+
+            override fun onResponse(
+                call: Call<LoginUserResponse>,
+                response: Response<LoginUserResponse>
+            ) {
+                if (response.isSuccessful) {
+                    when (response.body()?.codigoOperacion) {
+                        0 -> {
+                            TuNumeroDeEmpleado = empleado
+                            val intento1 = Intent(context, MainActivity::class.java)
+                            context.startActivity(intento1)
+                            val fragment = context as Activity
+                            fragment.finish()
+                        }
+                        -1 -> {
+                            mensajes(context, context.resources.getString(R.string.sesion), "Error inesperado")
+                        }
+                        3 -> {
+                            mensajes(context, context.resources.getString(R.string.sesion), "Numero de empleado y/o contraseña incorrecto")
+                        }
+                        else -> {
+                            mensajes(
+                                context,
+                                context.resources.getString(R.string.sesion),
+                                "Error inesperado, marcar al soporte tecnico para más ayuda"
+                            )
+                        }
+                    }
+                } else {
+                    mensajes(context, context.resources.getString(R.string.sesion), context.resources.getString(R.string.noneServise))
                 }
             }
         })
@@ -531,5 +579,4 @@ object Consumo {
         dialogoRespuesta.show()
 
     }
-
 }

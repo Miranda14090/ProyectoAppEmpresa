@@ -15,8 +15,12 @@ import androidx.fragment.app.Fragment
 import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.Empleado
 import com.miranda.appempresarial.R
+import com.miranda.appempresarial.api.Servicios.ServiciosDatabase
+import com.miranda.appempresarial.presentet.Entidades
+import com.miranda.appempresarial.presentet.EntidadesImp
 import com.miranda.appempresarial.presentet.Internet
 import com.miranda.appempresarial.presentet.Sifrado
+import com.miranda.appempresarial.view.DatabaseView
 import com.miranda.appempresarial.view.InicioDeSesion
 import kotlinx.android.synthetic.main.fragment_formulario.*
 import kotlinx.android.synthetic.main.fragment_formulario.view.*
@@ -26,9 +30,10 @@ import java.util.*
 /**
  * A simple [Fragment] subclass.
  */
-class Formulario : Fragment() {
+class Formulario : Fragment(), DatabaseView {
 
     var mCallback : FormulariosListener?=null
+    var preseterDb: Entidades = EntidadesImp(this)
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -62,6 +67,7 @@ class Formulario : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         var edad = 0
+        preseterDb.spinnerEstados(Consumo.serviciosDataOnjet)
 
         val adapterspiner = ArrayAdapter<String>(activity!!, R.layout.sppinner_item, Consumo.entidades)
         spnEntidad.adapter = adapterspiner

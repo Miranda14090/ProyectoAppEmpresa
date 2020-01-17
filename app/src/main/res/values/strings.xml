@@ -54,4 +54,8 @@
     <string name="cerrarSesionPregunta">¿Está seguro que desea cerrar sesión?</string>
     <string name="sesion">Sesión</string>
     <string name="errorEntidad">El campo de entidad federativa es obligatorio</string>
+    <string name="dbUser">dbUsers</string>
+    <string name="no">No</string>
+    <string name="si">Si</string>
+    <string name="guardarHuella">¿Quieres asociar esta huella con el inicio de sesión?, si ya tiene asociado un usuario será reemplazado</string>
 </resources>
