@@ -4,7 +4,7 @@ package com.miranda.appempresarial.Model
 import com.miranda.appempresarial.api.Servicios.ServiciosDatabase
 
 
-class DatabaseEntidadesImp: DatabaseEntidades {
+class DatabaseModelImp: DatabaseModel {
 
     val entidases = arrayOf("Entidad Federativa","Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "CDMX",
         "Chiapas", "Chihuahua", "Coahuila", "Colima", "Durango", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "México",

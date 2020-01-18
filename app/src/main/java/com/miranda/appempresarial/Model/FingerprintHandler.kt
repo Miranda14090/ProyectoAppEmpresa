@@ -11,15 +11,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.miranda.appempresarial.R
-import com.miranda.appempresarial.presentet.Entidades
-import com.miranda.appempresarial.presentet.EntidadesImp
+import com.miranda.appempresarial.presentet.DatabasePresenter
+import com.miranda.appempresarial.presentet.DatabasePresenterImp
 import com.miranda.appempresarial.view.DatabaseView
 
 @TargetApi(Build.VERSION_CODES.M)
 class FingerprintHandler(private val context: Context) :
     FingerprintManager.AuthenticationCallback(), DatabaseView {
 
-    var preseterDbUser: Entidades = EntidadesImp(this)
+    var preseterDbUser: DatabasePresenter = DatabasePresenterImp(this)
 
     fun startAuth(
         fingerprintManager: FingerprintManager,

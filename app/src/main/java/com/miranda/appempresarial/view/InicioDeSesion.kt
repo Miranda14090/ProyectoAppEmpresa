@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.api.Servicios.ServiciosDatabase
-import com.miranda.appempresarial.presentet.Entidades
-import com.miranda.appempresarial.presentet.EntidadesImp
+import com.miranda.appempresarial.presentet.DatabasePresenter
+import com.miranda.appempresarial.presentet.DatabasePresenterImp
 import com.miranda.appempresarial.view.fragments.FingerprintFragment
 import com.miranda.appempresarial.view.fragments.Formulario
 import com.miranda.appempresarial.view.fragments.Sesion
@@ -28,7 +28,7 @@ class InicioDeSesion : AppCompatActivity(),
     var DB_CREATE = "baseCreada"
     lateinit var serviciosDatabase: ServiciosDatabase
     var firstT: SharedPreferences? = null
-    var preseterDb:Entidades=EntidadesImp(this)
+    var preseterDb:DatabasePresenter=DatabasePresenterImp(this)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

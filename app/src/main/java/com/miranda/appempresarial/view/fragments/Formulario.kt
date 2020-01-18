@@ -15,9 +15,8 @@ import androidx.fragment.app.Fragment
 import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.Empleado
 import com.miranda.appempresarial.R
-import com.miranda.appempresarial.api.Servicios.ServiciosDatabase
-import com.miranda.appempresarial.presentet.Entidades
-import com.miranda.appempresarial.presentet.EntidadesImp
+import com.miranda.appempresarial.presentet.DatabasePresenter
+import com.miranda.appempresarial.presentet.DatabasePresenterImp
 import com.miranda.appempresarial.presentet.Internet
 import com.miranda.appempresarial.presentet.Sifrado
 import com.miranda.appempresarial.view.DatabaseView
@@ -33,7 +32,7 @@ import java.util.*
 class Formulario : Fragment(), DatabaseView {
 
     var mCallback : FormulariosListener?=null
-    var preseterDb: Entidades = EntidadesImp(this)
+    var preseterDb: DatabasePresenter = DatabasePresenterImp(this)
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

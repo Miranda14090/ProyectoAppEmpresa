@@ -26,7 +26,7 @@ import com.miranda.appempresarial.view.MainActivity
 class Sesion : Fragment(),DatabaseView {
 
     var mCallback : FormulariosListener?=null
-    var preseterDbUser: Entidades = EntidadesImp(this)
+    var preseterDbUser: DatabasePresenter = DatabasePresenterImp(this)
 
 
     override fun onCreateView(

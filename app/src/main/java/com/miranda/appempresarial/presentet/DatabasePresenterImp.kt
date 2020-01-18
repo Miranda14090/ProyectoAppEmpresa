@@ -1,15 +1,15 @@
 package com.miranda.appempresarial.presentet
 
-import com.miranda.appempresarial.Model.DatabaseEntidades
-import com.miranda.appempresarial.Model.DatabaseEntidadesImp
+import com.miranda.appempresarial.Model.DatabaseModel
+import com.miranda.appempresarial.Model.DatabaseModelImp
 import com.miranda.appempresarial.Model.UserFingerprintDB
 import com.miranda.appempresarial.api.Servicios.ServiciosDatabase
 import com.miranda.appempresarial.view.DatabaseView
 
-class EntidadesImp(var view: DatabaseView):Entidades {
+class DatabasePresenterImp(var view: DatabaseView):DatabasePresenter {
 
-    val datos: DatabaseEntidades =
-        DatabaseEntidadesImp()
+    val datos: DatabaseModel =
+        DatabaseModelImp()
 
     override fun createDB(serviciosDatabase: ServiciosDatabase) {
         datos.createDB(serviciosDatabase)
