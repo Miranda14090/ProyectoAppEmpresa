@@ -2,6 +2,7 @@ package com.miranda.appempresarial.view.fragments
 
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
@@ -38,6 +39,7 @@ class Formulario : Fragment(), DatabaseView {
         super.onAttach(context)
         try{
             mCallback = activity as FormulariosListener?
+            Consumo.mCallback = mCallback!!
 
         }catch (e :Exception ){
 
@@ -249,7 +251,6 @@ class Formulario : Fragment(), DatabaseView {
 
     fun mensaje(c:Context, txtmensaje:String, codigo:Int, v:View)
     {
-        val formulario:FormulariosListener = InicioDeSesion()
         if(codigo==0) {
             v.btnInisioSesion.visibility=View.VISIBLE
             v.boton_cancelar.visibility= View.INVISIBLE
@@ -264,6 +265,7 @@ class Formulario : Fragment(), DatabaseView {
             .setMessage(txtmensaje)
             .setPositiveButton(R.string.msnOk,
                 DialogInterface.OnClickListener { dialog, which ->
+                    if(codigo==0) {Consumo.mCallback.loginFinishCallback()}
 
                 }) //despues del lambda -> se pone la accion
         dialogoRespuesta.create()

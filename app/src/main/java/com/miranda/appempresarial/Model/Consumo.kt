@@ -37,6 +37,7 @@ object Consumo {
     var focusReportsView:Boolean=false
     var entidades= arrayOfNulls<String>(33)
     var firstLoging = true
+    lateinit var  mCallback : Formulario.FormulariosListener
 
     var apiEnvios: ApiEmpleados = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
 
