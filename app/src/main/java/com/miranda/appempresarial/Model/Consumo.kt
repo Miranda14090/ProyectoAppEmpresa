@@ -38,6 +38,7 @@ object Consumo {
     var entidades= arrayOfNulls<String>(33)
     var firstLoging = true
     lateinit var  mCallback : Formulario.FormulariosListener
+    var hasFingerprintScaner = false
 
     var apiEnvios: ApiEmpleados = Api_Envio.getApiEnvio().create(ApiEmpleados::class.java)
 
@@ -178,7 +179,12 @@ object Consumo {
                             TuPassword = passB64
                             botonIniciosesion.isEnabled = true
                             botonIniciosesion.setBackgroundResource(R.drawable.borde_circular)
-                            Sesion.newInstance().mensajeHuella(context,title,context.resources.getString(R.string.guardarHuella))
+                            if(hasFingerprintScaner){
+                            Sesion.newInstance().mensajeHuella(context,title,context.resources.getString(R.string.guardarHuella))}
+                            else{
+                                val intent = Intent(context, MainActivity::class.java)
+                                context.startActivity(intent)
+                            }
                         }
                         -1 -> {
                             mensajes(context, title, "Error inesperado")

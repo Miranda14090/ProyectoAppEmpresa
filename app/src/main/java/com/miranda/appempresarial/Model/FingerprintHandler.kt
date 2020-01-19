@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.presentet.DatabasePresenter
 import com.miranda.appempresarial.presentet.DatabasePresenterImp
+import com.miranda.appempresarial.presentet.Internet
 import com.miranda.appempresarial.view.DatabaseView
 
 @TargetApi(Build.VERSION_CODES.M)
@@ -63,9 +64,11 @@ class FingerprintHandler(private val context: Context) :
             txtMensajes.setTextColor(ContextCompat.getColor(context, R.color.error))
         } else {
             //aqui poner inicio
-            val datosUser = preseterDbUser.obtenerUsuario(Consumo.serviciosDataOnjet)
-            val usuario = LoginUser(datosUser!!.password, datosUser.numeroEmpledo)
-            Consumo.pedir_loginHuella(usuario,context, datosUser.numeroEmpledo)
+            if(Internet.coprobarInternet(context)) {
+                val datosUser = preseterDbUser.obtenerUsuario(Consumo.serviciosDataOnjet)
+                val usuario = LoginUser(datosUser!!.password, datosUser.numeroEmpledo)
+                Consumo.pedir_loginHuella(usuario, context, datosUser.numeroEmpledo)
+            }
 
             txtMensajes.setTextColor(ContextCompat.getColor(context, R.color.verdeFuerte))
             imageView.setImageResource(R.mipmap.action_done)

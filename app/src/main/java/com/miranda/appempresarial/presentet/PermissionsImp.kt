@@ -1,6 +1,7 @@
 package com.miranda.appempresarial.presentet
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.KeyguardManager
 import android.content.Context
@@ -18,6 +19,8 @@ import android.security.keystore.KeyPermanentlyInvalidatedException
 import android.security.keystore.KeyProperties
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.RequiresApi
+import com.miranda.appempresarial.Model.Consumo
 import com.miranda.appempresarial.Model.FingerprintHandler
 import com.miranda.appempresarial.R
 import com.miranda.appempresarial.view.PermissionsView
@@ -77,7 +80,6 @@ class PermissionsImp(var view: PermissionsView):Permissions {
                 txtMensajes.text = "Debe agregar al menos 1 huella digital para usar esta función"
             } else {
                 txtMensajes.text = "Coloque su dedo en el escáner."
-
                 generateKey()
                 if (cipherInit()) {
                     val cryptoObject =
@@ -132,6 +134,7 @@ class PermissionsImp(var view: PermissionsView):Permissions {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     @TargetApi(Build.VERSION_CODES.M)
     fun cipherInit(): Boolean {
         cipher = try {
@@ -141,30 +144,34 @@ class PermissionsImp(var view: PermissionsView):Permissions {
         } catch (e: NoSuchPaddingException) {
             throw RuntimeException("Failed to get Cipher", e)
         }
-        return try {
-            keyStore!!.load(null)
-            val key = keyStore!!.getKey(
-                KEY_NAME,
-                null
-            ) as SecretKey
-            cipher.run {
-                this!!.init(Cipher.ENCRYPT_MODE, key)
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            try {
+                keyStore!!.load(null)
+                val key = keyStore!!.getKey(
+                    KEY_NAME,
+                    null
+                ) as SecretKey
+                cipher.run {
+                    this!!.init(Cipher.ENCRYPT_MODE, key)
+                }
+                true
+            } catch (@SuppressLint("NewApi") e: KeyPermanentlyInvalidatedException) {
+                false
+            } catch (e: KeyStoreException) {
+                throw RuntimeException("Failed to init Cipher", e)
+            } catch (e: CertificateException) {
+                throw RuntimeException("Failed to init Cipher", e)
+            } catch (e: UnrecoverableKeyException) {
+                throw RuntimeException("Failed to init Cipher", e)
+            } catch (e: IOException) {
+                throw RuntimeException("Failed to init Cipher", e)
+            } catch (e: NoSuchAlgorithmException) {
+                throw RuntimeException("Failed to init Cipher", e)
+            } catch (e: InvalidKeyException) {
+                throw RuntimeException("Failed to init Cipher", e)
             }
-            true
-        } catch (e: KeyPermanentlyInvalidatedException) {
-            false
-        } catch (e: KeyStoreException) {
-            throw RuntimeException("Failed to init Cipher", e)
-        } catch (e: CertificateException) {
-            throw RuntimeException("Failed to init Cipher", e)
-        } catch (e: UnrecoverableKeyException) {
-            throw RuntimeException("Failed to init Cipher", e)
-        } catch (e: IOException) {
-            throw RuntimeException("Failed to init Cipher", e)
-        } catch (e: NoSuchAlgorithmException) {
-            throw RuntimeException("Failed to init Cipher", e)
-        } catch (e: InvalidKeyException) {
-            throw RuntimeException("Failed to init Cipher", e)
+        } else {
+            TODO("VERSION.SDK_INT < M")
         }
     }
 }

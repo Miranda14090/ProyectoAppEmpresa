@@ -3,8 +3,11 @@ package com.miranda.appempresarial.view
 
 
 
+import android.app.KeyguardManager
 import android.content.Context
 import android.content.SharedPreferences
+import android.hardware.fingerprint.FingerprintManager
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.miranda.appempresarial.Model.Consumo
@@ -75,6 +78,11 @@ class InicioDeSesion : AppCompatActivity(),
     }
 
     private fun  getFirstTimeRun(){
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val fingerprintManager = this.getSystemService(Context.FINGERPRINT_SERVICE) as FingerprintManager
+            Consumo.hasFingerprintScaner = fingerprintManager!!.isHardwareDetected }
+
         firstT = applicationContext.getSharedPreferences(DB_KEY, Context.MODE_PRIVATE)
 
         Realm.init(this)
