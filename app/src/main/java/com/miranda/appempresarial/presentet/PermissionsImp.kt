@@ -171,7 +171,7 @@ class PermissionsImp(var view: PermissionsView):Permissions {
                 throw RuntimeException("Failed to init Cipher", e)
             }
         } else {
-            TODO("VERSION.SDK_INT < M")
+            return false
         }
     }
 }
