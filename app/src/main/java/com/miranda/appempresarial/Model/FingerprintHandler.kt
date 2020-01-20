@@ -15,6 +15,8 @@ import com.miranda.appempresarial.presentet.DatabasePresenter
 import com.miranda.appempresarial.presentet.DatabasePresenterImp
 import com.miranda.appempresarial.presentet.Internet
 import com.miranda.appempresarial.view.DatabaseView
+import com.miranda.appempresarial.view.fragments.FingerprintFragment
+import com.miranda.appempresarial.view.fragments.Sesion
 
 @TargetApi(Build.VERSION_CODES.M)
 class FingerprintHandler(private val context: Context) :
