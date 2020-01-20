@@ -38,8 +38,7 @@ class FingerprintHandler(private val context: Context) :
     }
 
     override fun onAuthenticationFailed() {
-        update("\n" +
-                "Error de autenticación. ", false)
+        update("Error de autenticación. ", false)
     }
 
     override fun onAuthenticationHelp(
@@ -50,7 +49,7 @@ class FingerprintHandler(private val context: Context) :
     }
 
     override fun onAuthenticationSucceeded(result: FingerprintManager.AuthenticationResult) {
-        update("Bienvenido", true)
+        update("Autorizado, enviando datos", true)
     }
 
 

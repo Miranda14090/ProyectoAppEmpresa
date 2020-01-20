@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -69,6 +70,8 @@ class PerfilUsuario : Fragment() {
                     Consumo.datosEmpleado = ""
                     Consumo.asistenciaDelDia = false
                     Consumo.firstLoging = true
+                    val pref = PreferenceManager.getDefaultSharedPreferences(activity!!)
+                    pref.edit().clear().commit()
                     val intent = Intent(context, InicioDeSesion::class.java)
                     startActivity(intent)
                     activity!!.finish()

@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -47,6 +48,15 @@ class Sesion : Fragment(),DatabaseView {
 
         txtLogin_usuario.setText(Consumo.TuNumeroDeEmpleado)
 
+        val pref= PreferenceManager.getDefaultSharedPreferences(activity!!)
+        pref.apply {
+            val numEmp=getString("EMPLEADO","")
+            val pass=getString("PASS","")
+            txtLogin_usuario.setText(numEmp)
+            txtLogin_pass.setText(pass)
+            btnswitch.isChecked = !((txtLogin_usuario.text.toString().replace(" ","") == "")|| (txtLogin_pass.text.toString().replace(" ","") == ""))
+        }
+
         boton_formulario.setOnClickListener {
 
             if(mCallback!=null)
@@ -78,13 +88,13 @@ class Sesion : Fragment(),DatabaseView {
         }
 
         btnswitch.setOnClickListener {
-            if(btnswitch.isChecked){
-                /*guardarValor("user",<nombre usuario>)
-                val usuario = leerValor("user")*/
-
-            }else{
-
-            }
+            btnswitch.isChecked=true
+            val pref=PreferenceManager.getDefaultSharedPreferences(activity!!)
+            val editor=pref.edit()
+            editor
+                .putString("EMPLEADO",txtLogin_usuario.text.toString())
+                .putString("PASS",txtLogin_pass.text.toString())
+                .apply()
         }
         btnFingerprint.setOnClickListener{
             if(mCallback!=null)

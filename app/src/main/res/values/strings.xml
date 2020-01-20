@@ -49,7 +49,7 @@
     <string name="btnRegresar">Regresar</string>
     <string name="btnElininar">Eliminar</string>
     <string name="btn_ver">Ver</string>
-    <string name="txtRecordarContra">Recordar Contraseña</string>
+    <string name="txtRecordarContra">Recuérdame</string>
     <string name="entidades">entidades</string>
     <string name="cerrarSesionPregunta">¿Está seguro que desea cerrar sesión?</string>
     <string name="sesion">Sesión</string>
