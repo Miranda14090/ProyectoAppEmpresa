@@ -53,9 +53,12 @@ class Sesion : Fragment(),DatabaseView {
             val numEmp=getString("EMPLEADO","")
             val pass=getString("PASS","")
             txtLogin_usuario.setText(numEmp)
+            if(numEmp != null || numEmp != ""){
+            Consumo.TuNumeroDeEmpleado = numEmp!!}
             txtLogin_pass.setText(pass)
             btnswitch.isChecked = !((txtLogin_usuario.text.toString().replace(" ","") == "")|| (txtLogin_pass.text.toString().replace(" ","") == ""))
         }
+        txtLogin_usuario.setText(Consumo.TuNumeroDeEmpleado)
 
         boton_formulario.setOnClickListener {
 

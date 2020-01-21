@@ -12,6 +12,7 @@
         <domain includeSubdomains="true">10.95.71.10</domain>
         <domain includeSubdomains="true">10.95.71.24</domain>
         <domain includeSubdomains="true">10.95.71.22</domain>
+        <domain includeSubdomains="true">10.95.71.86</domain>
         <domain includeSubdomains="true">rompope.fi-b.unam.mx</domain>
 
     </domain-config>
